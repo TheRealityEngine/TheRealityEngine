@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      .column {
+        float: left;
+        width: 48%;
+        padding: 10px;
+        column-count: 1
+      }
+
+      .row:after {
+        content: "";
+        display: table-row;
+        clear: both;
+      }
+      input.attrib {
+        width: 30px;
+      }
+      .num,
+      .dots {
+        display: inline;
+      }
+
+      table,
+      td,
+      th {
+        border: 1px solid black;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 90%;
+      }
+
+      td {
+        padding: 4px;
+        text-align: left;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      h1 {
+        text-align: center;
+      }
+      h2 {
+        text-align: center;
+      }
+      p.res {
+        text-align: center;
+      }
+      .aDot,
+      .aCir,
+      .aBox {
+        width: 1.4em;
+        height: 1.4em;
+      }
+      .stat {
+        font-size: 1.4em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="column">
+        <h2>Spell Casting</h2>
+        <p id="testme">Froooom</p>
+
+        <p class="stat" name="gno">
+          <input
+            type="number"
+            min="1"
+            max="5"
+            value="1"
+            id="gnonum"
+            class="attrib"
+            oninput="NumberMe('gno')"
+          />
+          <b>Gnosis</b>
+          <input
+            class="aDot"
+            type="image"
+            id="gno1"
+            onclick="ClickMe('gno', 1)"
+          />
+          <input
+            class="aCir"
+            type="image"
+            id="gno2"
+            onclick="ClickMe('gno', 2)"
+          />
+          <input
+            class="aCir"
+            type="image"
+            id="gno3"
+            onclick="ClickMe('gno', 3)"
+          />
+          <input
+            class="aCir"
+            type="image"
+            id="gno4"
+            onclick="ClickMe('gno', 4)"
+          />
+          <input
+            class="aCir"
+            type="image"
+            id="gno5"
+            onclick="ClickMe('gno', 5)"
+          />
+        </p>
+
+        <p class="stat" name="arc">
+          <input
+            type="number"
+            min="1"
+            max="5"
+            value="1"
+            id="arcnum"
+            class="attrib"
+            oninput="NumberMe('arc')"
+          />
+          <b>Arcana Level</b>
+          <input
+            class="aDot"
+            type="image"
+            id="arc1"
+            onclick="ClickMe('arc', 1)"
+          />
+          <input
+            class="aCir"
+            type="image"
+            id="arc2"
+            onclick="ClickMe('arc', 2)"
+          />
+          <input
+            class="aCir"
+            type="image"
+            id="arc3"
+            onclick="ClickMe('arc', 3)"
+          />
+          <input
+            class="aCir"
+            type="image"
+            id="arc4"
+            onclick="ClickMe('arc', 4)"
+          />
+          <input
+            class="aCir"
+            type="image"
+            id="arc5"
+            onclick="ClickMe('arc', 5)"
+          />
+        </p>
+        <p class="stat" name="spe">
+          <input
+            type="number"
+            min="1"
+            value="1"
+            id="spenum"
+            class="attrib"
+            oninput="NumberMe('spe')"
+          />
+          <b>Spell Level</b>
+          <input
+            class="aDot"
+            type="image"
+            id="spe1"
+            onclick="ClickLim('spe', 1); SpellAbility(1);"
+          />
+          <input
+            class="aCir"
+            type="image"
+            id="spe2"
+            onclick="ClickLim('spe', 2); SpellAbility(2);"
+          />
+          <input
+            class="aCir"
+            type="image"
+            id="spe3"
+            onclick="ClickLim('spe', 3); SpellAbility(3);"
+          />
+          <input
+            class="aCir"
+            type="image"
+            id="spe4"
+            onclick="ClickLim('spe', 4); SpellAbility(4);"
+          />
+          <input
+            class="aCir"
+            type="image"
+            id="spe5"
+            onclick="ClickLim('spe', 5); SpellAbility(5);"
+          />
+        </p>
+        <p id="spLvl"></p>
+        <form>
+          <br />
+          <h2>Reach</h2>
+          <p id="freeReach">Free Reach: 1</p>
+          <table>
+            <tr>
+              <th>Type</th>
+              <th>Basic</th>
+              <th>Advanced</th>
+            </tr>
+            <tr>
+              <td>Casting Time</td>
+              <td>
+                <input
+                  type="radio"
+                  name="castingtime"
+                  value="0"
+                  checked="true"
+                />Ritual (10 mins/dot)
+              </td>
+              <td><input type="radio" name="castingtime" value="1" />1 Turn</td>
+            </tr>
+            <tr>
+              <td>Duration</td>
+              <td>
+                <input
+                  type="radio"
+                  name="duration"
+                  value="0"
+                  checked="true"
+                />Turn
+              </td>
+              <td><input type="radio" name="duration" value="1" />Scene</td>
+            </tr>
+            <tr>
+              <td>Distance</td>
+              <td>
+                <input
+                  type="radio"
+                  name="distance"
+                  value="0"
+                  checked="true"
+                />Touch
+              </td>
+              <td>
+                <input type="radio" name="distance" value="1" />Line of Sight
+              </td>
+            </tr>
+            <tr>
+              <td>Area of Effect</td>
+              <td>
+                <input type="radio" name="aoe" value="0" checked="true" />Arm's
+                Length/One person
+              </td>
+              <td><input type="radio" name="aoe" value="1" />Room/~5 people</td>
+            </tr>
+            <tr>
+              <td>Potency</td>
+              <td>
+                <input type="radio" name="potency" value="0" checked="true" />
+                One Damage or One Dice Bonus or Penalty
+              </td>
+              <td>
+                <input type="radio" name="potency" value="1" />Bypasses mundane
+                protection
+              </td>
+            </tr>
+          </table>
+          Primary Spell Factor:
+
+          <select id="psfactor">
+            <option>Potency</option>
+            <option>Duration</option>
+            <option>Distance</option>
+            <option>Area of Effect</option>
+          </select>
+          <p id="psf"></p>
+          <p id="demo1" class="testing"><b>Total Reach: 0</b></p>
+          <p id="demo2"><b>Over Reach: 0</b></p>
+        </div>
+      </form>
+        <div class="column" >
+          <p class="stat" name="lim">
+            <input
+              type="number"
+              min="1"
+              max="5"
+              value="1"
+              id="limnum"
+              class="attrib"
+              oninput="NumberMe('lim')"
+            />
+            <b>Decoherence</b>
+            <input
+              class="aDot"
+              type="image"
+              id="lim1"
+              onclick="ClickMe('lim', 1)"
+            />
+            <input
+              class="aCir"
+              type="image"
+              id="lim2"
+              onclick="ClickMe('lim', 2)"
+            />
+            <input
+              class="aCir"
+              type="image"
+              id="lim3"
+              onclick="ClickMe('lim', 3)"
+            />
+            <input
+              class="aCir"
+              type="image"
+              id="lim4"
+              onclick="ClickMe('lim', 4)"
+            />
+            <input
+              class="aCir"
+              type="image"
+              id="lim5"
+              onclick="ClickMe('lim', 5)"
+            />
+          </p>
+          <p class="stat" name="wil">
+            <input
+              type="number"
+              min="1"
+              max="10"
+              value="10"
+              id="wilnum"
+              class="attrib"
+              oninput="MaxMe('wil')"
+            />
+            <b>Willpower</b>
+            <input
+              class="aBox"
+              type="image"
+              id="wil1"
+              onclick="MarkMe('wil', 1)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="wil2"
+              onclick="MarkMe('wil', 2)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="wil3"
+              onclick="MarkMe('wil', 3)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="wil4"
+              onclick="MarkMe('wil', 4)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="wil5"
+              onclick="MarkMe('wil', 5)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="wil6"
+              onclick="MarkMe('wil', 6)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="wil7"
+              onclick="MarkMe('wil', 7)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="wil8"
+              onclick="MarkMe('wil', 8)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="wil9"
+              onclick="MarkMe('wil', 9)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="wil10"
+              onclick="MarkMe('wil', 10)"
+              alt="square"
+            />
+           <br />
+
+          <h2>Roll Dice</h2>
+          <form>
+          Your Dice Pool:
+          <select id="myPool">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+          </select>
+          <br />
+          <p id="spelltotal" class="res"></p>
+          <p id="spellresults" class="res"></p>
+        </form>
+          <br /><br />
+        
+        <input type="button" id="spell" value="Spell Roll" onclick="RollDice('spell')" />
+        <input type="button" id="ability" value="Ability Check" onclick="RollDice('ability')" />
+        <br />
+        <p id="threemax"></p>
+        <p id="demo"></p>
+
+        <input type="button" id="rero" value="Willpower Reroll" />
+      </div>
+    </div>
+    <script>
+      var resultArray = [];
+      var text1 = " ";
+      var circle =
+        "circle-empty.jpg";
+      var filled =
+        "circle-filled.jpg";
+      var square =
+        "square-empty.jpg";
+      var squareSlash =
+        "square-slash.jpg";
+      var squareStar = 
+        "square-star.jpg";
+      var squareFilled = 
+        "square-filled.jpg"
+
+      window.onload = function () {
+        MakeCircles();
+      };
+
+      function MakeCircles() {
+        let items = document.getElementsByClassName("aCir");
+        let items2 = document.getElementsByClassName("aDot");
+        let items3 = document.getElementsByClassName("aBox");
+        for (var i = 0; i < items.length; i++) {
+          items[i].src = circle;
+        }
+        for (var i = 0; i < items2.length; i++) {
+          items2[i].src = filled;
+        }
+        for (var i = 0; i < items3.length; i++) {
+          items3[i].src = square;
+        }
+      }
+
+      function ClickMe(stat, dot) {
+        let dotId = stat + dot;
+        let demog = document.getElementById(dotId);
+        let num = stat + "num";
+        dot = Number(dot);
+        document.getElementById(num).value = dot;
+        for (i = 1; i < 11; i++) {
+          newImg = stat + i;
+          if (i > dot) document.getElementById(newImg).src = circle;
+          else if (i <= dot) document.getElementById(newImg).src = filled;
+        }
+      }
+
+      function MarkMe(stat, box) {
+        let boxId = stat + box;
+        let demog = document.getElementById(boxId);
+        let num = stat + "num";
+        if (demog.alt == "square") {
+          demog.src = squareSlash; 
+          demog.alt = "slash";
+        }
+        else if (demog.alt == "slash") {
+          demog.src = squareStar;
+          demog.alt = "star"
+        }
+        else if (demog.alt == "star") {
+          demog.src = square;
+          demog.alt = "square"
+        }
+      }
+
+      function MaxMe(stat) {
+        let numId = stat + "num";
+        let val = document.getElementById(numId).value;
+        for (i = 1; i < 11; i++) {
+          newImg = stat + i;
+          if (i > val) {
+            document.getElementById(newImg).src = squareFilled;
+            document.getElementById(newImg).alt = "nope";
+          }
+          else if (i <= val) {
+            document.getElementById(newImg).src = square;
+            document.getElementById(newImg).alt = "square";
+          }
+        }
+      }
+
+      function ClickLim(stat, dot) {
+        let dotId = stat + dot;
+        let demog = document.getElementById(dotId);
+        let num = stat + "num";
+        let arcLvl = document.getElementById("arcnum").value;
+        dot = Number(dot);
+        if (arcLvl >= dot) {
+          document.getElementById(num).value = dot;
+          for (i = 1; i < 6; i++) {
+            newImg = stat + i;
+            if (i > dot) document.getElementById(newImg).src = circle;
+            else if (i <= dot) document.getElementById(newImg).src = filled;
+          }
+        }
+      }
+
+      function SpellAbility(level) {
+        let spLvl = document.getElementById("spLvl");
+        if (level == 1) spLvl.innerHTML = "Knowing, Unveiling, Compelling";
+        else if (level == 2) spLvl.innerHTML = "Shielding, Veiling, Ruling";
+        else if (level == 3) spLvl.innerHTML = "Perfecting, Weaving, Fraying";
+        else if (level == 4) spLvl.innerHTML = "Patterning, Unraveling";
+        else if (level == 5) spLvl.innerHTML = "Making, Unmaking";
+      }
+
+      function NumberMe(stat) {
+        let numId = stat + "num";
+        let val = document.getElementById(numId).value;
+        ClickMe(stat, val);
+      }
+
+      function UpdateReach() {
+        let element = document.getElementById("demo1");
+        casting = Number(CheckValue("castingtime"));
+        duration = Number(CheckValue("duration"));
+        distance = Number(CheckValue("distance"));
+        aoe = Number(CheckValue("aoe"));
+        potency = Number(CheckValue("potency"));
+        totalreach = casting + duration + distance + aoe + potency;
+        return totalreach;
+      }
+
+      function UpdateText() {
+        const obj2 = document.getElementById("demo1");
+        const obj3 = document.getElementById("demo2");
+        var totalreach = UpdateReach();
+        var overreach = OverReach();
+        obj2.innerHTML = "<b>Total Reach: </b>" + totalreach;
+        if (overreach > 0) {
+          obj3.innerHTML =
+            "<b><FONT COLOR=red>Over Reach: </b>" +
+            overreach +
+            "<br>Warning: Successes are automatically applied to Over Reach <br> &nbsp&nbsp If there are insufficient succcesses, an Anomaly might occur";
+        } else if (overreach <= 0) {
+          obj3.innerHTML = "<b><FONT COLOR=black>Over Reach: </b>" + overreach;
+        }
+      }
+
+      function OverReach() {
+        var arcLvl = document.getElementById("arcnum").value;
+        var spellLvl = document.getElementById("spenum").value;
+        availReach = arcLvl - spellLvl + 1;
+        var totalReach = UpdateReach();
+        let overReach = totalReach - availReach;
+        if (overReach > 0) return overReach;
+        else return 0;
+      }
+
+      document.addEventListener("input", UpdateText);
+      document.addEventListener("input", FactorAlert);
+      document.addEventListener("click", FreeReach);
+
+      function FreeReach() {
+        var arcVal = document.getElementById("arcnum").value;
+        var spell = document.getElementById("spenum");
+        spell.max = arcVal;
+        parId = document.getElementById("freeReach");
+        freeR = 1 + Number(arcVal) - Number(spell.value);
+        parId.innerHTML = "Free Reach: " + freeR;
+      }
+
+      function FactorAlert() {
+        let parid = document.getElementById("psf");
+        let obj = document.getElementById("psfactor");
+        let psf = obj.options[obj.selectedIndex].text;
+        if (psf == "Potency")
+          parid.innerHTML =
+            "<FONT COLOR=blue>Each success will grant +1 damage, bonus dice, or penalty dice";
+        else if (psf == "Duration")
+          parid.innerHTML =
+            "<FONT COLOR=blue>Spell lasts for as many turns as successes";
+        else if (psf == "Distance")
+          parid.innerHTML =
+            "<FONT COLOR=blue>Spell can be cast on a target at the distance of 5ft x the number of successes";
+        else if (psf == "Area of Effect")
+          parid.innerHTML =
+            "<FONT COLOR=blue>Spell effects an area of a radius 5ft x # of success or number of people equal to successes";
+      }
+
+      function SpellEffects(total) {
+        let obj = document.getElementById("psfactor");
+        let psf = obj.options[obj.selectedIndex].text;
+        let parid = document.getElementById("spelltotal");
+        let text1 = " ";
+        if (total < 1)
+          text1 +=
+            "No Successes <br />The spell is not forming as you'd hope.<br />Would you like to 1 Stain to Clarity to gain 1 Success?";
+        else if (total == 1) text1 += "<b>1 Success</b>"
+        else if (total > 1) text1 += "<b>" + total + " Successes</b>";
+        parid.innerHTML = text1;
+      }
+
+      function CheckValue(radioname) {
+        var obj1 = document.getElementsByName(radioname);
+        for (i = 0; i < obj1.length; i++) {
+          if (obj1[i].checked) return obj1[i].value;
+        }
+      }
+
+
+      function RollDice(rollType) {
+        rt = rollType;
+        resultArray = [];
+        var liminality = document.getElementById("limnum").value;
+        let obj = document.getElementById("myPool");
+        let pool = Number(obj.options[obj.selectedIndex].text);
+        while (pool > 0) {
+          roll = Math.floor(Math.random() * 10) + 1;
+          if (roll > 9) {
+            pool--;
+            result = { dieRoll: roll, status: "Critical Success" };
+            resultArray.push(result);
+          } else if (roll > 5) {
+            pool--;
+            result = { dieRoll: roll, status: "Success" };
+            resultArray.push(result);
+          } else if (roll > 1) {
+            pool--;
+            result = { dieRoll: roll, status: "Failure" };
+            resultArray.push(result);
+          } else if (roll > 0) {
+            pool--;
+            result = { dieRoll: roll, status: "Critical Failure" };
+            resultArray.push(result);
+          }
+        }
+        document.getElementById("testme").innerHTML = rt;
+        PrintResults(resultArray, rollType);
+      }
+
+      function PrintResults(resultArray, rollType) {
+        var liminality = document.getElementById("limnum").value;
+        let overreach = OverReach();
+        let rLen = resultArray.length;
+        let succ = 0;
+        let critSuc = 0
+        let critFail = 0
+        let lim = liminality - 1;
+        let text1 = "<ul> ";
+        let st = document.getElementById("spelltotal");    
+        let sr = document.getElementById("spellresults");
+        st.innerHTML = " ";
+        sr.innerHTML = " ";      
+        for (let i = 0; i < rLen; i++) {
+          if (i <= lim) {
+            text1 += "<li><FONT COLOR=purple>";
+            if (resultArray[i].dieRoll > 9) critSuc++;
+            else if (resultArray[i].dieRoll == 1) critFail++;
+          }
+          else if (i > lim) text1 += "<li><FONT COLOR=black> ";
+          text1 +=
+            resultArray[i].status + " " + resultArray[i].dieRoll + "</li>";
+          if (resultArray[i].dieRoll > 9) {
+            succ++;
+            succ++;
+          } else if (resultArray[i].dieRoll > 5) succ++;
+          else if (resultArray[i].dieRoll == 1) succ--;
+        }
+        if (rollType == "ability") {
+          crits = critSuc + critFail;
+          if (crits > 0) sr.innerHTML = "<FONT-COLOR=red><b>Arcana Bleed: " + crits + "</b><br /><FONT-COLOR=black>";
+          st.innerHTML  = "<b> Total Successes: " + succ + "</b></ul>";
+          document
+          .getElementById("rero")
+          .setAttribute("onclick", "SetupReroll(resultArray, 'ability')");
+        }
+        else if (rollType == "spell") {
+          total = succ - overreach;
+        if (total >= 0) {
+          if (critSuc > 0) sr.innerHTML = "<b>Possible Spell Surge</b><br />";
+          st.innerHTML = " Total Success: " + total + "</ul>";
+          SpellEffects(total);
+        } else if (total < 0) {
+          anomaly = overreach - succ;
+          sr.innerHTML = "<b>Possible Reality Tear <b>";
+          if (critFail > 0) sr.innerHTML =
+            "<FONT COLOR=purple><h2>You have triggered an Anomaly<h2> ";
+              st.innerHTML = " Total Successes: -" + anomaly + "</ul>";
+        }
+        document
+          .getElementById("rero")
+          .setAttribute("onclick", "SetupReroll(resultArray, 'spell')");
+        }
+        document.getElementById("demo").innerHTML = text1;
+      }
+
+      function SetupReroll(resultArray, rollType) {
+        var liminality = document.getElementById("limnum").value;
+        let rLen = resultArray.length;
+        let succ = 0;
+        let lim = liminality - 1;
+        let text1 =
+          "<ul><br /><form method='post' name='will_form' id='will_form'>";
+        
+        if (rollType == "ability") {
+        for (let i = 0; i < rLen; i++) {
+          if (i <= lim)
+            text1 +=
+              "<li><FONT COLOR=gray><strike> <input type='checkbox' name='check[]' value='Check Box " +
+              i +
+              "' onclick='return false'/>";
+          else if (i > lim)
+            text1 +=
+              "<li><FONT COLOR=black> <input type='checkbox' name='check[]' value='Check Box " +
+              i +
+              "' onclick=checkBoxLimit('ability') />";
+          text1 +=
+            "<label id=result" +
+            i +
+            "> " +
+            resultArray[i].status +
+            " " +
+            resultArray[i].dieRoll +
+            "</label></li></strike>";
+        }
+        }
+        else if (rollType == "spell") {
+        for (let i = 0; i < rLen; i++) {
+          if (i <= lim)
+            text1 +=
+            "<li><FONT COLOR=purple> <input type='checkbox' name='check[]' value='Check Box " +
+              i +
+              "' onclick=checkBoxLimit('spell') />";
+          else if (i > lim)
+            text1 +=
+            "<li><FONT COLOR=gray><strike> <input type='checkbox' name='check[]' value='Check Box " +
+              i +
+              "' onclick='return false'/>";       
+          text1 +=
+            "<label id=result" +
+            i +
+            "> " +
+            resultArray[i].status +
+            " " +
+            resultArray[i].dieRoll +
+            "</label></li></strike>";
+        }
+        }
+        document.getElementById("demo").innerHTML = text1;
+        document.getElementById("rero").setAttribute("value", "Reroll Now");
+      }
+
+      function checkBoxLimit(rollType) {
+        var checkBoxGroup = document.forms["will_form"]["check[]"];
+        var limit = 3;
+        if (rollType == "spell") {
+          document
+          .getElementById("rero")
+          .setAttribute("onclick", "ActualReroll('spell')");
+        }
+        else if (rollType == "ability") {
+          document
+          .getElementById("rero")
+          .setAttribute("onclick", "ActualReroll('ability')");
+        }
+        for (var i = 0; i < checkBoxGroup.length; i++) {
+          checkBoxGroup[i].onclick = function () {
+            var checkedcount = 0;
+            for (var i = 0; i < checkBoxGroup.length; i++) {
+              checkedcount += checkBoxGroup[i].checked ? 1 : 0;
+            }
+            if (checkedcount > limit) {
+              document.getElementById("threemax").innerHTML =
+                "<FONT COLOR=red>You can only select 3 boxes";
+              this.checked = false;
+            }
+          };
+        }
+      }
+
+      function ActualReroll(rollType) {
+        var checkBoxGroup = document.forms["will_form"]["check[]"];
+        let rero = document.getElementById("rero")
+        rero.value = "Willpower Reroll";
+        document.getElementById("threemax").innerHTML = " ";
+        for (var i = 0; i < checkBoxGroup.length; i++) {
+          resLabel = "result" + i;
+          findit = document.getElementById(resLabel);
+          if (checkBoxGroup[i].checked) {
+            newroll = Math.floor(Math.random() * 10) + 1;
+            resultArray[i].dieRoll = newroll;
+            if (newroll > 9) resultArray[i].status = "Critical Success";
+            else if (newroll > 5) resultArray[i].status = "Success";
+            else if (newroll > 1) resultArray[i].status = "Failure";
+            else if (newroll > 0) resultArray[i].status = "Critical Failure";
+            PrintResults(resultArray, rollType);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
