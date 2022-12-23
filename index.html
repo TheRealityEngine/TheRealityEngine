@@ -60,6 +60,9 @@
       .stat {
         font-size: 1.4em;
       }
+      .tiny {
+        font-size: .6em;
+      }
     </style>
   </head>
   <body>
@@ -320,15 +323,7 @@
             />
           </p>
           <p class="stat" name="wil">
-            <input
-              type="number"
-              min="1"
-              max="10"
-              value="10"
-              id="wilnum"
-              class="attrib"
-              oninput="MaxMe('wil')"
-            />
+            
             <b>Willpower</b>
             <input
               class="aBox"
@@ -400,8 +395,101 @@
               onclick="MarkMe('wil', 10)"
               alt="square"
             />
-           <br />
-
+            <input
+              type="number"
+              min="1"
+              max="10"
+              value="10"
+              id="wilnum"
+              class="attrib"
+              oninput="MaxMe('wil')"
+            />
+            <span class="tiny">set max</span>
+          </p>
+          <p class="stat" name="heal">
+            
+            <b>Health</b>
+            <input
+              class="aBox"
+              type="image"
+              id="heal1"
+              onclick="MarkMe('heal', 1)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="heal2"
+              onclick="MarkMe('heal', 2)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="heal3"
+              onclick="MarkMe('heal', 3)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="heal4"
+              onclick="MarkMe('heal', 4)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="heal5"
+              onclick="MarkMe('heal', 5)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="heal6"
+              onclick="MarkMe('heal', 6)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="heal7"
+              onclick="MarkMe('heal', 7)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="heal8"
+              onclick="MarkMe('heal', 8)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="heal9"
+              onclick="MarkMe('heal', 9)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="heal10"
+              onclick="MarkMe('heal', 10)"
+              alt="square"
+            />
+            <input
+              type="number"
+              min="1"
+              max="10"
+              value="10"
+              id="healnum"
+              class="attrib"
+              oninput="MaxMe('heal')"
+            />
+            <span class="tiny">set max</span>
+          </p>
           <h2>Roll Dice</h2>
           <form>
           Your Dice Pool:
@@ -613,18 +701,6 @@
             "<FONT COLOR=blue>Spell effects an area of a radius 5ft x # of success or number of people equal to successes";
       }
 
-      function SpellEffects(total) {
-        let obj = document.getElementById("psfactor");
-        let psf = obj.options[obj.selectedIndex].text;
-        let parid = document.getElementById("spelltotal");
-        let text1 = " ";
-        if (total < 1)
-          text1 +=
-            "No Successes <br />The spell is not forming as you'd hope.<br />Would you like to 1 Stain to Clarity to gain 1 Success?";
-        else if (total == 1) text1 += "<b>1 Success</b>"
-        else if (total > 1) text1 += "<b>" + total + " Successes</b>";
-        parid.innerHTML = text1;
-      }
 
       function CheckValue(radioname) {
         var obj1 = document.getElementsByName(radioname);
@@ -702,11 +778,11 @@
         }
         else if (rollType == "spell") {
           total = succ - overreach;
-        if (total >= 0) {
-          if (critSuc > 0) sr.innerHTML = "<b>Possible Spell Surge</b><br />";
+        if (total > 0) {
+          if (critSuc > 0) sr.innerHTML = "<b>Spell Surge: " + critSuc + "</b><br />";
           st.innerHTML = " Total Success: " + total + "</ul>";
-          SpellEffects(total);
-        } else if (total < 0) {
+        } else if (total == 0 && critFail < 1) { st.innerHTML = "No Successes <br />The spell is not forming as you'd hope.<br />Would you like to 1 Stain to Clarity to gain 1 Success?";
+        } else if (total <= 0) {
           anomaly = overreach - succ;
           sr.innerHTML = "<b>Possible Reality Tear <b>";
           if (critFail > 0) sr.innerHTML =
@@ -826,3 +902,4 @@
     </script>
   </body>
 </html>
+
