@@ -53,7 +53,8 @@
       }
       .aDot,
       .aCir,
-      .aBox {
+      .aBox,
+      .fBox {
         width: 1.4em;
         height: 1.4em;
       }
@@ -81,7 +82,7 @@
             class="attrib"
             oninput="NumberMe('gno')"
           />
-          <b>Gnosis</b>
+          <b><span onclick="GimmeInfo('gnosis')">Gnosis</span></b>
           <input
             class="aDot"
             type="image"
@@ -124,7 +125,7 @@
             class="attrib"
             oninput="NumberMe('arc')"
           />
-          <b>Arcana Level</b>
+          <b><span onclick="GimmeInfo('arcana')">Arcana Level</span></b>
           <input
             class="aDot"
             type="image"
@@ -165,7 +166,7 @@
             class="attrib"
             oninput="NumberMe('spe')"
           />
-          <b>Spell Level</b>
+          <b><span onclick="GimmeInfo('spell')">Spell Level</span></b>
           <input
             class="aDot"
             type="image"
@@ -200,7 +201,7 @@
         <p id="spLvl"></p>
         <form>
           <br />
-          <h2>Reach</h2>
+          <h2><span onclick="GimmeInfo('reach')">Reach</span></h2>
           <p id="freeReach">Free Reach: 1</p>
           <table>
             <tr>
@@ -280,6 +281,91 @@
         </div>
       </form>
         <div class="column" >
+          <p class="stat" name="clar">
+            
+            
+            <input
+              type="number"
+              min="1"
+              max="10"
+              value="7"
+              id="clarnum"
+              class="attrib"
+              oninput="MinMe('clar')"
+            />
+            <b><span onclick="GimmeInfo('clarity')">Clarity</span></b>
+            <input
+              class="fBox"
+              type="image"
+              id="clar1"
+              onclick="MarkMe('clar', 1)"
+              alt="nope"
+            />
+            <input
+              class="fBox"
+              type="image"
+              id="clar2"
+              onclick="MarkMe('clar', 2)"
+              alt="nope"
+            />
+            <input
+              class="fBox"
+              type="image"
+              id="clar3"
+              onclick="MarkMe('clar', 3)"
+              alt="nope"
+            />
+            <input
+              class="fBox"
+              type="image"
+              id="clar4"
+              onclick="MarkMe('clar', 4)"
+              alt="nope"
+            />
+            <input
+              class="fBox"
+              type="image"
+              id="clar5"
+              onclick="MarkMe('clar', 5)"
+              alt="nope"
+            />
+            <input
+              class="fBox"
+              type="image"
+              id="clar6"
+              onclick="MarkMe('clar', 6)"
+              alt="nope"
+            />
+            <input
+              class="fBox"
+              type="image"
+              id="clar7"
+              onclick="MarkMe('clar', 7)"
+              alt="nope"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="clar8"
+              onclick="MarkMe('clar', 8)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="clar9"
+              onclick="MarkMe('clar', 9)"
+              alt="square"
+            />
+            <input
+              class="aBox"
+              type="image"
+              id="clar10"
+              onclick="MarkMe('clar', 10)"
+              alt="square"
+            />
+            <span class="tiny">Mark Stains</span>
+          </p>
           <p class="stat" name="lim">
             <input
               type="number"
@@ -290,7 +376,7 @@
               class="attrib"
               oninput="NumberMe('lim')"
             />
-            <b>Decoherence</b>
+            <b><span onclick="GimmeInfo('decoherence')">Decoherence</span></b>
             <input
               class="aDot"
               type="image"
@@ -324,7 +410,7 @@
           </p>
           <p class="stat" name="wil">
             
-            <b>Willpower</b>
+            <b><span onclick="GimmeInfo('willpower')">Willpower</span></b>
             <input
               class="aBox"
               type="image"
@@ -408,7 +494,7 @@
           </p>
           <p class="stat" name="heal">
             
-            <b>Health</b>
+            <b><span onclick="GimmeInfo('health')">Health</span></b>
             <input
               class="aBox"
               type="image"
@@ -520,6 +606,14 @@
         <input type="button" id="rero" value="Willpower Reroll" />
       </div>
     </div>
+    <div id="gonnahide" style="position:absolute;bottom:20px; right:100px;z-index:5; display:block;">
+      <button onclick="ToggleBox('gonnahide', 'gonnareveal')">More info</button>
+    </div>
+    <div id="gonnareveal" style="position:absolute;bottom:20px; right:100px;z-index:5; display:none; width:40%; background-color:whitesmoke">
+      <h3 style="text-align:right;">Info Box</h3>
+      <p id="infoBox" >Click something to put info here</p>
+      <button style="float:right;" onclick="ToggleBox('gonnareveal', 'gonnahide')">Close</button>
+    </div>
     <script>
       var resultArray = [];
       var text1 = " ";
@@ -540,10 +634,20 @@
         MakeCircles();
       };
 
+      function ToggleBox(hide, reveal) {
+        let hidden = document.getElementById(hide);
+        let revealed = document.getElementById(reveal);
+        hidden.style["display"] = "none";
+        revealed.style["display"] = "block";
+      }
+
+      
+
       function MakeCircles() {
         let items = document.getElementsByClassName("aCir");
         let items2 = document.getElementsByClassName("aDot");
         let items3 = document.getElementsByClassName("aBox");
+        let items4 = document.getElementsByClassName("fBox");
         for (var i = 0; i < items.length; i++) {
           items[i].src = circle;
         }
@@ -552,6 +656,9 @@
         }
         for (var i = 0; i < items3.length; i++) {
           items3[i].src = square;
+        }
+        for (var i = 0; i < items3.length; i++) {
+          items4[i].src = squareFilled;
         }
       }
 
@@ -596,6 +703,22 @@
             document.getElementById(newImg).alt = "nope";
           }
           else if (i <= val) {
+            document.getElementById(newImg).src = square;
+            document.getElementById(newImg).alt = "square";
+          }
+        }
+      }
+
+      function MinMe(stat) {
+        let numId = stat + "num";
+        let val = document.getElementById(numId).value;
+        for (i = 1; i < 11; i++) {
+          newImg = stat + i;
+          if (i <= val) {
+            document.getElementById(newImg).src = squareFilled;
+            document.getElementById(newImg).alt = "nope";
+          }
+          else if (i > val) {
             document.getElementById(newImg).src = square;
             document.getElementById(newImg).alt = "square";
           }
@@ -884,6 +1007,7 @@
         var checkBoxGroup = document.forms["will_form"]["check[]"];
         let rero = document.getElementById("rero")
         rero.value = "Willpower Reroll";
+        document.getElementById("testme").innerHTML = checkBoxGroup[2];
         document.getElementById("threemax").innerHTML = " ";
         for (var i = 0; i < checkBoxGroup.length; i++) {
           resLabel = "result" + i;
@@ -899,7 +1023,26 @@
           }
         }
       }
+
+      function GimmeInfo(subject) {
+      let parId = document.getElementById("infoBox");
+      if (subject == "willpower")
+        parId.innerHTML ="<b>Willpower:</b> Equal to Resolve+Composure. At the start of each game, you get back points equal to the higher of the two.<br />You can use a WP point to reroll up to 3 dice. However, for Spell Rolls you can only reroll Decoherence dice, and for Ability Rolls you can only reroll NON-Decoherence dice.<br />If you spend your last WP, you have -2 to all rolls. ";
+      else if (subject == "gnosis")
+        parId.innerHTML ="<b>Gnosis:</b> VtM Equivalent: Blood Potency.<br />Added to all Spell Rolls (along with the relevant Arcana Level), this measures your overall strength as a mage and your ability to interact with the supernatural<br />As your Gnosis increases, you may find it harder to satisfy your obsession.";
+      else if (subject == "arcana")
+        parId.innerHTML ="<b>Arcana Level:</b> Your overall ability to manipulate a specific element of reality. The 9 Arcana are split into 3 broader spheres of influence:<br /> Physical (Matter, Forces, Space), Vital (Mind, Life, Prime), and Eventual (Fate, Time, Death). How you can affect an Arcana is determined by the Spell Level.";
+      else if (subject == "spell")
+        parId.innerHTML ="<b>Spell Level:</b><br />One Dot: Gain Knowledge, Reveal something hidden, Make something happen that is likely to happen.<br />Two Dots: Protection, Hiding Something, Make something happen that is very unlikely but possible. Add dice to a roll.<br />Three Dots: Do Bashing damage. Heal Bashing damage. Make something happen that is normally impossible without mundane intervention. Add to/Subtract from a Stat.<br />Four Dots: Make something impossible happen. Change a property of something to a different but related property.<br />Five Dots: Make something new or delete something from existence."; 
+      else if (subject == "reach")
+        parId.innerHTML ="<b>Reach:</b> This is your ability to push a spell beyond its normal limits. You get 1 free reach plus the difference between the Arcana Level and the Spell Level.<br />You can push beyond this, creating Overreach. Overreach is subtracted from your successes. If you dont have enough successes, an anomaly might occur.";
+      else if (subject == "decoherence")
+        parId.innerHTML ="<b>Decoherence:</b> VtM equivalent to Hunger<br />Your decoherence builds as you strain the line between the Sleeping World and the Real World. Decoherence allows you to reroll spell dice, but you cannot reroll Decoherence dice during ability rolls.<br />How you lower decoherence depends on your Obsession. If it rises while you are at 5, you gain a stain to your Clarity.";
+      else if (subject == "health")
+        parId.innerHTML ="<b>Health:</b> Your Health is equal to Stamina+Size (5). There are two types of damage, Bashing (indicated by a single slash)and Aggravated (three slashes). Place them left to right, with more serious damage farthest left. If your health track is full, roll Stamina each round to stay conscious.<br />Healing: Bashing damage heals one point per hour and Aggravated heals one point per 3 days. Some 2 dot spells can reduce this time, some 3 dot spells can heal Bashing, and 4 dot spells can heal Aggravated.";
+      else if (subject == "clarity")
+        parId.innerHTML ="<b>Clarity:</b> VtM equivalent to Humanity<br />Your Clarity is your overall grasp of the Sleeping world, how it feels for those who are still asleep, and your connection to the rest of humanity. As a mage's clarity declines, they often find it harder to interact with sleepers and the mundane world.<br />Severe aggressions against reality and sleeping humans will stain your clarity. Mark the empty remaining boxes on your clarity track. At the end of each session, you will roll dice equal to the unmarked boxes.<br />Any success allows you to maintain your Clarity. Fail the roll and your Clarity declines as the Sleeping world fades from your understanding.";
+      }
     </script>
   </body>
 </html>
-
