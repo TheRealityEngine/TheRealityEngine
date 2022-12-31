@@ -5,11 +5,14 @@
     <style>
       .column {
         float: left;
-        width: 48%;
+        min-width:20em;
         padding: 10px;
-        column-count: 1
+        box-sizing:border-box;
+        width: 48%
       }
-
+      @media only screen and (max-width: 48em) {
+        .column { width: 100%; }
+      }
       .row:after {
         content: "";
         display: table-row;
@@ -39,9 +42,7 @@
         text-align: left;
       }
 
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
+      
       h1 {
         text-align: center;
       }
@@ -64,14 +65,24 @@
       .tiny {
         font-size: .6em;
       }
+
+      .title {
+        display: inline;
+        border: 1px solid black;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
     </style>
   </head>
   <body>
-    <div class="row">
-      <div class="column">
-        <h2>Spell Casting</h2>
-        <p id="testme">Froooom</p>
 
+    <h2 id="spellTitle" style="background-color:gray" class="title" onclick="ToggleBox('abilityColumn', 'spellColumn')">Spell Casting</h2>
+      <h2 id="abilityTitle" style="background-color:white" class="title" onclick="ToggleBox('spellColumn', 'abilityColumn')">Attributes & Skills</h2>
+    <div class="casting" >
+    <div class="row">
+      
+      <div id="spellColumn" class="column" style="display:none;">
+        
         <p class="stat" name="gno">
           <input
             type="number"
@@ -81,38 +92,10 @@
             id="gnonum"
             class="attrib"
             oninput="NumberMe('gno')"
+            
           />
           <b><span onclick="GimmeInfo('gnosis')">Gnosis</span></b>
-          <input
-            class="aDot"
-            type="image"
-            id="gno1"
-            onclick="ClickMe('gno', 1)"
-          />
-          <input
-            class="aCir"
-            type="image"
-            id="gno2"
-            onclick="ClickMe('gno', 2)"
-          />
-          <input
-            class="aCir"
-            type="image"
-            id="gno3"
-            onclick="ClickMe('gno', 3)"
-          />
-          <input
-            class="aCir"
-            type="image"
-            id="gno4"
-            onclick="ClickMe('gno', 4)"
-          />
-          <input
-            class="aCir"
-            type="image"
-            id="gno5"
-            onclick="ClickMe('gno', 5)"
-          />
+          <span id="gnoPar">What?</span>
         </p>
 
         <p class="stat" name="arc">
@@ -126,36 +109,7 @@
             oninput="NumberMe('arc')"
           />
           <b><span onclick="GimmeInfo('arcana')">Arcana Level</span></b>
-          <input
-            class="aDot"
-            type="image"
-            id="arc1"
-            onclick="ClickMe('arc', 1)"
-          />
-          <input
-            class="aCir"
-            type="image"
-            id="arc2"
-            onclick="ClickMe('arc', 2)"
-          />
-          <input
-            class="aCir"
-            type="image"
-            id="arc3"
-            onclick="ClickMe('arc', 3)"
-          />
-          <input
-            class="aCir"
-            type="image"
-            id="arc4"
-            onclick="ClickMe('arc', 4)"
-          />
-          <input
-            class="aCir"
-            type="image"
-            id="arc5"
-            onclick="ClickMe('arc', 5)"
-          />
+          <span id="arcPar">What?</span>
         </p>
         <p class="stat" name="spe">
           <input
@@ -167,36 +121,7 @@
             oninput="NumberMe('spe')"
           />
           <b><span onclick="GimmeInfo('spell')">Spell Level</span></b>
-          <input
-            class="aDot"
-            type="image"
-            id="spe1"
-            onclick="ClickLim('spe', 1); SpellAbility(1);"
-          />
-          <input
-            class="aCir"
-            type="image"
-            id="spe2"
-            onclick="ClickLim('spe', 2); SpellAbility(2);"
-          />
-          <input
-            class="aCir"
-            type="image"
-            id="spe3"
-            onclick="ClickLim('spe', 3); SpellAbility(3);"
-          />
-          <input
-            class="aCir"
-            type="image"
-            id="spe4"
-            onclick="ClickLim('spe', 4); SpellAbility(4);"
-          />
-          <input
-            class="aCir"
-            type="image"
-            id="spe5"
-            onclick="ClickLim('spe', 5); SpellAbility(5);"
-          />
+          <span id="spePar">What?</span>
         </p>
         <p id="spLvl"></p>
         <form>
@@ -279,7 +204,155 @@
           <p id="demo1" class="testing"><b>Total Reach: 0</b></p>
           <p id="demo2"><b>Over Reach: 0</b></p>
         </div>
+      </div>
       </form>
+        <div id="abilityColumn" class="column" style="display:block;">
+          <h2 style="text-align: center">Attributes</h2>
+        <table>
+          <th>PHYSICAL</th>
+          <th>SOCIAL</th>
+          <th>MENTAL</th>
+        <tr>
+          <td>
+        <input type="number" min="1" max="5" value="1" class="attrib" id="strnum" style="display: none;"><label><b>Strength</b></label><span id="strPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="chanum" style="display: none;"><label><b>Charisma</b></label><span id="chaPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="intnum" style="display: none;"><label><b>Intelligence</b></label><span id="intPar">What?</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="dexnum" style="display: none;"><label><b>Dexterity</b></label><span id="dexPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="mannum" style="display: none;"><label><b>Manipulation</b></label><span id="manPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="witnum" style="display: none;"><label><b>Wits</b></label><span id="witPar">What?</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="stanum" style="display: none;"><label><b>Stamina</b></label><span id="staPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="comnum" style="display: none;"><label><b>Composure</b></label><span id="comPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="resnum" style="display: none;"><label><b>Resolve</b></label><span id="resPar">What?</span>
+          </td>
+        </tr>
+        </table>  
+        <h2 style="text-align: center">Skills</h2>
+        <table>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Athletics</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Animal Ken</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Academics</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Brawl</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Etiquette</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Awareness</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Craft</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Insight</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Finance</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Drive</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Intimidation</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Investigation</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Firearms</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Leadership</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Medicine</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Larceny</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Performance</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Occult</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Melee</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Persuasion</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Politics</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Stealth</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Streetwise</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Science</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Survival</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Subterfuge</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Technology</b></label>
+          </td>
+        </tr>
+        </table>
+        <p><b><span onclick="GimmeInfo('perception')">Perception</span></b>: Wits + Awareness</p> 
+        <p><b><span onclick="GimmeInfo('initiative')">Intitiative</span></b>: Ongoing Melee, Ranged, New Melee, All Else</p>
+        <p><b><span onclick="GimmeInfo('dodge')">Dodging</span></b>: Dexterity + Athletics</p>
+        
+        </div>
         <div class="column" >
           <p class="stat" name="clar">
             
@@ -294,76 +367,7 @@
               oninput="MinMe('clar')"
             />
             <b><span onclick="GimmeInfo('clarity')">Clarity</span></b>
-            <input
-              class="fBox"
-              type="image"
-              id="clar1"
-              onclick="MarkMe('clar', 1)"
-              alt="nope"
-            />
-            <input
-              class="fBox"
-              type="image"
-              id="clar2"
-              onclick="MarkMe('clar', 2)"
-              alt="nope"
-            />
-            <input
-              class="fBox"
-              type="image"
-              id="clar3"
-              onclick="MarkMe('clar', 3)"
-              alt="nope"
-            />
-            <input
-              class="fBox"
-              type="image"
-              id="clar4"
-              onclick="MarkMe('clar', 4)"
-              alt="nope"
-            />
-            <input
-              class="fBox"
-              type="image"
-              id="clar5"
-              onclick="MarkMe('clar', 5)"
-              alt="nope"
-            />
-            <input
-              class="fBox"
-              type="image"
-              id="clar6"
-              onclick="MarkMe('clar', 6)"
-              alt="nope"
-            />
-            <input
-              class="fBox"
-              type="image"
-              id="clar7"
-              onclick="MarkMe('clar', 7)"
-              alt="nope"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="clar8"
-              onclick="MarkMe('clar', 8)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="clar9"
-              onclick="MarkMe('clar', 9)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="clar10"
-              onclick="MarkMe('clar', 10)"
-              alt="square"
-            />
+            <span id="clarPar">What?</span>
             <span class="tiny">Mark Stains</span>
           </p>
           <p class="stat" name="lim">
@@ -377,110 +381,12 @@
               oninput="NumberMe('lim')"
             />
             <b><span onclick="GimmeInfo('decoherence')">Decoherence</span></b>
-            <input
-              class="aDot"
-              type="image"
-              id="lim1"
-              onclick="ClickMe('lim', 1)"
-            />
-            <input
-              class="aCir"
-              type="image"
-              id="lim2"
-              onclick="ClickMe('lim', 2)"
-            />
-            <input
-              class="aCir"
-              type="image"
-              id="lim3"
-              onclick="ClickMe('lim', 3)"
-            />
-            <input
-              class="aCir"
-              type="image"
-              id="lim4"
-              onclick="ClickMe('lim', 4)"
-            />
-            <input
-              class="aCir"
-              type="image"
-              id="lim5"
-              onclick="ClickMe('lim', 5)"
-            />
+            <span id="limPar">What?</span>
           </p>
           <p class="stat" name="wil">
             
             <b><span onclick="GimmeInfo('willpower')">Willpower</span></b>
-            <input
-              class="aBox"
-              type="image"
-              id="wil1"
-              onclick="MarkMe('wil', 1)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="wil2"
-              onclick="MarkMe('wil', 2)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="wil3"
-              onclick="MarkMe('wil', 3)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="wil4"
-              onclick="MarkMe('wil', 4)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="wil5"
-              onclick="MarkMe('wil', 5)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="wil6"
-              onclick="MarkMe('wil', 6)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="wil7"
-              onclick="MarkMe('wil', 7)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="wil8"
-              onclick="MarkMe('wil', 8)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="wil9"
-              onclick="MarkMe('wil', 9)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="wil10"
-              onclick="MarkMe('wil', 10)"
-              alt="square"
-            />
+            <span id="wilPar">What?</span>
             <input
               type="number"
               min="1"
@@ -495,76 +401,7 @@
           <p class="stat" name="heal">
             
             <b><span onclick="GimmeInfo('health')">Health</span></b>
-            <input
-              class="aBox"
-              type="image"
-              id="heal1"
-              onclick="MarkMe('heal', 1)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="heal2"
-              onclick="MarkMe('heal', 2)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="heal3"
-              onclick="MarkMe('heal', 3)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="heal4"
-              onclick="MarkMe('heal', 4)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="heal5"
-              onclick="MarkMe('heal', 5)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="heal6"
-              onclick="MarkMe('heal', 6)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="heal7"
-              onclick="MarkMe('heal', 7)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="heal8"
-              onclick="MarkMe('heal', 8)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="heal9"
-              onclick="MarkMe('heal', 9)"
-              alt="square"
-            />
-            <input
-              class="aBox"
-              type="image"
-              id="heal10"
-              onclick="MarkMe('heal', 10)"
-              alt="square"
-            />
+            <span id="healPar">What?</span>
             <input
               type="number"
               min="1"
@@ -611,11 +448,13 @@
     </div>
     <div id="gonnareveal" style="position:absolute;bottom:20px; right:100px;z-index:5; display:none; width:40%; background-color:whitesmoke">
       <h3 style="text-align:right;">Info Box</h3>
-      <p id="infoBox" >Click something to put info here</p>
+      <p id="infoBox" style="
+      padding: 10px">Click something to put info here</p>
       <button style="float:right;" onclick="ToggleBox('gonnareveal', 'gonnahide')">Close</button>
     </div>
     <script>
       var resultArray = [];
+      var stats = ["gno", "arc", "lim", "spe", "str", "cha", "int", "dex", "man", "wit", "sta", "com", "res"]
       var text1 = " ";
       var circle =
         "circle-empty.jpg";
@@ -629,9 +468,94 @@
         "square-star.jpg";
       var squareFilled = 
         "square-filled.jpg"
+      
+      
+    
+    
+    function LoadThings() {
+      for (let i = 0; i <= 12; i++) {
+        sta = stats[i];
+        DotifyAll(sta);
+      }
+      BoxifyAll("heal")
+      BoxifyAll("wil");
+      ClarifyAll();
+    }
 
-      window.onload = function () {
-        MakeCircles();
+    function DotifyAll(attName) { 
+      parId = attName + "Par";
+      parPar = document.getElementById(parId);
+      let text6 = " ";
+      for (i = 1; i <= 5; i++) {
+        if (attName == "spe") text6 +=
+          "<input class='aCir' type='image' src='circle-empty.jpg' id='" +
+          attName +
+          i +
+          "' onclick=\"ClickLim('" +
+          attName +
+          "', " +
+          i +
+          ')" />';
+        else
+        text6 +=
+          "<input class='aCir' type='image' src='circle-empty.jpg' id='" +
+          attName +
+          i +
+          "' onclick=\"ClickMe('" +
+          attName +
+          "', " +
+          i +
+          ')" />';
+      }
+      
+      parPar.innerHTML = text6;
+    }
+
+    function BoxifyAll(attName) { 
+      parId = attName + "Par";
+      parPar = document.getElementById(parId);
+      let text6 = " ";
+      for (i = 1; i <= 10; i++) {
+        text6 +=
+          "<input class='aBox' type='image' alt='square' src='square-empty.jpg' id='" +
+          attName +
+          i +
+          "' onclick=\"MarkMe('" +
+          attName +
+          "', " +
+          i +
+          ')" />';
+      }
+      
+      parPar.innerHTML = text6;
+    }
+
+    function ClarifyAll() { 
+      parPar = document.getElementById("clarPar");
+      let text6 = " ";
+      for (i = 1; i <= 10; i++) {
+        if (i < 8)
+        text6 +=
+          "<input class='fBox' type='image' alt='nope' src='square-filled.jpg' id='clar" +
+          i +
+          "' onclick=\"MarkMe('cla" +
+          "', " +
+          i +
+          ')" />';
+        else if (i < 11)
+        text6 +=
+          "<input class='aBox' type='image' alt='square' src='square-empty.jpg' id='clar" +
+          i +
+          "' onclick=\"MarkMe('clar" +
+          "', " +
+          i +
+          ')" />';
+      }  
+      parPar.innerHTML = text6;
+    }
+
+    window.onload = function () {
+        LoadThings();
       };
 
       function ToggleBox(hide, reveal) {
@@ -639,28 +563,16 @@
         let revealed = document.getElementById(reveal);
         hidden.style["display"] = "none";
         revealed.style["display"] = "block";
-      }
-
-      
-
-      function MakeCircles() {
-        let items = document.getElementsByClassName("aCir");
-        let items2 = document.getElementsByClassName("aDot");
-        let items3 = document.getElementsByClassName("aBox");
-        let items4 = document.getElementsByClassName("fBox");
-        for (var i = 0; i < items.length; i++) {
-          items[i].src = circle;
+        if (hide == 'spellColumn') {
+          document.getElementById('spellTitle').style["background-color"] = "gray";
+          document.getElementById('abilityTitle').style["background-color"] = "white";
         }
-        for (var i = 0; i < items2.length; i++) {
-          items2[i].src = filled;
-        }
-        for (var i = 0; i < items3.length; i++) {
-          items3[i].src = square;
-        }
-        for (var i = 0; i < items3.length; i++) {
-          items4[i].src = squareFilled;
+        else if (hide == 'abilityColumn') {
+          document.getElementById('spellTitle').style["background-color"] = "white";
+          document.getElementById('abilityTitle').style["background-color"] = "gray";
         }
       }
+
 
       function ClickMe(stat, dot) {
         let dotId = stat + dot;
@@ -668,7 +580,7 @@
         let num = stat + "num";
         dot = Number(dot);
         document.getElementById(num).value = dot;
-        for (i = 1; i < 11; i++) {
+        for (i = 1; i < 6; i++) {
           newImg = stat + i;
           if (i > dot) document.getElementById(newImg).src = circle;
           else if (i <= dot) document.getElementById(newImg).src = filled;
@@ -741,14 +653,7 @@
         }
       }
 
-      function SpellAbility(level) {
-        let spLvl = document.getElementById("spLvl");
-        if (level == 1) spLvl.innerHTML = "Knowing, Unveiling, Compelling";
-        else if (level == 2) spLvl.innerHTML = "Shielding, Veiling, Ruling";
-        else if (level == 3) spLvl.innerHTML = "Perfecting, Weaving, Fraying";
-        else if (level == 4) spLvl.innerHTML = "Patterning, Unraveling";
-        else if (level == 5) spLvl.innerHTML = "Making, Unmaking";
-      }
+
 
       function NumberMe(stat) {
         let numId = stat + "num";
@@ -859,7 +764,6 @@
             resultArray.push(result);
           }
         }
-        document.getElementById("testme").innerHTML = rt;
         PrintResults(resultArray, rollType);
       }
 
@@ -903,8 +807,8 @@
           total = succ - overreach;
         if (total > 0) {
           if (critSuc > 0) sr.innerHTML = "<b>Spell Surge: " + critSuc + "</b><br />";
-          st.innerHTML = " Total Success: " + total + "</ul>";
-        } else if (total == 0 && critFail < 1) { st.innerHTML = "No Successes <br />The spell is not forming as you'd hope.<br />Would you like to 1 Stain to Clarity to gain 1 Success?";
+          st.innerHTML = "<b> Total Successes: " + total + "</b></ul>";
+        } else if (total == 0 && critFail < 1) { st.innerHTML = "No Successes <br />The spell is not forming as you'd hope.<br />You can strain local reality to force 1 Success.";
         } else if (total <= 0) {
           anomaly = overreach - succ;
           sr.innerHTML = "<b>Possible Reality Tear <b>";
@@ -1007,7 +911,6 @@
         var checkBoxGroup = document.forms["will_form"]["check[]"];
         let rero = document.getElementById("rero")
         rero.value = "Willpower Reroll";
-        document.getElementById("testme").innerHTML = checkBoxGroup[2];
         document.getElementById("threemax").innerHTML = " ";
         for (var i = 0; i < checkBoxGroup.length; i++) {
           resLabel = "result" + i;
