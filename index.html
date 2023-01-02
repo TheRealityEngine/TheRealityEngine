@@ -3,6 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+
       .column {
         float: left;
         min-width:20em;
@@ -71,13 +72,15 @@
         border: 1px solid black;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
+        border-bottom: none;
       }
     </style>
   </head>
   <body>
-
-    <h2 id="spellTitle" style="background-color:gray" class="title" onclick="ToggleBox('abilityColumn', 'spellColumn')">Spell Casting</h2>
+    <div>
+    <h2 id="spellTitle" style="background-color:whitesmoke; color: gray" class="title" onclick="ToggleBox('abilityColumn', 'spellColumn')">Spell Casting</h2>
       <h2 id="abilityTitle" style="background-color:white" class="title" onclick="ToggleBox('spellColumn', 'abilityColumn')">Attributes & Skills</h2>
+    </div>
     <div class="casting" >
     <div class="row">
       
@@ -91,6 +94,7 @@
             value="1"
             id="gnonum"
             class="attrib"
+            name="Gnosis"
             oninput="NumberMe('gno')"
             
           />
@@ -214,35 +218,35 @@
           <th>MENTAL</th>
         <tr>
           <td>
-        <input type="number" min="1" max="5" value="1" class="attrib" id="strnum" style="display: none;"><label><b>Strength</b></label><span id="strPar">What?</span>
+        <input type="number" min="1" max="5" value="1" class="attrib" id="strnum" style="display: none;" oninput="NumberMe('str')"><label><b>Strength</b></label><span style="white-space: nowrap" id="strPar">What?</span>
           </td>
           <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="chanum" style="display: none;"><label><b>Charisma</b></label><span id="chaPar">What?</span>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="chanum" style="display: none;" oninput="NumberMe('cha')"><label><b>Charisma</b></label><span style="white-space: nowrap" id="chaPar">What?</span>
           </td>
           <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="intnum" style="display: none;"><label><b>Intelligence</b></label><span id="intPar">What?</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="dexnum" style="display: none;"><label><b>Dexterity</b></label><span id="dexPar">What?</span>
-          </td>
-          <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="mannum" style="display: none;"><label><b>Manipulation</b></label><span id="manPar">What?</span>
-          </td>
-          <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="witnum" style="display: none;"><label><b>Wits</b></label><span id="witPar">What?</span>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="intnum" style="display: none;" oninput="NumberMe('int')"><label><b>Intelligence</b></label><span style="white-space: nowrap" id="intPar">What?</span>
           </td>
         </tr>
         <tr>
           <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="stanum" style="display: none;"><label><b>Stamina</b></label><span id="staPar">What?</span>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="dexnum" style="display: none;" oninput="NumberMe('dex')"><label><b>Dexterity</b></label><span style="white-space: nowrap" id="dexPar">What?</span>
           </td>
           <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="comnum" style="display: none;"><label><b>Composure</b></label><span id="comPar">What?</span>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="mannum" style="display: none;" oninput="NumberMe('man')"><label><b>Manipulation</b></label><span style="white-space: nowrap" id="manPar">What?</span>
           </td>
           <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="resnum" style="display: none;"><label><b>Resolve</b></label><span id="resPar">What?</span>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="witnum" style="display: none;" oninput="NumberMe('wit')"><label><b>Wits</b></label><span style="white-space: nowrap" id="witPar">What?</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="stanum" style="display: none;" oninput="NumberMe('sta')"><label><b>Stamina</b></label><span style="white-space: nowrap" id="staPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="comnum" style="display: none;" oninput="NumberMe('com')"><label><b>Composure</b></label><span style="white-space: nowrap" id="comPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="resnum" style="display: none;" oninput="NumberMe('res')"><label><b>Resolve</b></label><span style="white-space: nowrap" id="resPar">What?</span>
           </td>
         </tr>
         </table>  
@@ -250,101 +254,101 @@
         <table>
         <tr>
           <td>
-        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Athletics</b></label>
+        <input type="number" min="0" max="5" value="0" class="attrib" id="athlnum"><label><b>Athletics</b></label>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Animal Ken</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="animnum"><label><b>Animal Ken</b></label>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Academics</b></label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Brawl</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Etiquette</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Awareness</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="acadnum"><label><b>Academics</b></label>
           </td>
         </tr>
         <tr>
           <td>
-        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Craft</b></label>
+        <input type="number" min="0" max="5" value="0" class="attrib" id="brawnum"><label><b>Brawl</b></label>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Insight</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="etiqnum"><label><b>Etiquette</b></label>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Finance</b></label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Drive</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Intimidation</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Investigation</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="awarnum"><label><b>Awareness</b></label>
           </td>
         </tr>
         <tr>
           <td>
-        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Firearms</b></label>
+        <input type="number" min="0" max="5" value="0" class="attrib" id="crafnum"><label><b>Craft</b></label>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Leadership</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="insinum"><label><b>Insight</b></label>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Medicine</b></label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Larceny</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Performance</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Occult</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="finanum"><label><b>Finance</b></label>
           </td>
         </tr>
         <tr>
           <td>
-        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Melee</b></label>
+        <input type="number" min="0" max="5" value="0" class="attrib" id="drivnum"><label><b>Drive</b></label>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Persuasion</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="intimnum"><label><b>Intimidation</b></label>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Politics</b></label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Stealth</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Streetwise</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Science</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="invenum"><label><b>Investigation</b></label>
           </td>
         </tr>
         <tr>
           <td>
-        <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Survival</b></label>
+        <input type="number" min="0" max="5" value="0" class="attrib" id="firenum"><label><b>Firearms</b></label>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Subterfuge</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="leadnum"><label><b>Leadership</b></label>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib"><label><b>Technology</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="medinum"><label><b>Medicine</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib" id="larcnum"><label><b>Larceny</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="perfnum"><label><b>Performance</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="occunum"><label><b>Occult</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib" id="melenum"><label><b>Melee</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="persunum"><label><b>Persuasion</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="polinum"><label><b>Politics</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib" id="steanum"><label><b>Stealth</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="strenum"><label><b>Streetwise</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="scienum"><label><b>Science</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+        <input type="number" min="0" max="5" value="0" class="attrib" id="survnum"><label><b>Survival</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="subtnum"><label><b>Subterfuge</b></label>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="technum"><label><b>Technology</b></label>
           </td>
         </tr>
         </table>
@@ -452,6 +456,8 @@
       padding: 10px">Click something to put info here</p>
       <button style="float:right;" onclick="ToggleBox('gonnareveal', 'gonnahide')">Close</button>
     </div>
+    <input type="text" placeholder="copy the text here to save" id="saveField"><button onclick="LoadSave()">Load Save</button><input type="button" onclick="SavingStuff()" value="Save" />
+
     <script>
       var resultArray = [];
       var stats = ["gno", "arc", "lim", "spe", "str", "cha", "int", "dex", "man", "wit", "sta", "com", "res"]
@@ -468,9 +474,44 @@
         "square-star.jpg";
       var squareFilled = 
         "square-filled.jpg"
-      
-      
     
+      
+
+    function LoadSave() {
+      let field = document.getElementById("saveField");
+      let data = field.value;
+      let array2 = data.split(",");
+      let len = array2.length;
+      let newArray2 = array2[0].split(":")
+      for (let i = 0; i < len; i++) {
+        pair = array2[i];
+        newArray = pair.split(":");
+        statId = newArray[0];
+        statnum = newArray[1];
+        statVal = Number(statnum);
+        document.getElementById(statId).value = statVal;
+        document.getElementById(statId).dispatchEvent(new Event("input"));
+      }
+      
+    } 
+
+    function SavingStuff() {
+      let obj1 = document.getElementsByClassName("attrib");
+      let array1 = [];
+      let len = obj1.length;
+      for (let i = 0; i < len; i++) {
+        statName = obj1[i].id;
+        statVal = obj1[i].value;
+        statPair = statName+":" + statVal;
+        array1.push(statPair);
+      }
+      document.getElementById("saveField").value = array1;
+    }  
+    
+    function GettinValues(element) {
+      let val = document.getElementById(element).value;
+      return val;
+    }
     
     function LoadThings() {
       for (let i = 0; i <= 12; i++) {
@@ -563,13 +604,23 @@
         let revealed = document.getElementById(reveal);
         hidden.style["display"] = "none";
         revealed.style["display"] = "block";
+        let spell = document.getElementById('spellTitle');
+        let ability = document.getElementById('abilityTitle');
         if (hide == 'spellColumn') {
-          document.getElementById('spellTitle').style["background-color"] = "gray";
-          document.getElementById('abilityTitle').style["background-color"] = "white";
+          spell.style["background-color"] = "whitesmoke";
+          spell.style["color"] = "gray";
+          spell.style["border-bottom"] = "1px";
+          ability.style["background-color"] = "white";
+          ability.style["color"] = "black";
+          ability.style["border-bottom"] = "none";
         }
         else if (hide == 'abilityColumn') {
-          document.getElementById('spellTitle').style["background-color"] = "white";
-          document.getElementById('abilityTitle').style["background-color"] = "gray";
+          spell.style["background-color"] = "white";
+          spell.style["color"] = "black";
+          spell.style["border-bottom"] = "none";
+          ability.style["background-color"] = "whitesmoke";
+          ability.style["color"] = "gray";
+          ability.style["border-bottom"] = "1px";
         }
       }
 
@@ -588,21 +639,46 @@
       }
 
       function MarkMe(stat, box) {
-        let boxId = stat + box;
-        let demog = document.getElementById(boxId);
-        let num = stat + "num";
-        if (demog.alt == "square") {
-          demog.src = squareSlash; 
-          demog.alt = "slash";
+        let numBox = Number(box)
+        let boxId = stat + numBox;
+        if (box > 1) {
+        numLeft = numBox - 1;
+        idLeft = stat + numLeft;
+        boxLeft = document.getElementById(idLeft);
         }
-        else if (demog.alt == "slash") {
-          demog.src = squareStar;
-          demog.alt = "star"
+        if (box < 10) {
+        numRight = numBox + 1;
+        idRight = stat + numRight;
+        boxRight = document.getElementById(idRight);
         }
-        else if (demog.alt == "star") {
-          demog.src = square;
-          demog.alt = "square"
+        let mainBox = document.getElementById(boxId);
+        if (box == 10 || boxRight.alt == "square" || boxRight.alt == "nope") {
+        if (box == 1 || boxLeft.alt != "square") {
+        if (mainBox.alt == "square") {
+          mainBox.src = squareSlash; 
+          mainBox.alt = "slash";
         }
+        else if (mainBox.alt == "slash") {
+          if (box == 1 || boxLeft.alt == "star") {
+          mainBox.src = squareStar;
+          mainBox.alt = "star"
+        } else {
+          mainBox.src = square;
+          mainBox.alt = "square"
+        }
+        }
+        else if (mainBox.alt == "star") {
+          mainBox.src = square;
+          mainBox.alt = "square"
+        }
+      }
+      }
+      else if (boxRight.alt == "slash" && mainBox.alt == "slash") {
+        if (box == 1 || boxLeft.alt == "star") {
+          mainBox.src = squareStar;
+          mainBox.alt = "star"
+        }
+      }
       }
 
       function MaxMe(stat) {
