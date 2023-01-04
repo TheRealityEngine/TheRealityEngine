@@ -81,7 +81,7 @@
     <h2 id="spellTitle" style="background-color:whitesmoke; color: gray" class="title" onclick="ToggleBox('abilityColumn', 'spellColumn')">Spell Casting</h2>
       <h2 id="abilityTitle" style="background-color:white" class="title" onclick="ToggleBox('spellColumn', 'abilityColumn')">Attributes & Skills</h2>
     </div>
-    <div class="casting" >
+    <div class="casting">
     <div class="row">
       
       <div id="spellColumn" class="column" style="display:none;">
@@ -132,7 +132,7 @@
           <br />
           <h2><span onclick="GimmeInfo('reach')">Reach</span></h2>
           <p id="freeReach">Free Reach: 1</p>
-          <table>
+          <table style="background-color: white">
             <tr>
               <th>Type</th>
               <th>Basic</th>
@@ -212,41 +212,41 @@
       </form>
         <div id="abilityColumn" class="column" style="display:block;">
           <h2 style="text-align: center"><span onclick="GimmeInfo('attributes')">Attributes</span></h2>
-        <table>
+        <table >
           <th>PHYSICAL</th>
           <th>SOCIAL</th>
           <th>MENTAL</th>
-        <tr>
+        <tr style="padding-left: 7px">
           <td>
-        <input type="number" min="1" max="5" value="1" class="attrib" id="strnum" style="display: none;" oninput="NumberMe('str')"><label><b>Strength</b></label><span style="white-space: nowrap" id="strPar">What?</span>
+        <input type="number" min="1" max="5" value="1" class="attrib" id="strnum" style="display: none;" oninput="NumberMe('str')"><label style="padding-left: 10px; font-size: 1.2em;"><b>Strength</b></label><span style="white-space: nowrap; float: right" id="strPar">What?</span>
           </td>
           <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="chanum" style="display: none;" oninput="NumberMe('cha')"><label><b>Charisma</b></label><span style="white-space: nowrap" id="chaPar">What?</span>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="chanum" style="display: none;" oninput="NumberMe('cha')"><label style="padding-left: 10px; font-size: 1.2em;"><b>Charisma</b></label><span style="white-space: nowrap; float: right" id="chaPar">What?</span>
           </td>
           <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="intnum" style="display: none;" oninput="NumberMe('int')"><label><b>Intelligence</b></label><span style="white-space: nowrap" id="intPar">What?</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="dexnum" style="display: none;" oninput="NumberMe('dex')"><label><b>Dexterity</b></label><span style="white-space: nowrap" id="dexPar">What?</span>
-          </td>
-          <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="mannum" style="display: none;" oninput="NumberMe('man')"><label><b>Manipulation</b></label><span style="white-space: nowrap" id="manPar">What?</span>
-          </td>
-          <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="witnum" style="display: none;" oninput="NumberMe('wit')"><label><b>Wits</b></label><span style="white-space: nowrap" id="witPar">What?</span>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="intnum" style="display: none;" oninput="NumberMe('int')"><label style="padding-left: 10px; font-size: 1.2em;"><b>Intelligence</b></label><span style="white-space: nowrap; float: right" id="intPar">What?</span>
           </td>
         </tr>
         <tr>
           <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="stanum" style="display: none;" oninput="NumberMe('sta')"><label><b>Stamina</b></label><span style="white-space: nowrap" id="staPar">What?</span>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="dexnum" style="display: none;" oninput="NumberMe('dex')"><label style="padding-left: 10px; font-size: 1.2em;"><b>Dexterity</b></label><span style="white-space: nowrap; float: right" id="dexPar">What?</span>
           </td>
           <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="comnum" style="display: none;" oninput="NumberMe('com')"><label><b>Composure</b></label><span style="white-space: nowrap" id="comPar">What?</span>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="mannum" style="display: none;" oninput="NumberMe('man')"><label style="padding-left: 10px; font-size: 1.2em;"><b>Manipulation</b></label><span style="white-space: nowrap; float: right" id="manPar">What?</span>
           </td>
           <td>
-            <input type="number" min="1" max="5" value="1" class="attrib" id="resnum" style="display: none;" oninput="NumberMe('res')"><label><b>Resolve</b></label><span style="white-space: nowrap" id="resPar">What?</span>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="witnum" style="display: none;" oninput="NumberMe('wit')"><label style="padding-left: 10px; font-size: 1.2em;"><b>Wits</b></label><span style="white-space: nowrap; float: right" id="witPar">What?</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="stanum" style="display: none;" oninput="NumberMe('sta')"><label style="padding-left: 10px; font-size: 1.2em;"><b>Stamina</b></label><span style="white-space: nowrap; float: right" id="staPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="comnum" style="display: none;" oninput="NumberMe('com')"><label style="padding-left: 10px; font-size: 1.2em;"><b>Composure</b></label><span style="white-space: nowrap; float: right" id="comPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="1" max="5" value="1" class="attrib" id="resnum" style="display: none;" oninput="NumberMe('res')"><label style="padding-left: 10px; font-size: 1.2em;"><b>Resolve</b></label><span style="white-space: nowrap; float: right" id="resPar">What?</span>
           </td>
         </tr>
         </table>  
@@ -254,101 +254,101 @@
         <table>
         <tr>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="athlnum" style="display: none;" oninput="NumberMe('athl')"><label><b>Athletics</b></label><span style="white-space: nowrap" id="athlPar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="athlnum" style="display: none;" oninput="NumberMe('athl')"><label><b>Athletics</b><span onclick="AddSpecialty('athlSpec')">+</span></label><span style="white-space: nowrap; float: right" id="athlPar">What?</span><br /><input class="spec" id="athlSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="animnum" style="display: none;" oninput="NumberMe('anim')"><label><b>Animal Ken</b></label><span style="white-space: nowrap" id="animPar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="animnum" style="display: none;" oninput="NumberMe('anim')"><label><b>Animal Ken</b><span onclick="AddSpecialty('animSpec')">+</span></label><span style="white-space: nowrap; float: right" id="animPar">What?</span><br /><input class="spec" id="animSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="acadnum" style="display: none;" oninput="NumberMe('acad')"><label><b>Academics</b></label><span style="white-space: nowrap" id="acadPar">What?</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="brawnum" style="display: none;" oninput="NumberMe('braw')"><label><b>Brawl</b></label><span style="white-space: nowrap" id="brawPar">What?</span>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="etiqnum" style="display: none;" oninput="NumberMe('etiq')"><label><b>Etiquette</b></label><span style="white-space: nowrap" id="etiqPar">What?</span>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="awarnum" style="display: none;" oninput="NumberMe('awar')"><label><b>Awareness</b></label><span style="white-space: nowrap" id="awarPar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="acadnum" style="display: none;" oninput="NumberMe('acad')"><label><b>Academics</b><span onclick="AddSpecialty('acadSpec')">+</span></label></label><span style="white-space: nowrap; float: right" id="acadPar">What?</span><input class="spec" id="acadSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
         </tr>
         <tr>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="crafnum" style="display: none;" oninput="NumberMe('craf')"><label><b>Craft</b></label><span style="white-space: nowrap" id="crafPar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="brawnum" style="display: none;" oninput="NumberMe('braw')"><label><b>Brawl</b><span onclick="AddSpecialty('brawSpec')">+</span></label><span style="white-space: nowrap; float: right" id="brawPar">What?</span><br /><input class="spec" id="brawSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="insinum" style="display: none;" oninput="NumberMe('insi')"><label><b>Insight</b></label><span style="white-space: nowrap" id="insiPar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="etiqnum" style="display: none;" oninput="NumberMe('etiq')"><label><b>Etiquette</b><span onclick="AddSpecialty('etiqSpec')">+</span></label><span style="white-space: nowrap; float: right" id="etiqPar">What?</span><br /><input class="spec" id="etiqSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="finanum" style="display: none;" oninput="NumberMe('fina')"><label><b>Finance</b></label><span style="white-space: nowrap" id="finaPar">What?</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="drivnum" style="display: none;" oninput="NumberMe('driv')"><label><b>Drive</b></label><span style="white-space: nowrap" id="drivPar">What?</span>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="intinum" style="display: none;" oninput="NumberMe('inti')"><label><b>Intimidation</b></label><span style="white-space: nowrap" id="intiPar">What?</span>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="invenum" style="display: none;" oninput="NumberMe('inve')"><label><b>Investigation</b></label><span style="white-space: nowrap" id="invePar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="awarnum" style="display: none;" oninput="NumberMe('awar')"><label><b>Awareness</b><span onclick="AddSpecialty('awarSpec')">+</span></label><span style="white-space: nowrap; float: right" id="awarPar">What?</span><br /><input class="spec" id="awarSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
         </tr>
         <tr>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="firenum" style="display: none;" oninput="NumberMe('fire')"><label><b>Firearms</b></label><span style="white-space: nowrap" id="firePar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="crafnum" style="display: none;" oninput="NumberMe('craf')"><label><b>Craft</b><span onclick="AddSpecialty('crafSpec')">+</span></label><span style="white-space: nowrap; float: right" id="crafPar">What?</span><br /><input class="spec" id="crafSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="leadnum" style="display: none;" oninput="NumberMe('lead')"><label><b>Leadership</b></label><span style="white-space: nowrap" id="leadPar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="insinum" style="display: none;" oninput="NumberMe('insi')"><label><b>Insight</b><span onclick="AddSpecialty('insiSpec')">+</span></label><span style="white-space: nowrap; float: right" id="insiPar">What?</span><br /><input class="spec" id="insiSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="medinum" style="display: none;" oninput="NumberMe('medi')"><label><b>Medicine</b></label><span style="white-space: nowrap" id="mediPar">What?</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="larcnum" style="display: none;" oninput="NumberMe('larc')"><label><b>Larceny</b></label><span style="white-space: nowrap" id="larcPar">What?</span>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="perfnum" style="display: none;" oninput="NumberMe('perf')"><label><b>Performance</b></label><span style="white-space: nowrap" id="perfPar">What?</span>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="occunum" style="display: none;" oninput="NumberMe('occu')"><label><b>Occult</b></label><span style="white-space: nowrap" id="occuPar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="finanum" style="display: none;" oninput="NumberMe('fina')"><label><b>Finance</b><span onclick="AddSpecialty('finaSpec')">+</span></label><span style="white-space: nowrap; float: right" id="finaPar">What?</span><br /><input class="spec" class="spec" id="finaSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
         </tr>
         <tr>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="melenum" style="display: none;" oninput="NumberMe('mele')"><label><b>Melee</b></label><span style="white-space: nowrap" id="melePar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="drivnum" style="display: none;" oninput="NumberMe('driv')"><label><b>Drive</b><span onclick="AddSpecialty('drivSpec')">+</span></label><span style="white-space: nowrap; float: right" id="drivPar">What?</span><br /><input class="spec" id="drivSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="persnum" style="display: none;" oninput="NumberMe('pers')"><label><b>Persuasion</b></label><span style="white-space: nowrap" id="persPar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="intinum" style="display: none;" oninput="NumberMe('inti')"><label><b>Intimidation</b><span onclick="AddSpecialty('intiSpec')">+</span></label><span style="white-space: nowrap; float: right" id="intiPar">What?</span><br /><input class="spec" id="intiSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="polinum" style="display: none;" oninput="NumberMe('poli')"><label><b>Politics</b></label><span style="white-space: nowrap" id="poliPar">What?</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="steanum" style="display: none;" oninput="NumberMe('stea')"><label><b>Stealth</b></label><span style="white-space: nowrap" id="steaPar">What?</span>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="strenum" style="display: none;" oninput="NumberMe('stre')"><label><b>Streetwise</b></label><span style="white-space: nowrap" id="strePar">What?</span>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="scienum" style="display: none;" oninput="NumberMe('scie')"><label><b>Science</b></label><span style="white-space: nowrap" id="sciePar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="invenum" style="display: none;" oninput="NumberMe('inve')"><label><b>Investigation</b><span onclick="AddSpecialty('inveSpec')">+</span></label><span style="white-space: nowrap; float: right" id="invePar">What?</span><br /><input class="spec" id="inveSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
         </tr>
         <tr>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="survnum" style="display: none;" oninput="NumberMe('surv')"><label><b>Survival</b></label><span style="white-space: nowrap" id="survPar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="firenum" style="display: none;" oninput="NumberMe('fire')"><label><b>Firearms</b><span onclick="AddSpecialty('fireSpec')">+</span></label><span style="white-space: nowrap; float: right" id="firePar">What?</span><br /><input class="spec" id="fireSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="subtnum" style="display: none;" oninput="NumberMe('subt')"><label><b>Subterfuge</b></label><span style="white-space: nowrap" id="subtPar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="leadnum" style="display: none;" oninput="NumberMe('lead')"><label><b>Leadership</b><span onclick="AddSpecialty('leadSpec')">+</span></label><span style="white-space: nowrap; float: right" id="leadPar">What?</span><br /><input class="spec" id="leadSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="technum" style="display: none;" oninput="NumberMe('tech')"><label><b>Technology</b></label><span style="white-space: nowrap" id="techPar">What?</span>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="medinum" style="display: none;" oninput="NumberMe('medi')"><label><b>Medicine</b><span onclick="AddSpecialty('mediSpec')">+</span></label><span style="white-space: nowrap; float: right" id="mediPar">What?</span><br /><input class="spec" id="mediSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="larcnum" style="display: none;" oninput="NumberMe('larc')"><label><b>Larceny</b><span onclick="AddSpecialty('larcSpec')">+</span></label><span style="white-space: nowrap; float: right" id="larcPar">What?</span><br /><input class="spec" id="larcSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="perfnum" style="display: none;" oninput="NumberMe('perf')"><label><b>Performance</b><span onclick="AddSpecialty('perfSpec')">+</span></label><span style="white-space: nowrap; float: right" id="perfPar">What?</span><br /><input class="spec" id="perfSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="occunum" style="display: none;" oninput="NumberMe('occu')"><label><b>Occult</b><span onclick="AddSpecialty('occuSpec')">+</span></label><span style="white-space: nowrap; float: right" id="occuPar">What?</span><br /><input class="spec" id="occuSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="melenum" style="display: none;" oninput="NumberMe('mele')"><label><b>Melee</b><span onclick="AddSpecialty('meleSpec')">+</span></label><span style="white-space: nowrap; float: right" id="melePar">What?</span><br /><input class="spec" id="meleSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="persnum" style="display: none;" oninput="NumberMe('pers')"><label><b>Persuasion</b><span onclick="AddSpecialty('persSpec')">+</span></label><span style="white-space: nowrap; float: right" id="persPar">What?</span><br /><input class="spec" id="persSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="polinum" style="display: none;" oninput="NumberMe('poli')"><label><b>Politics</b><span onclick="AddSpecialty('poliSpec')">+</span></label><span style="white-space: nowrap; float: right" id="poliPar">What?</span><br /><input class="spec" id="poliSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="steanum" style="display: none;" oninput="NumberMe('stea')"><label><b>Stealth</b><span onclick="AddSpecialty('steaSpec')">+</span></label><span style="white-space: nowrap; float: right" id="steaPar">What?</span><br /><input class="spec" id="steaSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="strenum" style="display: none;" oninput="NumberMe('stre')"><label><b>Streetwise</b><span onclick="AddSpecialty('streSpec')">+</span></label><span style="white-space: nowrap; float: right" id="strePar">What?</span><br /><input class="spec" id="streSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="scienum" style="display: none;" oninput="NumberMe('scie')"><label><b>Science</b><span onclick="AddSpecialty('scieSpec')">+</span></label><span style="white-space: nowrap; float: right" id="sciePar">What?</span><br /><input class="spec" id="scieSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="survnum" style="display: none;" oninput="NumberMe('surv')"><label><b>Survival</b><span onclick="AddSpecialty('survSpec')">+</span></label><span style="white-space: nowrap; float: right" id="survPar">What?</span><br /><input class="spec" id="survSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="subtnum" style="display: none;" oninput="NumberMe('subt')"><label><b>Subterfuge</b><span onclick="AddSpecialty('subtSpec')">+</span></label><span style="white-space: nowrap; float: right" id="subtPar">What?</span><br /><input class="spec" id="subtSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="technum" style="display: none;" oninput="NumberMe('tech')"><label><b>Technology</b><span onclick="AddSpecialty('techSpec')">+</span></label><span style="white-space: nowrap; float: right" id="techPar">What?</span><br /><input class="spec" id="techSpec" type="text" style="display: none; border: 0" placeholder="Specialty">
           </td>
         </tr>
         </table>
@@ -453,7 +453,7 @@
     <div id="gonnareveal" style="position:absolute;bottom:20px; right:100px;z-index:5; display:none; width:40%; background-color:whitesmoke">
       <h3 style="text-align:right;">Info Box</h3>
       <p id="infoBox" style="
-      padding: 10px">Click something to put info here</p>
+      padding: 10px; overflow: scroll; max-height: 14em">Click something to put info here</p>
       <button style="float:right;" onclick="ToggleBox('gonnareveal', 'gonnahide')">Close</button>
     </div>
     <input type="text" placeholder="copy the text here to save" id="saveField"><button onclick="LoadSave()">Load Save</button><input type="button" onclick="SavingStuff()" value="Save" />
@@ -475,7 +475,11 @@
       var squareFilled = 
         "square-filled.jpg"
     
-      
+    function AddSpecialty(skill) {
+      GimmeInfo("specialties");
+      let parId = document.getElementById(skill);
+      parId.style["display"] = "block";
+    }  
 
     function LoadSave() {
       let field = document.getElementById("saveField");
@@ -488,21 +492,36 @@
         newArray = pair.split(":");
         statId = newArray[0];
         statnum = newArray[1];
-        statVal = Number(statnum);
+        statVal = statnum;
         document.getElementById(statId).value = statVal;
         document.getElementById(statId).dispatchEvent(new Event("input"));
       }
-      
+      RevealSpecialty();
     } 
 
+    function RevealSpecialty() {
+      let obj1 = document.getElementsByClassName("spec");
+      len = obj1.length;
+      for (let i = 0; i < len; i++) {
+        specId = obj1[i].id
+        spex = document.getElementById(specId)
+        field = obj1[i];
+        val = field.value;
+        len2 = val.length;
+        if (len2 != 0) spex.style["display"] = "block";
+      }
+      
+    }
+
     function SavingStuff() {
-      let obj1 = document.getElementsByClassName("attrib");
+      let obj1 = document.querySelectorAll(".attrib,.spec");;
       let array1 = [];
       let len = obj1.length;
       for (let i = 0; i < len; i++) {
         statName = obj1[i].id;
         statVal = obj1[i].value;
-        statPair = statName+":" + statVal;
+        statVal2 = statVal.replaceAll(",", ";")
+        statPair = statName+":" + statVal2;
         array1.push(statPair);
       }
       document.getElementById("saveField").value = array1;
@@ -1048,6 +1067,8 @@
         parId.innerHTML ="<b>Attributes:</b> These are your 9 Attributes. The Top row are your Power stats, the middle row are your Finesse stats, and the bottom row are your Resistance stats. Your Health is determined by your Stamina + Size (5). Your Willpower is Resolve + Composure.<br />Most ability rolls will be an Attribute + a skill (eg. Wits + Awareness for perception, Hand-to-hand combat is Strength + Brawl, Melee weapons are Dexterity + Melee, and Firearms are usually Composure + Firearms.), but some will be two Attributes (eg. Resolve + Composure).<br />In character creation, each stat starts with one Dot. You then can assign 5 dots, 4 dots, and 3 dots each to a column as you see fit. You then add one additional dot to one Resistance stat (ie the bottom row)";
       else if (subject == "skills")
         parId.innerHTML ="<b>Skills:</b> These will always be paired with an Attribute for dice rolls. For character creation, you have 3 options:<br />-Jack of All Trades: One skill at 3 dots, eight skills at 2, ten skills at 1<br />-Balanced: Three at 3 dots, five at 2, seven at 1<br />-Specialist:One skill at 4, Three at 3, Three at 1.<br />Additionally, if you have at least one dot in Academics, Craft, Performance, and/or Science, you gain a free Specialty. You add one additional dice to a roll when the Specialty is relevant.";
+      else if (subject == "specialties")
+        parId.innerHTML ="PHYSICAL SKILLS <br /> <b>Athletics</b>: Acrobatics, Archery, Climbing, Endurance, Jumping, Parkour, Swimming, Throwing <br /><b>Brawl</b>: Animals, Armed Sleepers, Bar Fights, Grappling, Mages, Sporting Combat, Unarmed Sleepers, Agents <br /><b>Craft</b>: Carpentry, Carving, Design, Painting, Sculpting, Sewing, Weaponsmithing<br /><b>Drive</b>: All-Terrain Vehicles, Evasion, Motorcycles, Street Racing, Stunts, Tailing, Trucks, Vintage Models<br /><b>Firearms</b>: Crossbows, Gun Dealing, Gunsmithing, Handloading Ammunition, Quick-Draw, Sniper, Trick Shooting<br /><b>Larceny</b>: Alarms, Forgery, Grand Theft Auto, Housebreaking, Lockpicking, Pickpocket, Safecracking, Security Analysis<br /><b>Melee</b>: Axes, Chains, Clubs, Fencing, Disarming Blows, Garrotes, Improvised Weapons, Knives, Stakes, Swords<br /><b>Stealth</b>: Ambushes, Crowds, Disguise, Hiding, Shadowing, Silent Movement, Urban, Wilderness<br /><b>Survival</b>: Desert, Hunting, Jungle, Tracking, Traps, Shelters, Urban Exploration, Woodlands<br />SOCIAL SKILLS <br /><b>Animal Ken</b>: Attack Training, Cats, Dogs, Falconry, Horses, Pacification, Pigeons, Rats, Snakes, Stunt Training<br /><b>Etiquette</b>: Agents, Celebrities, Corporate, Elysium, Feudal, One-Percenter, Secret Society<br /><b>Insight</b>: Ambitions, Desires, Detect Lies, Emotions, Empathy, Interrogation, Motives, Phobias, Vices<br /><b>Intimidation</b>: Extortion, Insults, Interrogation, Physical Coercion, Staredowns, Veiled Threats<br /><b>Leadership</b>: Command, Inspiration, Ritual Coordination, Team Dynamics, War Pack<br /><b>Performance</b>: Comedy, Dance, Drama, Drums, Guitar, Keyboards, Poetry, Public Speaking, Rap, Singing, Violin, Wind Instruments<br /><b>Persuasion</b>: Bargaining, Fast Talk, Interrogation, Legal Argument, Negotiation, Rhetoric<br /><b>Streetwise</b>: Arms Dealing, Black Market, Bribery, Drugs, Fence Stolen Goods, Gangs, Graffiti, Personal Rep, Sex Trade, Urban Survival<br /><b>Subterfuge</b>: Bluff, Feign Mortality, Impeccable Lies, Innocence, The Long Con, Seduction<br />MENTAL SKILLS <br /><b>Academics</b>: Architecture, English Literature, History of Art, History (specific Field or Period), Journalism, Philosophy, Research, Teaching, Theology<br /><b>Awareness</b>: Ambushes, Camouflage, Concealed Objects, Hearing, Instincts, Smell, Sight, Traps, Wilderness<br /><b>Finance</b>: Appraisal, Banking, Black Markets, Corporate Finance, Currency Manipulation, Fine Art, Forensic Accounting, Money Laundering, Stock Market<br /><b>Investigation</b>: Criminology, Deduction, Forensics, Missing Persons, Murder, Paranormal Mysteries, Traffic Analysis<br /><b>Medicine</b>: First Aid, Haematology, Pathology, Pharmacy, Phlebotomy, Surgery, Trauma Care, Veterinary<br /><b>Occult</b>: Alchemy, Artifacts, Lefthand Magic, Ghosts, Necromancy, Reality Theories, Parapsychology, Voudun<br /><b>Politics</b>: City Government, Diplomacy, Lobbying,  Mage Alliances, Media, National Politics, State/Provincial Politics<br /><b>Science</b>: Astronomy, Biology, Chemistry, Demolitions, Engineering, Genetics, Geology, Mathematics, Physics<br /><b>Technology</b>: Artillery, Coding, Computer Building, Data Mining, Hacking, Networks, Phones, Surveillance Systems";
       }
     </script>
   </body>
