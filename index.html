@@ -211,7 +211,7 @@
       </div>
       </form>
         <div id="abilityColumn" class="column" style="display:block;">
-          <h2 style="text-align: center">Attributes</h2>
+          <h2 style="text-align: center"><span onclick="GimmeInfo('attributes')">Attributes</span></h2>
         <table>
           <th>PHYSICAL</th>
           <th>SOCIAL</th>
@@ -250,105 +250,105 @@
           </td>
         </tr>
         </table>  
-        <h2 style="text-align: center">Skills</h2>
+        <h2 style="text-align: center"><span onclick="GimmeInfo('skills')">Skills</span></h2>
         <table>
         <tr>
           <td>
-        <input type="number" min="0" max="5" value="0" class="attrib" id="athlnum"><label><b>Athletics</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="athlnum" style="display: none;" oninput="NumberMe('athl')"><label><b>Athletics</b></label><span style="white-space: nowrap" id="athlPar">What?</span>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="animnum"><label><b>Animal Ken</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="animnum" style="display: none;" oninput="NumberMe('anim')"><label><b>Animal Ken</b></label><span style="white-space: nowrap" id="animPar">What?</span>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="acadnum"><label><b>Academics</b></label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-        <input type="number" min="0" max="5" value="0" class="attrib" id="brawnum"><label><b>Brawl</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="etiqnum"><label><b>Etiquette</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="awarnum"><label><b>Awareness</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="acadnum" style="display: none;" oninput="NumberMe('acad')"><label><b>Academics</b></label><span style="white-space: nowrap" id="acadPar">What?</span>
           </td>
         </tr>
         <tr>
           <td>
-        <input type="number" min="0" max="5" value="0" class="attrib" id="crafnum"><label><b>Craft</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="brawnum" style="display: none;" oninput="NumberMe('braw')"><label><b>Brawl</b></label><span style="white-space: nowrap" id="brawPar">What?</span>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="insinum"><label><b>Insight</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="etiqnum" style="display: none;" oninput="NumberMe('etiq')"><label><b>Etiquette</b></label><span style="white-space: nowrap" id="etiqPar">What?</span>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="finanum"><label><b>Finance</b></label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-        <input type="number" min="0" max="5" value="0" class="attrib" id="drivnum"><label><b>Drive</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="intimnum"><label><b>Intimidation</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="invenum"><label><b>Investigation</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="awarnum" style="display: none;" oninput="NumberMe('awar')"><label><b>Awareness</b></label><span style="white-space: nowrap" id="awarPar">What?</span>
           </td>
         </tr>
         <tr>
           <td>
-        <input type="number" min="0" max="5" value="0" class="attrib" id="firenum"><label><b>Firearms</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="crafnum" style="display: none;" oninput="NumberMe('craf')"><label><b>Craft</b></label><span style="white-space: nowrap" id="crafPar">What?</span>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="leadnum"><label><b>Leadership</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="insinum" style="display: none;" oninput="NumberMe('insi')"><label><b>Insight</b></label><span style="white-space: nowrap" id="insiPar">What?</span>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="medinum"><label><b>Medicine</b></label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-        <input type="number" min="0" max="5" value="0" class="attrib" id="larcnum"><label><b>Larceny</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="perfnum"><label><b>Performance</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="occunum"><label><b>Occult</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="finanum" style="display: none;" oninput="NumberMe('fina')"><label><b>Finance</b></label><span style="white-space: nowrap" id="finaPar">What?</span>
           </td>
         </tr>
         <tr>
           <td>
-        <input type="number" min="0" max="5" value="0" class="attrib" id="melenum"><label><b>Melee</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="drivnum" style="display: none;" oninput="NumberMe('driv')"><label><b>Drive</b></label><span style="white-space: nowrap" id="drivPar">What?</span>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="persunum"><label><b>Persuasion</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="intinum" style="display: none;" oninput="NumberMe('inti')"><label><b>Intimidation</b></label><span style="white-space: nowrap" id="intiPar">What?</span>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="polinum"><label><b>Politics</b></label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-        <input type="number" min="0" max="5" value="0" class="attrib" id="steanum"><label><b>Stealth</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="strenum"><label><b>Streetwise</b></label>
-          </td>
-          <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="scienum"><label><b>Science</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="invenum" style="display: none;" oninput="NumberMe('inve')"><label><b>Investigation</b></label><span style="white-space: nowrap" id="invePar">What?</span>
           </td>
         </tr>
         <tr>
           <td>
-        <input type="number" min="0" max="5" value="0" class="attrib" id="survnum"><label><b>Survival</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="firenum" style="display: none;" oninput="NumberMe('fire')"><label><b>Firearms</b></label><span style="white-space: nowrap" id="firePar">What?</span>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="subtnum"><label><b>Subterfuge</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="leadnum" style="display: none;" oninput="NumberMe('lead')"><label><b>Leadership</b></label><span style="white-space: nowrap" id="leadPar">What?</span>
           </td>
           <td>
-            <input type="number" min="0" max="5" value="0" class="attrib" id="technum"><label><b>Technology</b></label>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="medinum" style="display: none;" oninput="NumberMe('medi')"><label><b>Medicine</b></label><span style="white-space: nowrap" id="mediPar">What?</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="larcnum" style="display: none;" oninput="NumberMe('larc')"><label><b>Larceny</b></label><span style="white-space: nowrap" id="larcPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="perfnum" style="display: none;" oninput="NumberMe('perf')"><label><b>Performance</b></label><span style="white-space: nowrap" id="perfPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="occunum" style="display: none;" oninput="NumberMe('occu')"><label><b>Occult</b></label><span style="white-space: nowrap" id="occuPar">What?</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="melenum" style="display: none;" oninput="NumberMe('mele')"><label><b>Melee</b></label><span style="white-space: nowrap" id="melePar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="persnum" style="display: none;" oninput="NumberMe('pers')"><label><b>Persuasion</b></label><span style="white-space: nowrap" id="persPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="polinum" style="display: none;" oninput="NumberMe('poli')"><label><b>Politics</b></label><span style="white-space: nowrap" id="poliPar">What?</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="steanum" style="display: none;" oninput="NumberMe('stea')"><label><b>Stealth</b></label><span style="white-space: nowrap" id="steaPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="strenum" style="display: none;" oninput="NumberMe('stre')"><label><b>Streetwise</b></label><span style="white-space: nowrap" id="strePar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="scienum" style="display: none;" oninput="NumberMe('scie')"><label><b>Science</b></label><span style="white-space: nowrap" id="sciePar">What?</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="survnum" style="display: none;" oninput="NumberMe('surv')"><label><b>Survival</b></label><span style="white-space: nowrap" id="survPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="subtnum" style="display: none;" oninput="NumberMe('subt')"><label><b>Subterfuge</b></label><span style="white-space: nowrap" id="subtPar">What?</span>
+          </td>
+          <td>
+            <input type="number" min="0" max="5" value="0" class="attrib" id="technum" style="display: none;" oninput="NumberMe('tech')"><label><b>Technology</b></label><span style="white-space: nowrap" id="techPar">What?</span>
           </td>
         </tr>
         </table>
@@ -377,9 +377,9 @@
           <p class="stat" name="lim">
             <input
               type="number"
-              min="1"
+              min="0"
               max="5"
-              value="1"
+              value="0"
               id="limnum"
               class="attrib"
               oninput="NumberMe('lim')"
@@ -460,7 +460,7 @@
 
     <script>
       var resultArray = [];
-      var stats = ["gno", "arc", "lim", "spe", "str", "cha", "int", "dex", "man", "wit", "sta", "com", "res"]
+      var stats = ["gno", "arc", "lim", "spe", "str", "cha", "int", "dex", "man", "wit", "sta", "com", "res", "athl", "anim", "acad", "braw", "driv", "fire", "etiq", "awar", "craf", "insi", "fina", "inti", "inve", "lead", "medi", "larc", "perf", "occu", "mele", "pers", "poli", "stea", "stre", "scie", "surv", "subt", "tech"]
       var text1 = " ";
       var circle =
         "circle-empty.jpg";
@@ -514,13 +514,15 @@
     }
     
     function LoadThings() {
-      for (let i = 0; i <= 12; i++) {
+      BoxifyAll("heal");
+      BoxifyAll("wil");
+      ClarifyAll();
+      let len = stats.length;
+      for (let i = 0; i < len; i++) {
         sta = stats[i];
         DotifyAll(sta);
       }
-      BoxifyAll("heal")
-      BoxifyAll("wil");
-      ClarifyAll();
+      
     }
 
     function DotifyAll(attName) { 
@@ -574,12 +576,14 @@
     function ClarifyAll() { 
       parPar = document.getElementById("clarPar");
       let text6 = " ";
+      val = document.getElementById("clarnum").value;
+      realVal = Number(val) + 1
       for (i = 1; i <= 10; i++) {
-        if (i < 8)
+        if (i < realVal)
         text6 +=
-          "<input class='fBox' type='image' alt='nope' src='square-filled.jpg' id='clar" +
+          "<input class='aBox' type='image' alt='nope' src='square-filled.jpg' id='clar" +
           i +
-          "' onclick=\"MarkMe('cla" +
+          "' onclick=\"MarkMe('clar" +
           "', " +
           i +
           ')" />';
@@ -628,13 +632,22 @@
       function ClickMe(stat, dot) {
         let dotId = stat + dot;
         let demog = document.getElementById(dotId);
-        let num = stat + "num";
-        dot = Number(dot);
-        document.getElementById(num).value = dot;
+        let numId = stat + "num";
+        let dotFixed = Number(dot);
+        let numStat = document.getElementById(numId);
+        statMin = numStat.min;
+        let currentVal = numStat.value;
         for (i = 1; i < 6; i++) {
-          newImg = stat + i;
-          if (i > dot) document.getElementById(newImg).src = circle;
-          else if (i <= dot) document.getElementById(newImg).src = filled;
+          if (statMin == 1 || currentVal != 1 || dotFixed != 1) {
+          numStat.value = dotFixed;
+          let newImg = stat + i;
+          if (i > dotFixed) document.getElementById(newImg).src = circle;
+          else if (i <= dotFixed) document.getElementById(newImg).src = filled;
+        } else  {
+          numStat.value = 0;
+          let newImg = stat + i;
+          document.getElementById(newImg).src = circle;
+        }
         }
       }
 
@@ -653,13 +666,13 @@
         }
         let mainBox = document.getElementById(boxId);
         if (box == 10 || boxRight.alt == "square" || boxRight.alt == "nope") {
-        if (box == 1 || boxLeft.alt != "square") {
+        if (box == 1 || boxLeft.alt != "square" || boxLeft.alt == "nope") {
         if (mainBox.alt == "square") {
           mainBox.src = squareSlash; 
           mainBox.alt = "slash";
         }
         else if (mainBox.alt == "slash") {
-          if (box == 1 || boxLeft.alt == "star") {
+          if (box == 1 || boxLeft.alt == "star" || boxLeft.alt == "nope") {
           mainBox.src = squareStar;
           mainBox.alt = "star"
         } else {
@@ -674,7 +687,7 @@
       }
       }
       else if (boxRight.alt == "slash" && mainBox.alt == "slash") {
-        if (box == 1 || boxLeft.alt == "star") {
+        if (box == 1 || boxLeft.alt == "star" || boxLeft.alt == "nope") {
           mainBox.src = squareStar;
           mainBox.alt = "star"
         }
@@ -684,15 +697,25 @@
       function MaxMe(stat) {
         let numId = stat + "num";
         let val = document.getElementById(numId).value;
-        for (i = 1; i < 11; i++) {
+        let boxId = stat + val;
+        let altText = document.getElementById(boxId).alt;
+        for (i = val; i < 11; i++) {
           newImg = stat + i;
           if (i > val) {
             document.getElementById(newImg).src = squareFilled;
             document.getElementById(newImg).alt = "nope";
           }
-          else if (i <= val) {
+          else if (i = val) {
+            if (altText == "nope" || altText == "square") {
             document.getElementById(newImg).src = square;
             document.getElementById(newImg).alt = "square";
+          } else if (altText == "slash") {
+            document.getElementById(newImg).src = squareSlash;
+            document.getElementById(newImg).alt = "slash";
+          } else if (altText == "star") {
+            document.getElementById(newImg).src = squareStar;
+            document.getElementById(newImg).alt = "star";
+          }
           }
         }
       }
@@ -1021,6 +1044,10 @@
         parId.innerHTML ="<b>Health:</b> Your Health is equal to Stamina+Size (5). There are two types of damage, Bashing (indicated by a single slash)and Aggravated (three slashes). Place them left to right, with more serious damage farthest left. If your health track is full, roll Stamina each round to stay conscious.<br />Healing: Bashing damage heals one point per hour and Aggravated heals one point per 3 days. Some 2 dot spells can reduce this time, some 3 dot spells can heal Bashing, and 4 dot spells can heal Aggravated.";
       else if (subject == "clarity")
         parId.innerHTML ="<b>Clarity:</b> VtM equivalent to Humanity<br />Your Clarity is your overall grasp of the Sleeping world, how it feels for those who are still asleep, and your connection to the rest of humanity. As a mage's clarity declines, they often find it harder to interact with sleepers and the mundane world.<br />Severe aggressions against reality and sleeping humans will stain your clarity. Mark the empty remaining boxes on your clarity track. At the end of each session, you will roll dice equal to the unmarked boxes.<br />Any success allows you to maintain your Clarity. Fail the roll and your Clarity declines as the Sleeping world fades from your understanding.";
+      else if (subject == "attributes")
+        parId.innerHTML ="<b>Attributes:</b> These are your 9 Attributes. The Top row are your Power stats, the middle row are your Finesse stats, and the bottom row are your Resistance stats. Your Health is determined by your Stamina + Size (5). Your Willpower is Resolve + Composure.<br />Most ability rolls will be an Attribute + a skill (eg. Wits + Awareness for perception, Hand-to-hand combat is Strength + Brawl, Melee weapons are Dexterity + Melee, and Firearms are usually Composure + Firearms.), but some will be two Attributes (eg. Resolve + Composure).<br />In character creation, each stat starts with one Dot. You then can assign 5 dots, 4 dots, and 3 dots each to a column as you see fit. You then add one additional dot to one Resistance stat (ie the bottom row)";
+      else if (subject == "skills")
+        parId.innerHTML ="<b>Skills:</b> These will always be paired with an Attribute for dice rolls. For character creation, you have 3 options:<br />-Jack of All Trades: One skill at 3 dots, eight skills at 2, ten skills at 1<br />-Balanced: Three at 3 dots, five at 2, seven at 1<br />-Specialist:One skill at 4, Three at 3, Three at 1.<br />Additionally, if you have at least one dot in Academics, Craft, Performance, and/or Science, you gain a free Specialty. You add one additional dice to a roll when the Specialty is relevant.";
       }
     </script>
   </body>
