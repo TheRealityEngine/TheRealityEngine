@@ -73,13 +73,40 @@
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         border-bottom: none;
+        
+      }
+      .sticky {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-color: #a0a7a7; 
+        width: 100%;
+        height: 35px;
+      }
+      .bannerContent { 
+        margin: 0; 
+        padding: 10px; 
       }
     </style>
   </head>
   <body>
-    <div>
-    <h2 id="spellTitle" style="background-color:whitesmoke; color: gray" class="title" onclick="ToggleBox('abilityColumn', 'spellColumn')">Spell Casting</h2>
-      <h2 id="abilityTitle" style="background-color:white" class="title" onclick="ToggleBox('spellColumn', 'abilityColumn')">Attributes & Skills</h2>
+    <div class="sticky2" id="topBanner">
+      
+      <div class="bannerContent" id="gonnahide" style="position:absolute; top:5px; right:30px;z-index:5; display:block;">
+        <button onclick="ToggleBox('gonnahide', 'gonnareveal')">More info</button>
+      </div>
+      <div id="gonnareveal" style="position:absolute;top:5px; right:100px;z-index:5; display:none; width:40%; background-color:whitesmoke">
+        <h3 style="text-align:right;">Info Box</h3>
+        <p id="infoBox" style="
+        padding: 10px; overflow: scroll; max-height: 14em">Click something to put info here</p>
+        <button style="float:right;" onclick="ToggleBox('gonnareveal', 'gonnahide')">Close</button>
+      </div>
+    </div>
+    <br />
+    <div style="position: absolute; top:30px">
+    <h2 id="spellTitle" style="background-color:whitesmoke; color: gray" class="title" onclick="ToggleBox('filler', 'spellColumn')">Spell Casting</h2>
+      <h2 id="abilityTitle" style="background-color:white" class="title" onclick="ToggleBox('filler', 'abilityColumn')">Attributes & Skills</h2>
+      <h2 id="pcTitle" style="background-color:whitesmoke; color: gray" class="title" onclick="ToggleBox('filler', 'pcColumn')">Character</h2>
     </div>
     <div class="casting">
     <div class="row">
@@ -357,6 +384,21 @@
         <p><b><span onclick="GimmeInfo('dodge')">Dodging</span></b>: Dexterity + Athletics</p>
         
         </div>
+        <div id="pcColumn" class="column" style="display:none;">
+          <h2>Merits & Background Info</h2>
+        <h3>Merits</h3>
+        <input class="writing" type="text" id="merit1"><br />
+        <input class="writing" type="text" id="merit2"><br />
+        <input class="writing" type="text" id="merit3"><br />
+        <input class="writing" type="text" id="merit4"><br />
+        <input class="writing" type="text" id="merit4"><br />
+        <h3>Important Items</h3>
+        <textarea class="writing" rows="5" cols="40" placeholder="Weapons, Artifacts, Clues, etc"></textarea> <br />
+        <br />
+        <h3>Background</h3>
+        <textarea class="writing" rows="10" cols="40" placeholder="Character notes, campaign notes, whatever"></textarea><br />
+
+        </div>
         <div class="column" >
           <p class="stat" name="clar">
             
@@ -401,6 +443,9 @@
               oninput="MaxMe('wil')"
             />
             <span class="tiny">set max</span>
+            <br />
+            <input type="number" min="0" id="wilAg" value="0" class="boxes" style="display: none" />
+            <input type="number" min="0" id="wilBa" value="0" class="boxes" style="display: none" />
           </p>
           <p class="stat" name="heal">
             
@@ -416,6 +461,8 @@
               oninput="MaxMe('heal')"
             />
             <span class="tiny">set max</span>
+            <input type="number" min="0" id="healAg" value="0" class="boxes" style="display: none" />
+            <input type="number" min="0" id="healBa" value="0" class="boxes" style="display: none" />
           </p>
           <h2>Roll Dice</h2>
           <form>
@@ -431,6 +478,11 @@
             <option>8</option>
             <option>9</option>
             <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
           </select>
           <br />
           <p id="spelltotal" class="res"></p>
@@ -447,15 +499,7 @@
         <input type="button" id="rero" value="Willpower Reroll" />
       </div>
     </div>
-    <div id="gonnahide" style="position:absolute;bottom:20px; right:100px;z-index:5; display:block;">
-      <button onclick="ToggleBox('gonnahide', 'gonnareveal')">More info</button>
-    </div>
-    <div id="gonnareveal" style="position:absolute;bottom:20px; right:100px;z-index:5; display:none; width:40%; background-color:whitesmoke">
-      <h3 style="text-align:right;">Info Box</h3>
-      <p id="infoBox" style="
-      padding: 10px; overflow: scroll; max-height: 14em">Click something to put info here</p>
-      <button style="float:right;" onclick="ToggleBox('gonnareveal', 'gonnahide')">Close</button>
-    </div>
+ 
     <input type="text" placeholder="copy the text here to save" id="saveField"><button onclick="LoadSave()">Load Save</button><input type="button" onclick="SavingStuff()" value="Save" />
 
     <script>
@@ -475,6 +519,7 @@
       var squareFilled = 
         "square-filled.jpg"
     
+
     function AddSpecialty(skill) {
       GimmeInfo("specialties");
       let parId = document.getElementById(skill);
@@ -492,12 +537,14 @@
         newArray = pair.split(":");
         statId = newArray[0];
         statnum = newArray[1];
-        statVal = statnum;
-        document.getElementById(statId).value = statVal;
+        document.getElementById(statId).value = statnum;
         document.getElementById(statId).dispatchEvent(new Event("input"));
       }
+      
       RevealSpecialty();
-    } 
+      UpdateBoxes('wil');
+      UpdateBoxes('heal');
+    }
 
     function RevealSpecialty() {
       let obj1 = document.getElementsByClassName("spec");
@@ -514,13 +561,16 @@
     }
 
     function SavingStuff() {
-      let obj1 = document.querySelectorAll(".attrib,.spec");;
+      CountDamage("wil");
+      CountDamage("heal");
+      let obj1 = document.querySelectorAll(".attrib,.spec,.boxes");;
       let array1 = [];
       let len = obj1.length;
       for (let i = 0; i < len; i++) {
         statName = obj1[i].id;
         statVal = obj1[i].value;
-        statVal2 = statVal.replaceAll(",", ";")
+        statVal1 = statVal.replaceAll(":", "-")
+        statVal2 = statVal1.replaceAll(",", ";");
         statPair = statName+":" + statVal2;
         array1.push(statPair);
       }
@@ -545,8 +595,10 @@
     }
 
     function DotifyAll(attName) { 
-      parId = attName + "Par";
-      parPar = document.getElementById(parId);
+      let parId = attName + "Par";
+      let parPar = document.getElementById(parId);
+      let statNum = attName + "num";
+      let numId = document.getElementById(statNum)
       let text6 = " ";
       for (i = 1; i <= 5; i++) {
         if (attName == "spe") text6 +=
@@ -571,6 +623,7 @@
       }
       
       parPar.innerHTML = text6;
+      document.getElementById(statNum).dispatchEvent(new Event("input"));
     }
 
     function BoxifyAll(attName) { 
@@ -623,27 +676,59 @@
       };
 
       function ToggleBox(hide, reveal) {
+        if (hide != "filler") {
         let hidden = document.getElementById(hide);
         let revealed = document.getElementById(reveal);
         hidden.style["display"] = "none";
         revealed.style["display"] = "block";
+        } else if (hide == "filler") {
         let spell = document.getElementById('spellTitle');
+        let sCol = document.getElementById('spellColumn');
         let ability = document.getElementById('abilityTitle');
-        if (hide == 'spellColumn') {
+        let aCol = document.getElementById('abilityColumn');
+        let pc = document.getElementById('pcTitle');
+        let pCol = document.getElementById('pcColumn');
+        if (reveal == 'abilityColumn') {
+          sCol.style["display"] = "none";
           spell.style["background-color"] = "whitesmoke";
           spell.style["color"] = "gray";
           spell.style["border-bottom"] = "1px";
+          pc.style["background-color"] = "whitesmoke";
+          pCol.style["display"] = "none";
+          pc.style["color"] = "gray";
+          pc.style["border-bottom"] = "1px";
+          aCol.style["display"] = "block";
           ability.style["background-color"] = "white";
           ability.style["color"] = "black";
           ability.style["border-bottom"] = "none";
         }
-        else if (hide == 'abilityColumn') {
+        else if (reveal == 'spellColumn') {
+          sCol.style["display"] = "block";
           spell.style["background-color"] = "white";
           spell.style["color"] = "black";
           spell.style["border-bottom"] = "none";
+          pc.style["background-color"] = "whitesmoke";
+          pCol.style["display"] = "none";
+          pc.style["color"] = "gray";
+          pc.style["border-bottom"] = "1px";
+          aCol.style["display"] = "none";
           ability.style["background-color"] = "whitesmoke";
           ability.style["color"] = "gray";
           ability.style["border-bottom"] = "1px";
+        } else if (reveal == 'pcColumn') {
+          pCol.style["display"] = "block";
+          pc.style["background-color"] = "white";
+          pc.style["color"] = "black";
+          pc.style["border-bottom"] = "none";
+          sCol.style["display"] = "none";
+          spell.style["background-color"] = "whitesmoke";
+          spell.style["color"] = "gray";
+          spell.style["border-bottom"] = "1px";
+          aCol.style["display"] = "none";
+          ability.style["background-color"] = "whitesmoke";
+          ability.style["color"] = "gray";
+          ability.style["border-bottom"] = "1px";
+        }
         }
       }
 
@@ -711,6 +796,45 @@
           mainBox.alt = "star"
         }
       }
+      
+      }
+
+      function CountDamage (stat) {
+        let bash = 0;
+        let agg = 0;
+        let bashTot = stat + "Ba";
+        let aggTot = stat + "Ag"
+        let bashId = document.getElementById(bashTot);
+        let aggId = document.getElementById(aggTot);
+        for (let i=1; i<11; i++) {
+          let statNum = stat + i;
+          let statId = document.getElementById(statNum)
+          let statAlt = statId.alt;
+          if (statAlt == "slash") bash++;
+          else if (statAlt == "star") agg++
+        }
+        bashId.value = bash;
+        aggId.value = agg;
+      }
+
+      function UpdateBoxes(stat) {
+        let bashTot = stat + "Ba";
+        let aggTot = stat + "Ag"
+        let bashId = document.getElementById(bashTot);
+        let aggId = document.getElementById(aggTot);
+        let bashVal = Number(bashId.value);
+        let aggVal = Number(aggId.value);
+        let totVal = bashVal + aggVal;
+        if (totVal > 0) {
+        for (let i=1; i<=totVal; i++ ) {
+          MarkMe(stat, i)
+        }
+        }
+        if (aggVal > 0) {
+        for (let i=1; i<=aggVal; i++ ) {
+          MarkMe(stat, i)
+        }
+        }
       }
 
       function MaxMe(stat) {
