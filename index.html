@@ -93,9 +93,10 @@
     <div class="sticky2" id="topBanner">
       
       <div class="bannerContent" id="gonnahide" style="position:absolute; top:5px; right:30px;z-index:5; display:block;">
+        <input type="text" placeholder="copy the text here to save" id="saveField"><button onclick="LoadSave()">Load Save</button><input type="button" onclick="SavingStuff()" value="Save" />
         <button onclick="ToggleBox('gonnahide', 'gonnareveal')">More info</button>
       </div>
-      <div id="gonnareveal" style="position:absolute;top:5px; right:100px;z-index:5; display:none; width:40%; background-color:whitesmoke">
+      <div id="gonnareveal" style="position:absolute;top:5px; right:50px;z-index:5; display:none; width:40%; background-color:whitesmoke">
         <h3 style="text-align:right;">Info Box</h3>
         <p id="infoBox" style="
         padding: 10px; overflow: scroll; max-height: 14em">Click something to put info here</p>
@@ -106,13 +107,13 @@
     <div style="position: absolute; top:30px">
     <h2 id="spellTitle" style="background-color:whitesmoke; color: gray" class="title" onclick="ToggleBox('filler', 'spellColumn')">Spell Casting</h2>
       <h2 id="abilityTitle" style="background-color:white" class="title" onclick="ToggleBox('filler', 'abilityColumn')">Attributes & Skills</h2>
-      <h2 id="pcTitle" style="background-color:whitesmoke; color: gray" class="title" onclick="ToggleBox('filler', 'pcColumn')">Character</h2>
+      <h2 id="pcTitle" style="background-color:whitesmoke; color: gray" class="title" onclick="ToggleBox('filler', 'pcColumn')">Resources</h2>
     </div>
     <div class="casting">
     <div class="row">
       
       <div id="spellColumn" class="column" style="display:none;">
-        
+        <br />
         <p class="stat" name="gno">
           <input
             type="number"
@@ -123,11 +124,27 @@
             class="attrib"
             name="Gnosis"
             oninput="NumberMe('gno')"
+            style="display: none"
             
           />
           <b><span onclick="GimmeInfo('gnosis')">Gnosis</span></b>
           <span id="gnoPar">What?</span>
         </p>
+        <p style="font-size:1.2em">
+          <b>Primary Path:</b>
+        <input class="writing" type="text" id="pPath" style="width:50%; font-size:1.2em; border: 0;" placeholder="Physical, Vital, or Eventual">
+
+        <span style="font-size:1.0em">
+        <input class="writing" type="text" id="arcana1" style="width:50%; font-size:.9em; border: 0;" placeholder="1st Arcana">
+        <input class="writing" type="text" id="arcana2" style="width:50%; font-size:.9em; border: 0;" placeholder="2nd Arcana">
+        <input class="spec" type="text" id="arcana3" style="width:50%; font-size:.9em; border: 0; display: none" placeholder="3rd Arcana" alt="hidden" >
+        <input class="spec"  type="text" id="arcana4" style="width:50%; font-size:.9em; border: 0; display: none" placeholder="4th Arcana" alt="hidden" >
+        <input class="spec" type="text" id="arcana5" style="width:50%; font-size:.9em; border: 0; display: none" placeholder="5th Arcana" alt="hidden" >
+        <input class="spec" type="text" id="arcana6" style="width:50%; font-size:.9em; border: 0; display: none" placeholder="6th Arcana" alt="hidden" > <br />
+          </span>
+        
+        <input type="button" onclick="RevealArcana('arcana')" value="Add Arcana" />
+      </p>
 
         <p class="stat" name="arc">
           <input
@@ -138,6 +155,7 @@
             id="arcnum"
             class="attrib"
             oninput="NumberMe('arc')"
+            style="display: none"
           />
           <b><span onclick="GimmeInfo('arcana')">Arcana Level</span></b>
           <span id="arcPar">What?</span>
@@ -150,6 +168,7 @@
             id="spenum"
             class="attrib"
             oninput="NumberMe('spe')"
+            style="display: none"
           />
           <b><span onclick="GimmeInfo('spell')">Spell Level</span></b>
           <span id="spePar">What?</span>
@@ -385,19 +404,46 @@
         
         </div>
         <div id="pcColumn" class="column" style="display:none;">
-          <h2>Merits & Background Info</h2>
-        <h3>Merits</h3>
-        <input class="writing" type="text" id="merit1"><br />
-        <input class="writing" type="text" id="merit2"><br />
-        <input class="writing" type="text" id="merit3"><br />
-        <input class="writing" type="text" id="merit4"><br />
-        <input class="writing" type="text" id="merit4"><br />
+        <h3>Resources</h3>
+        <p class="stat" name="reso">
+            
+            
+          <input
+            type="number"
+            min="1"
+            max="10"
+            value="7"
+            id="resonum"
+            class="attrib"
+            oninput="MinMe('reso')"
+          />
+          <b><span onclick="GimmeInfo('resources')">Total Resources</span></b>
+          <span id="resoPar">What?</span>
+          <span class="tiny">Mark Stains</span>
+        </p>
+        <h4>Risky</h4>
+        <input class="writing" type="text" id="risk1" style="width:60%;" placeholder="Skill + Attribute; Obsession" alt="shown">
+        <input class="spec" type="text" id="risk2" style="width:60%;" placeholder="Skill + Attribute; Situation" alt="shown">
+        <input class="spec" type="text" id="risk3" style="display: none; width:60%;" placeholder="Skill + Attribute; Explanation" alt="hidden">
+        <input class="spec" type="text" id="risk4" style="display: none; width:60%;" placeholder="Skill + Attribute; Explanation" alt="hidden">
+        <input class="spec" type="text" id="risk5" style="display: none; width:60%;" placeholder="Skill + Attribute; Explanation" alt="hidden">
+        <input class="spec" type="text" id="risk6" style="display: none; width:60%;" placeholder="Skill + Attribute; Explanation" alt="hidden">
+        <button onclick="RevealArcana2()">Add+</button>
+        <h4>Regular</h4>
+        <input type="checkbox"><input class="writing" type="text" id="regu1" style="width:60%;" placeholder="Skill+Attribute & Check if Maintained"><br />
+        <input type="checkbox"><input class="writing" type="text" id="regu2" style="width:60%;" placeholder="Explain and Check if Maintained"><br />
+        <h4>Favors</h4>
+        <input class="writing" type="text" id="rare1" style="width:60%;"><br />
+        <input class="writing" type="text" id="rare2" style="width:60%;"><br />
+        <input class="writing" type="text" id="rare3" style="width:60%;"><br />
         <h3>Important Items</h3>
-        <textarea class="writing" rows="5" cols="40" placeholder="Weapons, Artifacts, Clues, etc"></textarea> <br />
+        <input class="writing" type="text" id="item1" placeholder="Weapons" style="width:70%;"><br />
+        <input class="writing" type="text" id="item2" placeholder="Artifacts" style="width:70%;"><br />
+        <input class="writing" type="text" id="item3" placeholder="Clues" style="width:70%;"><br />
+        <input class="writing" type="text" id="item4" placeholder="and" style="width:70%;"><br />
+        <input class="writing" type="text" id="item5" placeholder="McGuffins" style="width:70%;"><br />
         <br />
-        <h3>Background</h3>
-        <textarea class="writing" rows="10" cols="40" placeholder="Character notes, campaign notes, whatever"></textarea><br />
-
+        
         </div>
         <div class="column" >
           <p class="stat" name="clar">
@@ -425,6 +471,7 @@
               id="limnum"
               class="attrib"
               oninput="NumberMe('lim')"
+              style="display: none"
             />
             <b><span onclick="GimmeInfo('decoherence')">Decoherence</span></b>
             <span id="limPar">What?</span>
@@ -486,7 +533,8 @@
           </select>
           <br />
           <p id="spelltotal" class="res"></p>
-          <p id="spellresults" class="res"></p>
+          <p id="spellresults1" class="res"></p>
+          <p id="spellresults2" class="res"></p>
         </form>
           <br /><br />
         
@@ -500,7 +548,7 @@
       </div>
     </div>
  
-    <input type="text" placeholder="copy the text here to save" id="saveField"><button onclick="LoadSave()">Load Save</button><input type="button" onclick="SavingStuff()" value="Save" />
+
 
     <script>
       var resultArray = [];
@@ -519,6 +567,42 @@
       var squareFilled = 
         "square-filled.jpg"
     
+
+        function RevealArcana2() {
+      for (i=3; i<7; i++) {
+        let arcId = "risk" + i;
+        let nextId = document.getElementById(arcId);
+        let aAlt = nextId.alt;
+        
+        if (aAlt == "hidden") {
+          nextId.style["display"] = "block";
+          nextId.alt = "shown";
+          break
+        } else if (aAlt == "shown") {
+          continue;
+        } 
+      }
+
+      }
+
+      function RevealArcana() {
+      for (i=3; i<7; i++) {
+        let arcId = "arcana" + i;
+        let nextId = document.getElementById(arcId);
+        let aAlt = nextId.alt;
+        
+        if (aAlt == "hidden") {
+          nextId.style["display"] = "block";
+          nextId.alt = "shown";
+          break
+        } else if (aAlt == "shown") {
+
+          continue;
+
+        } 
+      }
+
+      }
 
     function AddSpecialty(skill) {
       GimmeInfo("specialties");
@@ -563,7 +647,7 @@
     function SavingStuff() {
       CountDamage("wil");
       CountDamage("heal");
-      let obj1 = document.querySelectorAll(".attrib,.spec,.boxes");;
+      let obj1 = document.querySelectorAll(".attrib,.spec,.boxes,.writing");;
       let array1 = [];
       let len = obj1.length;
       for (let i = 0; i < len; i++) {
@@ -585,7 +669,8 @@
     function LoadThings() {
       BoxifyAll("heal");
       BoxifyAll("wil");
-      ClarifyAll();
+      ClarifyAll("clar");
+      ClarifyAll("reso");
       let len = stats.length;
       for (let i = 0; i < len; i++) {
         sta = stats[i];
@@ -645,25 +730,27 @@
       parPar.innerHTML = text6;
     }
 
-    function ClarifyAll() { 
-      parPar = document.getElementById("clarPar");
+    function ClarifyAll(stat) { 
+      let par = stat + "Par";
+      parPar = document.getElementById(par);
       let text6 = " ";
-      val = document.getElementById("clarnum").value;
+      let num = stat + "num";
+      val = document.getElementById(num).value;
       realVal = Number(val) + 1
       for (i = 1; i <= 10; i++) {
         if (i < realVal)
         text6 +=
-          "<input class='aBox' type='image' alt='nope' src='square-filled.jpg' id='clar" +
+          "<input class='aBox' type='image' alt='nope' src='square-filled.jpg' id='" + stat + 
           i +
-          "' onclick=\"MarkMe('clar" +
+          "' onclick=\"MarkMe('" + stat + 
           "', " +
           i +
           ')" />';
         else if (i < 11)
         text6 +=
-          "<input class='aBox' type='image' alt='square' src='square-empty.jpg' id='clar" +
+          "<input class='aBox' type='image' alt='square' src='square-empty.jpg' id='" + stat + 
           i +
-          "' onclick=\"MarkMe('clar" +
+          "' onclick=\"MarkMe('" + stat +
           "', " +
           i +
           ')" />';
@@ -1019,14 +1106,16 @@
         let lim = liminality - 1;
         let text1 = "<ul> ";
         let st = document.getElementById("spelltotal");    
-        let sr = document.getElementById("spellresults");
+        let sr1 = document.getElementById("spellresults1");
+        let sr2 = document.getElementById("spellresults2");
         st.innerHTML = " ";
-        sr.innerHTML = " ";      
+        sr1.innerHTML = " ";
+        sr2.innerHTML = " ";      
         for (let i = 0; i < rLen; i++) {
+          if (resultArray[i].dieRoll > 9) critSuc++;
+          else if (resultArray[i].dieRoll == 1) critFail++;
           if (i <= lim) {
             text1 += "<li><FONT COLOR=purple>";
-            if (resultArray[i].dieRoll > 9) critSuc++;
-            else if (resultArray[i].dieRoll == 1) critFail++;
           }
           else if (i > lim) text1 += "<li><FONT COLOR=black> ";
           text1 +=
@@ -1039,7 +1128,7 @@
         }
         if (rollType == "ability") {
           crits = critSuc + critFail;
-          if (crits > 0) sr.innerHTML = "<FONT-COLOR=red><b>Arcana Bleed: " + crits + "</b><br /><FONT-COLOR=black>";
+          if (crits > 0) sr1.innerHTML = "<FONT-COLOR=red><b>Arcana Bleed: " + crits + "</b><br /><FONT-COLOR=black>";
           st.innerHTML  = "<b> Total Successes: " + succ + "</b></ul>";
           document
           .getElementById("rero")
@@ -1048,13 +1137,16 @@
         else if (rollType == "spell") {
           total = succ - overreach;
         if (total > 0) {
-          if (critSuc > 0) sr.innerHTML = "<b>Spell Surge: " + critSuc + "</b><br />";
+          if (critSuc > 0) {sr1.innerHTML = "<b>Possible Spell Surge: " + critSuc + "</b><br />";
+          st.innerHTML = "<b> Total Successes: " + total + "</b></ul>";
+        }
+          if (critFail > 0) sr2.innerHTML = "<b>Possible Anomaly: " + critFail + "</b><br />";
           st.innerHTML = "<b> Total Successes: " + total + "</b></ul>";
         } else if (total == 0 && critFail < 1) { st.innerHTML = "No Successes <br />The spell is not forming as you'd hope.<br />You can strain local reality to force 1 Success.";
         } else if (total <= 0) {
           anomaly = overreach - succ;
-          sr.innerHTML = "<b>Possible Reality Tear <b>";
-          if (critFail > 0) sr.innerHTML =
+          sr2.innerHTML = "<b>Possible Reality Tear <b>";
+          if (critFail > 0) sr2.innerHTML =
             "<FONT COLOR=purple><h2>You have triggered an Anomaly<h2> ";
               st.innerHTML = " Total Successes: -" + anomaly + "</ul>";
         }
@@ -1181,8 +1273,10 @@
         parId.innerHTML ="<b>Spell Level:</b><br />One Dot: Gain Knowledge, Reveal something hidden, Make something happen that is likely to happen.<br />Two Dots: Protection, Hiding Something, Make something happen that is very unlikely but possible. Add dice to a roll.<br />Three Dots: Do Bashing damage. Heal Bashing damage. Make something happen that is normally impossible without mundane intervention. Add to/Subtract from a Stat.<br />Four Dots: Make something impossible happen. Change a property of something to a different but related property.<br />Five Dots: Make something new or delete something from existence."; 
       else if (subject == "reach")
         parId.innerHTML ="<b>Reach:</b> This is your ability to push a spell beyond its normal limits. You get 1 free reach plus the difference between the Arcana Level and the Spell Level.<br />You can push beyond this, creating Overreach. Overreach is subtracted from your successes. If you dont have enough successes, an anomaly might occur.";
+      else if (subject == "resources")
+        parId.innerHTML ="<b>Resources:</b><br /><b>Risky</b> Resources are those that are situational and have a risk of failure. The first slot is what skill roll you use to feed your Obsession. When you use this skill, your Decoherence goes up. The second slot is a way that you might be able to acquire resources (with a successful roll), eg. Dexterity + Larceny to pickpocket tourists or Streetwise + Manipulation to get credit card info from drunk lawyers.<br /><b>Regular</b> Resources dont require a roll, but they must be Maintained during downtime. This can be a job, access to a family fund, etc.<br /><b>Rare</b> Resources are things like a favor you are owed, a big score you keep in your back pocket, or a precious item you've been saving. Once used, these are gone.";
       else if (subject == "decoherence")
-        parId.innerHTML ="<b>Decoherence:</b> VtM equivalent to Hunger<br />Your decoherence builds as you strain the line between the Sleeping World and the Real World. Decoherence allows you to reroll spell dice, but you cannot reroll Decoherence dice during ability rolls.<br />How you lower decoherence depends on your Obsession. If it rises while you are at 5, you gain a stain to your Clarity.";
+        parId.innerHTML ="<b>Decoherence:</b> VtM equivalent to Hunger<br />You need at least one Dot of Decoherence in order to cast spells.<br />When casting spells, you can only reroll Decoherence dice. A Critical Failure on a failed spell roll will lead to an Anomaly, so low Decoherence decreases your ability to reroll to mitigate this risk.<br />A Critical Success on a successful spell roll will lead to a Spell Surge (Reach is added), which means the spell might last longer or affect more people than intended.<br />When making an Ability roll, you can reroll Normal dice but NOT Decoherence dice. All crits (1s & 10s) lead to Arcana Bleed, with your dominant Arcana leaking into the real world. This will lead to a Complicated Success or a Complicated Failure, depending on the roll.<br /><br />Whenever you use a Resource other than the one you use to feed your Obsession, your Decoherence Lowers. When you feed your Obsession, it rises.";
       else if (subject == "health")
         parId.innerHTML ="<b>Health:</b> Your Health is equal to Stamina+Size (5). There are two types of damage, Bashing (indicated by a single slash)and Aggravated (three slashes). Place them left to right, with more serious damage farthest left. If your health track is full, roll Stamina each round to stay conscious.<br />Healing: Bashing damage heals one point per hour and Aggravated heals one point per 3 days. Some 2 dot spells can reduce this time, some 3 dot spells can heal Bashing, and 4 dot spells can heal Aggravated.";
       else if (subject == "clarity")
