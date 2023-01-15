@@ -430,9 +430,9 @@
         <input class="spec" type="text" id="risk6" style="display: none; width:60%;" placeholder="Skill + Attribute; Explanation" alt="hidden">
         <button onclick="RevealRisk()">Add+</button>
         <h4>Regular &nbsp<img class="aDot" src="circle-filled.jpg"><img class="aDot" src="circle-filled.jpg"></h4>
-        <input type="checkbox"><input class="writing" type="text" id="regu1" style="width:60%;" placeholder="Describe & Check if Maintained"><br />
-        <input type="checkbox"><input class="writing" type="text" id="regu2" style="width:60%;" placeholder="Describe & Check if Maintained"><br />
-        <h4>Favors &nbsp <img class="aDot" src="circle-filled.jpg"></h4>
+        <input class="writing" type="text" id="regu1" style="width:60%;" placeholder="Describe"><br />
+        <input class="writing" type="text" id="regu2" style="width:60%;" placeholder="Describe"><br />
+        <h4>Rare &nbsp <img class="aDot" src="circle-filled.jpg"></h4>
         <input class="writing" type="text" id="rare1" style="width:60%;"><br />
         <input class="writing" type="text" id="rare2" style="width:60%;"><br />
         <input class="writing" type="text" id="rare3" style="width:60%;"><br />
@@ -1141,7 +1141,7 @@
           total = succ - overreach;
         if (total > 0) {
           if (critSuc > 0) {sr1.innerHTML = "<b>Possible Spell Surge: " + critSuc + "</b><br />";
-          st.innerHTML = "<b> Total Successes: " + total + "</b></ul>";
+          st.innerHTML = "<b> Total Successes: " + total + "</b><br />One success applied to Overreach</ul>";
         }
           if (critFail > 0) sr2.innerHTML = "<b>Possible Anomaly: " + critFail + "</b><br />";
           st.innerHTML = "<b> Total Successes: " + total + "</b></ul>";
@@ -1277,7 +1277,7 @@
       else if (subject == "reach")
         parId.innerHTML ="<b>Reach:</b> This is your ability to push a spell beyond its normal limits. You get 1 free reach plus the difference between the Arcana Level and the Spell Level.<br />You can push beyond this, creating Overreach. Overreach is subtracted from your successes. If you dont have enough successes, an anomaly might occur.";
       else if (subject == "resources")
-        parId.innerHTML ="<b>Resources:</b><br />Character Creation: You start with 7 dots in Resources, one in each category (totaling 4) then the other 3 distributed as you like.<br /><b>Losing Resources</b>:If you spend a Rare Resource, you will lose that point of Resources. Also, you will stain your resources on a Critically Failed Risky roll or when you fail to maintain a Regular Resource during a chapter. At the end of a session, you roll for Resources (similar to clarity). On a failure, you choose which dot is most appropriate to lose. If you choose to lose a Regular Resource, you can gain one dot in Risky or Rare (whichever makes most sense).<br /><b>Risky Resources</b> are those that are situational and have a risk of failure. These are ways that you might be able to acquire resources, (with a successful roll), eg. Dexterity + Larceny to pickpocket tourists.  A Critical Success on a successful roll will lower your Decoherence. A Critical Failure will stain your Resources. <br /><b>Regular Resources</b> dont require a roll, but they must be Maintained during downtime. This can be a job, access to a family fund, etc. Additionally, Maintaining lowers your Decoherence by one.<br /><b>Rare Resources</b> are things like a favor you are owed, a big score you keep in your back pocket, or a precious item you've been saving. Once used, these are gone.";
+        parId.innerHTML ="<b>Resources:</b><br />Character Creation: You start with 7 dots in Resources, one in each category (totaling 4) then the other 3 distributed as you like.<br /><b>Losing Resources</b>:If you spend a Rare Resource, you will lose that point of Resources. Also, you will stain your resources on a Critically Failed resources roll. At the end of a session, you roll for Resources (similar to clarity). On a failure, you choose which dot is most appropriate to lose. If you choose to lose a Regular Resource, you can gain one dot in Risky or Rare (whichever makes most sense).<br /><b>Risky Resources</b> are those that are situational and have a risk of failure. These are ways that you might be able to acquire resources, (with a successful roll), eg. Dexterity + Larceny to pickpocket tourists.  A Critical Success on a successful roll will lower your Decoherence. A Critical Failure will stain your Resources. <br /><b>Regular Resources</b> are a mage's touchstones to pre-awakened life and is the best way to lower decoherence. No single roll is associated, but will depend on the interaction. Additionally, these represent responsibilities that may crop up. This can be a job, access to a family trust, etc. <br /><b>Rare Resources</b> are things like a favor you are owed, a big score you keep in your back pocket, or a precious item you've been saving. Once used, these are gone.";
       else if (subject == "decoherence")
         parId.innerHTML ="<b>Decoherence:</b> VtM (somewhat) equivalent to Hunger<br />You need at least one Dot of Decoherence in order to cast spells. You usually raise your Decoherence by feeding your Obsession during downtime and by your morning Rouse check. You usually lower it by Maintaining Regular Resources during downtime<br />When casting spells, you can only reroll Decoherence dice. A Critical Failure on a failed spell roll will lead to an Anomaly, so low Decoherence decreases your ability to reroll to mitigate this risk.<br />A Critical Success on a successful spell roll will lead to a Spell Surge (Reach is added), which means the spell might last longer or affect more people than intended.<br />When making an Ability roll, you can reroll Normal dice but NOT Decoherence dice. All crits (1s & 10s) lead to Arcana Bleed, with your dominant Arcana leaking into the real world. This will lead to a Complicated Success or a Complicated Failure, depending on the roll.";
       else if (subject == "obsession")
