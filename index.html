@@ -60,6 +60,10 @@
         width: 1.4em;
         height: 1.4em;
       }
+      .dieBox {
+        width: 3em;
+        height: 3em;
+      }
       .stat {
         font-size: 1.4em;
       }
@@ -87,6 +91,9 @@
         margin: 0; 
         padding: 10px; 
       }
+      .infoblack {
+        color: black
+      }
     </style>
   </head>
   <body>
@@ -94,13 +101,13 @@
       
       <div class="bannerContent" id="gonnahide" style="position:absolute; top:5px; right:30px;z-index:5; display:block;">
         <input type="text" placeholder="copy the text here to save" id="saveField"><button onclick="LoadSave()">Load Save</button><input type="button" onclick="SavingStuff()" value="Save" />
-        <button onclick="ToggleBox('gonnahide', 'gonnareveal')">More info</button>
+        <button onclick="ToggleBox('gonnahide', 'gonnareveal'), ChangeColor('red')">More info</button>
       </div>
       <div id="gonnareveal" style="position:absolute;top:5px; right:50px;z-index:5; display:none; width:40%; background-color:whitesmoke">
         <h3 style="text-align:right;">Info Box</h3>
         <p id="infoBox" style="
         padding: 10px; overflow: scroll; max-height: 14em">Click something to put info here</p>
-        <button style="float:right;" onclick="ToggleBox('gonnareveal', 'gonnahide')">Close</button>
+        <button style="float:right;" onclick="ToggleBox('gonnareveal', 'gonnahide'), ChangeColor('black')">Close</button>
       </div>
     </div>
     <br />
@@ -127,11 +134,11 @@
             style="display: none"
             
           />
-          <b><span onclick="GimmeInfo('gnosis')">Gnosis</span></b>
+          <b><span onclick="GimmeInfo('gnosis')" class="infoblack">Gnosis</span></b>
           <span id="gnoPar">What?</span>
         </p>
         <p style="font-size:1.2em">
-          <b>Primary Path:</b>
+          <b><span onclick="GimmeInfo('primarypath')" class="infoblack">Primary Path:</span></b>
         <input class="writing" type="text" id="pPath" style="width:50%; font-size:1.2em; border: 0;" placeholder="Physical, Vital, or Eventual">
 
         <span style="font-size:1.0em">
@@ -157,7 +164,7 @@
             oninput="NumberMe('arc')"
             style="display: none"
           />
-          <b><span onclick="GimmeInfo('arcana')">Arcana Level</span></b>
+          <b><span onclick="GimmeInfo('arcana')" class="infoblack">Arcana Level</span></b>
           <span id="arcPar">What?</span>
         </p>
         <p class="stat" name="spe">
@@ -170,13 +177,13 @@
             oninput="NumberMe('spe')"
             style="display: none"
           />
-          <b><span onclick="GimmeInfo('spell')">Spell Level</span></b>
+          <b><span onclick="GimmeInfo('spell')" class="infoblack">Spell Level</span></b>
           <span id="spePar">What?</span>
         </p>
         <p id="spLvl"></p>
         <form>
           <br />
-          <h2><span onclick="GimmeInfo('reach')">Reach</span></h2>
+          <h2><span onclick="GimmeInfo('reach')" class="infoblack">Reach</span></h2>
           <p id="freeReach">Free Reach: 1</p>
           <table style="background-color: white">
             <tr>
@@ -257,7 +264,7 @@
       </div>
       </form>
         <div id="abilityColumn" class="column" style="display:block;">
-          <h2 style="text-align: center"><span onclick="GimmeInfo('attributes')">Attributes</span></h2>
+          <h2 style="text-align: center"><span onclick="GimmeInfo('attributes')" class="infoblack">Attributes</span></h2>
         <table >
           <th>PHYSICAL</th>
           <th>SOCIAL</th>
@@ -296,7 +303,7 @@
           </td>
         </tr>
         </table>  
-        <h2 style="text-align: center"><span onclick="GimmeInfo('skills')">Skills</span></h2>
+        <h2 style="text-align: center"><span onclick="GimmeInfo('skills')" class="infoblack">Skills</span></h2>
         <table>
         <tr>
           <td>
@@ -398,9 +405,9 @@
           </td>
         </tr>
         </table>
-        <p><b><span onclick="GimmeInfo('perception')">Perception</span></b>: Wits + Awareness</p> 
-        <p><b><span onclick="GimmeInfo('initiative')">Intitiative</span></b>: Ongoing Melee, Ranged, New Melee, All Else</p>
-        <p><b><span onclick="GimmeInfo('dodge')">Dodging</span></b>: Dexterity + Athletics</p>
+        <p><b>Perception</b>: Wits + Awareness</p> 
+        <p><b>Intitiative</b>: Ongoing Melee, Ranged, New Melee, All Else</p>
+        <p><b>Dodging</b>: Dexterity + Athletics</p>
         
         </div>
         <div id="pcColumn" class="column" style="display:none;">
@@ -417,7 +424,7 @@
             class="attrib"
             oninput="MinMe('reso')"
           />
-          <b><span onclick="GimmeInfo('resources')">Total Resources</span></b>
+          <b><span onclick="GimmeInfo('resources')" class="infoblack">Total Resources</span></b>
           <span id="resoPar">What?</span>
           <span class="tiny">Mark Stains</span>
         </p>
@@ -458,7 +465,7 @@
               class="attrib"
               oninput="MinMe('clar')"
             />
-            <b><span onclick="GimmeInfo('clarity')">Clarity</span></b>
+            <b><span onclick="GimmeInfo('clarity')" class="infoblack">Clarity</span></b>
             <span id="clarPar">What?</span>
             <span class="tiny">Mark Stains</span>
           </p>
@@ -473,15 +480,15 @@
               oninput="NumberMe('lim')"
               style="display: none"
             />
-            <b><span onclick="GimmeInfo('decoherence')">Decoherence</span></b>
+            <b><span onclick="GimmeInfo('decoherence')" class="infoblack">Decoherence</span></b>
             <span id="limPar">What?</span>
             
           </p>
-          <b><span onclick="GimmeInfo('obsession')">Obsession</span></b><input type="text" class="writing" id="obse1" placeholder="Describe Your Obsession">
+          <b><span onclick="GimmeInfo('obsession')" class="infoblack">Obsession</span></b><input type="text" class="writing" id="obse1" placeholder="Describe Your Obsession">
           <input type="text" class="writing" id="obse2" placeholder="Attribute + Skill">
           <p class="stat" name="wil">
             
-            <b><span onclick="GimmeInfo('willpower')">Willpower</span></b>
+            <b><span onclick="GimmeInfo('willpower')" class="infoblack">Willpower</span></b>
             <span id="wilPar">What?</span>
             <input
               type="number"
@@ -499,7 +506,7 @@
           </p>
           <p class="stat" name="heal">
             
-            <b><span onclick="GimmeInfo('health')">Health</span></b>
+            <b><span onclick="GimmeInfo('health')" class="infoblack">Health</span></b>
             <span id="healPar">What?</span>
             <input
               type="number"
@@ -569,6 +576,10 @@
         "square-star.jpg";
       var squareFilled = 
         "square-filled.jpg"
+      var onesucc =
+        "succ.jpg";
+      var twosucc =
+        "succsucc.jpg";
     
 
         function RevealRisk() {
@@ -1107,7 +1118,7 @@
         let critSuc = 0
         let critFail = 0
         let lim = liminality - 1;
-        let text1 = "<ul> ";
+        let text1 = " ";
         let st = document.getElementById("spelltotal");    
         let sr1 = document.getElementById("spellresults1");
         let sr2 = document.getElementById("spellresults2");
@@ -1115,14 +1126,48 @@
         sr1.innerHTML = " ";
         sr2.innerHTML = " ";      
         for (let i = 0; i < rLen; i++) {
+          let result = resultArray[i].dieRoll;
+          let dieImg = "hmm";
+          if (result > 9) {
+            if (i < liminality) {
+              dieImg = "<img class='dieBox' src='succ-succp.jpg'>";
+            }
+            else if (i >= liminality) {
+              dieImg = "<img class='dieBox' src='succ-succ.jpg'>";
+            }
+          }
+          else if (result < 10 && result > 5) {
+            if (i < liminality) {
+              dieImg = "<img class='dieBox' src='succp.jpg'>";
+            }
+            else if (i >= liminality) {
+              dieImg = "<img class='dieBox' src='succ.jpg'>";
+            }
+          }
+          else if (result < 6 && result > 1) {
+            if (i < liminality) {
+              dieImg = "<img class='dieBox' src='failp.jpg'>";
+            }
+            else if (i >= liminality) {
+              dieImg = "<img class='dieBox' src='fail.jpg'>";
+            }
+          }
+          else if (result < 2) {
+            if (i < liminality) {
+              dieImg = "<img class='dieBox' src='skullp.jpg'>";
+            }
+            else if (i >= liminality) {
+              dieImg = "<img class='dieBox' src='skull.jpg'>";
+            }
+          }
           if (resultArray[i].dieRoll > 9) critSuc++;
           else if (resultArray[i].dieRoll == 1) critFail++;
           if (i <= lim) {
-            text1 += "<li><FONT COLOR=purple>";
+            text1 += "<FONT COLOR=purple>";
           }
-          else if (i > lim) text1 += "<li><FONT COLOR=black> ";
+          else if (i > lim) text1 += "<FONT COLOR=black> ";
           text1 +=
-            resultArray[i].status + " " + resultArray[i].dieRoll + "</li>";
+            dieImg + " "  + " " + " " + "";
           if (resultArray[i].dieRoll > 9) {
             succ++;
             succ++;
@@ -1166,7 +1211,7 @@
         let succ = 0;
         let lim = liminality - 1;
         let text1 =
-          "<ul><br /><form method='post' name='will_form' id='will_form'>";
+          "<br /><form method='post' name='will_form' id='will_form'>";
         
         if (rollType == "ability") {
         for (let i = 0; i < rLen; i++) {
@@ -1264,12 +1309,21 @@
         }
       }
 
+      function ChangeColor(color) {
+        var els = document.getElementsByClassName('infoblack');
+        for (var i = 0; i < els.length; i++) {
+          els[i].style.color = color;
+        }
+      }
+
       function GimmeInfo(subject) {
       let parId = document.getElementById("infoBox");
       if (subject == "willpower")
         parId.innerHTML ="<b>Willpower:</b> Equal to Resolve+Composure. At the start of each game, you get back points equal to the higher of the two.<br />You can use a WP point to reroll up to 3 dice. However, for Spell Rolls you can only reroll Decoherence dice, and for Ability Rolls you can only reroll NON-Decoherence dice.<br />If you spend your last WP, you have -2 to all rolls. ";
       else if (subject == "gnosis")
         parId.innerHTML ="<b>Gnosis:</b> VtM Equivalent: Blood Potency.<br />Added to all Spell Rolls (along with the relevant Arcana Level), this measures your overall strength as a mage and your ability to interact with the supernatural<br />As your Gnosis increases, you may find it harder to satisfy your obsession.";
+      else if (subject == "primarypath")
+        parId.innerHTML ="<b>Primary Path:</b> The three main paths are Physical, Vital, and Eventual. These indicate what you believe is most important to your theory of reality.<br />Physical (Matter, Forces, Space) is the infrastructure of reality. This could mean that you believe that the built world is how best to exploit the simulation you are trapped in, Matrix-style, or that what is being studied are the physical objects and forces of reality and understanding them is the key the getting out.<br />Vital (Mind, Life, and Prime) are the elements acting in reality. You might think we are all dreaming and understanding the dreamers is the way forward, or you may think that people create weak points that can be exploited.<br /> Eventual (Fate, Time, Death) are the events that occur in reality. You might think that this is an afterlife and learning what happens to people as they act will help you learn the rules and how to use them, or you might believe we are all trapped in time loops and studying the loops is how you get out of one.<br />Mechanically, it affects how much experience must be spent to increase your dots in an Arcana. Gaining a new dot in your path costs 5x the new level. Outside your path costs 7x the new level. Additionally, your highest starting arcana must be in your Primary path."
       else if (subject == "arcana")
         parId.innerHTML ="<b>Arcana Level:</b> Your overall ability to manipulate a specific element of reality. The 9 Arcana are split into 3 broader spheres of influence:<br /> Physical (Matter, Forces, Space), Vital (Mind, Life, Prime), and Eventual (Fate, Time, Death). How you can affect an Arcana is determined by the Spell Level.";
       else if (subject == "spell")
