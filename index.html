@@ -424,22 +424,22 @@
             class="attrib"
             oninput="MinMe('reso')"
           />
-          <b><span onclick="GimmeInfo('resources')" class="infoblack">Total Resources</span></b>
+          <b><span onclick="GimmeInfo('resources')" class="infoblack">Anchors & Mysteries</span></b>
           <span id="resoPar">What?</span>
           <span class="tiny">Mark Stains</span>
         </p>
-        <h4>Risky &nbsp <img class="aDot" src="circle-filled.jpg"></h4>
-        <input class="writing" type="text" id="risk1" style="width:60%;" placeholder="Skill + Attribute; Situation" alt="shown">
-        <input class="spec" type="text" id="risk2" style="width:60%;" placeholder="Skill + Attribute; Situation" alt="shown">
-        <input class="spec" type="text" id="risk3" style="display: none; width:60%;" placeholder="Skill + Attribute; Explanation" alt="hidden">
-        <input class="spec" type="text" id="risk4" style="display: none; width:60%;" placeholder="Skill + Attribute; Explanation" alt="hidden">
-        <input class="spec" type="text" id="risk5" style="display: none; width:60%;" placeholder="Skill + Attribute; Explanation" alt="hidden">
-        <input class="spec" type="text" id="risk6" style="display: none; width:60%;" placeholder="Skill + Attribute; Explanation" alt="hidden">
+        <h4>Anchors &nbsp <img class="aDot" src="circle-filled.jpg"></h4>
+        <input class="writing" type="text" id="risk1" style="width:60%;" placeholder="Connection to the Sleeping World" alt="shown">
+        <input class="spec" type="text" id="risk2" style="width:60%;" placeholder="Connection to the Sleeping World" alt="shown">
+        <input class="spec" type="text" id="risk3" style="display: none; width:60%;" placeholder="Connection to the Sleeping World" alt="hidden">
+        <input class="spec" type="text" id="risk4" style="display: none; width:60%;" placeholder="Connection to the Sleeping World" alt="hidden">
+        <input class="spec" type="text" id="risk5" style="display: none; width:60%;" placeholder="Connection to the Sleeping World" alt="hidden">
+        <input class="spec" type="text" id="risk6" style="display: none; width:60%;" placeholder="Connection to the Sleeping World" alt="hidden">
         <button onclick="RevealRisk()">Add+</button>
-        <h4>Regular &nbsp<img class="aDot" src="circle-filled.jpg"><img class="aDot" src="circle-filled.jpg"></h4>
-        <input class="writing" type="text" id="regu1" style="width:60%;" placeholder="Describe"><br />
-        <input class="writing" type="text" id="regu2" style="width:60%;" placeholder="Describe"><br />
-        <h4>Rare &nbsp <img class="aDot" src="circle-filled.jpg"></h4>
+        <h4>Anchored Mysteries &nbsp<img class="aDot" src="circle-filled.jpg"><img class="aDot" src="circle-filled.jpg"></h4>
+        <input class="writing" type="text" id="regu1" style="width:60%;" placeholder="Arcana Dot + Anchor"><br />
+        <input class="writing" type="text" id="regu2" style="width:60%;" placeholder="Arcana Dot + Anchor"><br />
+        <h4>Unbound Mysteries &nbsp <img class="aDot" src="circle-filled.jpg"></h4>
         <input class="writing" type="text" id="rare1" style="width:60%;"><br />
         <input class="writing" type="text" id="rare2" style="width:60%;"><br />
         <input class="writing" type="text" id="rare3" style="width:60%;"><br />
@@ -484,8 +484,8 @@
             <span id="limPar">What?</span>
             
           </p>
-          <b><span onclick="GimmeInfo('obsession')" class="infoblack">Obsession</span></b><input type="text" class="writing" id="obse1" placeholder="Describe Your Obsession">
-          <input type="text" class="writing" id="obse2" placeholder="Attribute + Skill">
+          <b><span onclick="GimmeInfo('touchstone')" class="infoblack">Touchstone</span></b><input type="text" class="writing" id="obse1" placeholder="Describe Your Touchstone">
+          <input type="text" class="writing" id="obse2" placeholder="Used this Session? Yay or Nay?">
           <p class="stat" name="wil">
             
             <b><span onclick="GimmeInfo('willpower')" class="infoblack">Willpower</span></b>
@@ -521,6 +521,10 @@
             <input type="number" min="0" id="healAg" value="0" class="boxes" style="display: none" />
             <input type="number" min="0" id="healBa" value="0" class="boxes" style="display: none" />
           </p>
+          <p id="bleed2" style="display:none"><b>Arcana Bleed:  </b><input type='button' value='Clear' onclick="ClearButton('bleed1'), HideStuff('bleed2')" /></p>
+          <p id="bleed1" style="display:none"></p>
+          <p id="anomaly2" style="display:none"><b>Anomaly Condition:  </b><input type='button' value='Clear' onclick="ClearButton('anomaly1'), HideStuff('anomaly2')" /></p>
+          <p id="anomaly1" style="display:none"></p>
           <h2>Roll Dice</h2>
           <form>
           Your Dice Pool:
@@ -548,8 +552,9 @@
         </form>
           <br /><br />
         
-        <input type="button" id="spell" value="Spell Roll" onclick="RollDice('spell')" />
-        <input type="button" id="ability" value="Ability Check" onclick="RollDice('ability')" />
+        <input type="button" id="spell" value="Spell" onclick="RollDice('spell')" />
+        <input type="button" id="ability" value="Ability" onclick="RollDice('ability')" />
+        <input type="button" id="straight" value="Neither" onclick="RollDice('straight')" />
         <br />
         <p id="threemax"></p>
         <p id="demo"></p>
@@ -580,6 +585,7 @@
         "succ.jpg";
       var twosucc =
         "succsucc.jpg";
+      var total = 0;
     
 
         function RevealRisk() {
@@ -720,7 +726,10 @@
           i +
           ')" />';
       }
-      
+
+
+
+
       parPar.innerHTML = text6;
       document.getElementById(statNum).dispatchEvent(new Event("input"));
     }
@@ -897,7 +906,6 @@
           mainBox.alt = "star"
         }
       }
-      
       }
 
       function CountDamage (stat) {
@@ -1084,7 +1092,7 @@
       function RollDice(rollType) {
         rt = rollType;
         resultArray = [];
-        var liminality = document.getElementById("limnum").value;
+        let liminality = document.getElementById("limnum").value;
         let obj = document.getElementById("myPool");
         let pool = Number(obj.options[obj.selectedIndex].text);
         while (pool > 0) {
@@ -1111,12 +1119,13 @@
       }
 
       function PrintResults(resultArray, rollType) {
-        var liminality = document.getElementById("limnum").value;
+        var gnosis = document.getElementById("gnonum").value;
         let overreach = OverReach();
         let rLen = resultArray.length;
         let succ = 0;
         let critSuc = 0
         let critFail = 0
+        let liminality = GetDecoherence(rollType);
         let lim = liminality - 1;
         let text1 = " ";
         let st = document.getElementById("spelltotal");    
@@ -1129,19 +1138,22 @@
           let result = resultArray[i].dieRoll;
           let dieImg = "hmm";
           if (result > 9) {
-            if (i < liminality) {
-              dieImg = "<img class='dieBox' src='succ-succp.jpg'>";
+            if (i < liminality && rollType == "ability") {
+              dieImg = "<img class='dieBox' src='succ-succp.jpg' title='+2 Successes!'>";
+            }
+            else if (i < liminality && rollType == "spell") {
+              dieImg = "<img class='dieBox' src='succ-succp.jpg' title='+2 Successes and +1 Spell Surge!' >";
             }
             else if (i >= liminality) {
-              dieImg = "<img class='dieBox' src='succ-succ.jpg'>";
+              dieImg = "<img class='dieBox' src='succ-succ.jpg' title='+2 Successes!' >";
             }
           }
           else if (result < 10 && result > 5) {
             if (i < liminality) {
-              dieImg = "<img class='dieBox' src='succp.jpg'>";
+              dieImg = "<img class='dieBox' src='succp.jpg' title='+1 Success!' >";
             }
             else if (i >= liminality) {
-              dieImg = "<img class='dieBox' src='succ.jpg'>";
+              dieImg = "<img class='dieBox' src='succ.jpg' title='+1 Success!' >";
             }
           }
           else if (result < 6 && result > 1) {
@@ -1153,15 +1165,19 @@
             }
           }
           else if (result < 2) {
-            if (i < liminality) {
-              dieImg = "<img class='dieBox' src='skullp.jpg'>";
+            if (i < liminality && rollType == "ability") {
+              dieImg = "<img class='dieBox' src='skullp.jpg' title='+1 Arcana Bleed' >";
+            }
+            else if (i < liminality && rollType == "spell") {
+              dieImg = "<img class='dieBox' src='skullp.jpg' title='+1 Anomaly' >";
             }
             else if (i >= liminality) {
-              dieImg = "<img class='dieBox' src='skull.jpg'>";
+              dieImg = "<img class='dieBox' src='skull.jpg' title='-1 Success!'>";
             }
           }
-          if (resultArray[i].dieRoll > 9) critSuc++;
-          else if (resultArray[i].dieRoll == 1) critFail++;
+          if (resultArray[i].dieRoll > 9 && i < liminality) critSuc++;
+          else if (resultArray[i].dieRoll == 1 && i < liminality) critFail++;
+          else if (resultArray[i].dieRoll == 1 && i >= liminality) succ--;
           if (i <= lim) {
             text1 += "<FONT COLOR=purple>";
           }
@@ -1175,34 +1191,170 @@
           
         }
         if (rollType == "ability") {
-          crits = critSuc + critFail;
-          if (crits > 0) sr1.innerHTML = "<FONT-COLOR=red><b>Arcana Bleed: " + crits + "</b><br /><FONT-COLOR=black>";
+          sr1.innerHTML = " ";
+          total = succ;
+          critSucNum = Number(critSuc);
+          critFailNum = Number(critFail);
+          if (critFail > 0) sr1.innerHTML += "<FONT-COLOR=red><b>Arcana Bleed: " + critFail + " </b><input type='button' value='Release' title='Create an Environmental Tilt' onclick=ContainSurge('release',critFailNum) /></b> <input type='button' value='Contain' title='-1 Success + Possible Bleed Condition' onclick=ContainSurge('bleed',critFailNum) /><br /><FONT-COLOR=black>";
+          if (critSuc > 0) sr1.innerHTML += "<FONT-COLOR=red><b>Arcana Surge: " + critSuc + "</b> <input type='button' value='Release' title='Create an Environmental Tilt?' onclick=ContainSurge('release',critSucNum) /><input type='button' value='Contain' title='-1 Success + Possibly Increase Decoherence' onclick=ContainSurge('ability',critSucNum) /><br /><FONT-COLOR=black>";
           st.innerHTML  = "<b> Total Successes: " + succ + "</b></ul>";
           document
           .getElementById("rero")
           .setAttribute("onclick", "SetupReroll(resultArray, 'ability')");
         }
+        else if (rollType == "straight") st.innerHTML = "<b> Total Successes: " + succ + "</b></ul>"
         else if (rollType == "spell") {
           total = succ - overreach;
         if (total > 0) {
-          if (critSuc > 0) {sr1.innerHTML = "<b>Possible Spell Surge: " + critSuc + "</b><br />";
-          st.innerHTML = "<b> Total Successes: " + total + "</b><br />One success applied to Overreach</ul>";
+          critSucNum = Number(critSuc);
+          critFailNum = Number(critFail);
+          if (critSuc > 0) {
+            sr1.innerHTML = "<b>Spell Surge: " + critSuc + "  </b><input type='button' value='Release' title='Add or Double Reach' onclick=RollSurge() /><input type='button' value='Contain' title='-1 Success + Possibly Increase Decoherence' onclick=ContainSurge('spell',critSucNum) /><br />";
         }
-          if (critFail > 0) sr2.innerHTML = "<b>Possible Anomaly: " + critFail + "</b><br />";
+          if (critFail > 0) sr2.innerHTML = "<b>Anomaly: " + critFail + "</b><input type='button' value='Release' title='Unleash a horror on the world' onclick=RollAnomaly(0) /><input type='button' value='Contain' title='-1 Success & You gain an Anomaly Condition' onclick=ContainSurge('anomaly',critFailNum) /><br />";
           st.innerHTML = "<b> Total Successes: " + total + "</b></ul>";
+          if (overreach > 0) st.innerHTML += "<br /><span class='tiny'>" + overreach + " Overreach applied to Total </span><br />"
         } else if (total == 0 && critFail < 1) { st.innerHTML = "No Successes <br />The spell is not forming as you'd hope.<br />You can strain local reality to force 1 Success.";
         } else if (total <= 0) {
           anomaly = overreach - succ;
           sr2.innerHTML = "<b>Possible Reality Tear <b>";
           if (critFail > 0) sr2.innerHTML =
             "<FONT COLOR=purple><h2>You have triggered an Anomaly<h2> ";
-              st.innerHTML = " Total Successes: -" + anomaly + "</ul>";
+              st.innerHTML = "<b> Total Successes: -" + anomaly + "</b></ul>";
         }
         document
           .getElementById("rero")
           .setAttribute("onclick", "SetupReroll(resultArray, 'spell')");
         }
         document.getElementById("demo").innerHTML = text1;
+      }
+
+      function GetDecoherence(rollType) {
+        let lim = 0
+        let liminality = document.getElementById("limnum").value;
+        if (rollType == "straight") return 0;
+        else {
+          return liminality;
+        }
+      }
+
+
+      function RollBleed(amount) {
+        para = document.getElementById("bleed1");
+        para1 = para.innerHTML
+        para2 = document.getElementById("bleed2")
+        para.style["display"] = "block"
+        para2.style["display"] = "block"
+        if (para1 == null || para1 == "") {
+          if (amount == 0) para.innerHTML += "<b>Selfish:</b> Nothing supernatural. You are just a bad person";
+          else if (amount > 0) {
+              roll = Math.floor(Math.random() * 7) + 1;
+              if (roll == 1) para.innerHTML += "<b>Live Wire:</b> Mages, Agents, and magical objects you touch with bare skin takes " + amount + " bashing damage.";
+              else if (roll == 2) para.innerHTML += "<b>Strange Aura:</b> Concentrating on containing your magic makes it harder to fake it with sleepers. You take a -" + amount + " penalty to all Social rolls with sleepers. ";
+              else if (roll == 3) para.innerHTML += "<b>Bad Associations:</b> You keep one of your Anchors in mind to help you keep control, but now the Anchor feels contaminated. Mark " + amount + "  Clarity damage whenever you use an Anchor.";
+              else if (roll == 4) para.innerHTML += "<b>Control Freak:</b> Keeping your magic in has made it harder to cast spells. Your spell rolls take a -" + amount + " penalty.";
+              else if (roll == 5) para.innerHTML += "<b>Everything you have:</b> Keeping it together takes so much focus that you cannot spend Willpower and all rolls involving Composure or Resolve take a -" + amount + " penalty.";
+              else if (roll == 6) para.innerHTML += "<b>Parasite</b>: Your Decoherence increases by " + amount + " at the start of the next round. At the end of the round, all cabal mates present must spend a point of Willpower or increase their Decoherence by " + amount + " and your Decoherence lowers by that total. The condition then ends.";
+              else if (roll == 7) para.innerHTML +=  "<b>Weak Link</b>: You barely manage to keep it together, but any cabal mate who can see you must spend " + amount + " Willpower to cast a spell."
+              else if (roll == 8) para.innerHTML +=  "<b>Corrosive Control</b>: Keeping it together takes a toll. Each round you must spend Willpower or take " + amount + " Bashing damage."
+          }
+        }
+        else {
+          roll2 = Math.floor(Math.random() * 3) + 1;
+          if (roll2 == 1) para.innerHTML += "<br /><i>Persistent</i>: The condition resolves in 1d5 scenes instead.";
+          else if (roll2 == 2) para.innerHTML += "<br /><i>Resilient</i>: You cannot take Resource damage to end this condition.";
+          else if (roll2 == 3) para.innerHTML += "<br /><i>Dormant</i>: Any noticeable effects from this condition immediately cease for the rest of the scene. Starting in the next scene, the next Arcana Bleed you Contain instead restarts this condition.";
+        } 
+      }
+
+      function RollAnomaly(amount) {
+        para = document.getElementById("anomaly1");
+        para1 = para.innerHTML
+        para2 = document.getElementById("anomaly2")
+        para.style["display"] = "block"
+        para2.style["display"] = "block"
+        if (para1 == null || para1 == "") {
+          if (amount == 0) para.innerHTML += "<b>Selfish:</b> Nothing supernatural. You are just a bad person";
+          else if (amount > 0) {
+              roll = Math.floor(Math.random() * 7) + 1;
+              if (roll == 1) para.innerHTML += "<b>Warping Touch:</b> Everything and everyone you touch with bare skin takes " + amount + " bashing damage";
+              else if (roll == 2) para.innerHTML += "<b>Corrupted Aura:</b> Something about you is off and even sleepers can sense it. You take a -" + amount + " penalty to all Social rolls with sleepers. This penalty is doubled with other mages";
+              else if (roll == 3) para.innerHTML += "<b>Living Sieve:</b> You have lost the ability to contain your magic. All Arcana Bleeds must Release and strengthen by " + amount;
+              else if (roll == 4) para.innerHTML += "<b>Uncontrolled:</b> You have lost the ability to restrain your magic. Spell Surges must Release and Potency increases by " + amount;
+              else if (roll == 5) para.innerHTML += "<b>Everything you have:</b> Keeping it together takes so much focus that you cannot spend Willpower and all rolls involving Composure or Resolve take a -" + amount + " penalty.";
+              else if (roll == 6) para.innerHTML += "<b>Stability Siphon</b>: You take " + amount + " Clarity damage at the start of each round. At the end of each round, all mages present must spend a point of Willpower or take " + amount + " Clarity damage and your Clarity heals by the total damage taken. If you ever have no Clarity damage, the condition ends";
+              else if (roll == 7) para.innerHTML +=  "<b>Tapped In</b>: Any Anomaly roll that is Contained in this scene causes you " + amount + " Clarity damage in addition to it's normal effects."
+          }
+        }
+        else {
+          roll2 = Math.floor(Math.random() * 3) + 1;
+          if (roll2 == 1) para.innerHTML += "<br /><i>Persistent</i>: The condition resolves in 1d5 scenes instead.";
+          else if (roll2 == 2) para.innerHTML += "<br /><i>Infectious</i>: Until it resolves, anything affected by the condition, other than yourself, is at risk of taking on the condition as well";
+          else if (roll2 == 3) para.innerHTML += "<br /><i>Dormant</i>: Any noticeable effects from this condition immediately cease for the rest of the scene. Starting in the next scene, the next Anomaly you Contain instead restarts this condition.";
+        } 
+      }
+
+      function ClearButton(parId) {
+        para = document.getElementById(parId);
+        para.innerHTML = "";
+      }
+
+      function HideStuff(parId) {
+        para = document.getElementById (parId);
+        para.style.display = "none";
+      }
+
+      function RollSurge() {
+        let sr1 = document.getElementById("spellresults1");
+        roll = Math.floor(Math.random() * 10) + 1;
+        if (roll == 10) sr1.innerHTML += "Your Choice! <br />";
+        else if (roll >= 8) UpdateSurge("duration", "Duration");
+        else if (roll >= 6) UpdateSurge("distance", "Distance");
+        else if (roll >= 4) UpdateSurge("aoe", "Area of Effect");
+        else if (roll >= 2) UpdateSurge("potency", "Potency");
+        else if (roll == 1) sr1.innerHTML += "Uh oh, that's not good!<br />";
+      }
+
+      function UpdateSurge(reachName, reachWrite) {
+        let sr1 = document.getElementById("spellresults1");
+        val = CheckValue(reachName)
+        obj2 = document.getElementsByName(reachName);
+        if (val == 0) {
+            obj2[1].checked = true;
+            sr1.innerHTML += "Free " + reachWrite + " reach!<br />"
+        }
+        else if (val == 1) sr1.innerHTML += "Spell " + reachWrite + " is doubled<br />";
+      }
+
+      function ContainSurge(rollType, amount) {
+        let st = document.getElementById("spelltotal");
+        let sr1 = document.getElementById("spellresults1");
+        total = total - amount;
+        st.innerHTML = "<b>Total Successes: " + total + "</b><br />";
+        clarity = document.getElementById("clarnum")
+        clarVal = clarity.value;
+        decoVal = GetDecoherence(rollType);
+        newTotal = clarVal - decoVal;
+        roll = Math.floor(Math.random() * 10) + 1;
+        if (rollType == "release") sr1.innerHTML += "Cool stuff happens?";
+        if (roll <= newTotal) sr1.innerHTML += "You got lucky.<br />";
+        else if (roll > newTotal) {
+          if (rollType == "spell") {  
+            sr1.innerHTML += "Increase your Decoherence by " + amount + "<br />";
+          }
+          else if (rollType == "ability") {  
+            sr1.innerHTML += "Increase your Decoherence by " + amount + "<br />";
+          }
+          else if (rollType == "bleed") {  
+            RollBleed(amount);
+            sr1.innerHTML += "You gain an Arcana Bleed Condition<br />";
+          }
+          else if (rollType == "anomaly") {  
+            RollAnomaly(amount);
+            sr1.innerHTML += "You gain an Anomaly Condition<br />";
+          }
+        }
+        else sr1.innerHTML += "The FUCK?!";
       }
 
       function SetupReroll(resultArray, rollType) {
@@ -1331,19 +1483,21 @@
       else if (subject == "reach")
         parId.innerHTML ="<b>Reach:</b> This is your ability to push a spell beyond its normal limits. You get 1 free reach plus the difference between the Arcana Level and the Spell Level.<br />You can push beyond this, creating Overreach. Overreach is subtracted from your successes. If you dont have enough successes, an anomaly might occur.";
       else if (subject == "resources")
-        parId.innerHTML ="<b>Resources:</b><br />Character Creation: You start with 7 dots in Resources, one in each category (totaling 4) then the other 3 distributed as you like.<br /><b>Losing Resources</b>:If you spend a Rare Resource, you will lose that point of Resources. Also, you will stain your resources on a Critically Failed resources roll. At the end of a session, you roll for Resources (similar to clarity). On a failure, you choose which dot is most appropriate to lose. If you choose to lose a Regular Resource, you can gain one dot in Risky or Rare (whichever makes most sense).<br /><b>Risky Resources</b> are those that are situational and have a risk of failure. These are ways that you might be able to acquire resources, (with a successful roll), eg. Dexterity + Larceny to pickpocket tourists.  A Critical Success on a successful roll will lower your Decoherence. A Critical Failure will stain your Resources. <br /><b>Regular Resources</b> are a mage's touchstones to pre-awakened life and is the best way to lower decoherence. No single roll is associated, but will depend on the interaction. Additionally, these represent responsibilities that may crop up. This can be a job, access to a family trust, etc. <br /><b>Rare Resources</b> are things like a favor you are owed, a big score you keep in your back pocket, or a precious item you've been saving. Once used, these are gone.";
+        parId.innerHTML ="<b>Anchors & Mysteries:</b><br />Character Creation: You start with 7 dots in Resources, all in Anchors, distributed between 2-4 different Anchors from your Sleeping Life. You can gain Resources as you interact with the magic world.<br /><b>Mysteries</b> are aspects of reality and magic that show you a glimpse of what is true. These can come from interacting with Agents, magical places or objects, or extreme acts of magic. Mysteries grant a dot of a relevant Arcana, however they also make it harder for you to maintain the illusion of sleeping. Using an Anchored Mystery raises the Arcana and your Aura by 1 for the rest of the scene. Each use marks one stain on your Resources. Using an Unbound Mystery permanently raises your Arcana and Aura by 1 and you lose that point of Resources.<br /><b>Anchors</b> are a mage's touchstones to the sleeping world and is the best way to lower Decoherence. You can lower your Decoherence by interacting with your Anchor and marking a stain on your Resources <br /><b>Anchored Mysteries</b> are Mysteries that have some tie to the sleeping world that are able to mitigate the effect of the Mystery on the Mage. The aura effect of the Mystery is temporary and terminates at the end of the scene.<br /><b>Losing Resources</b>: If you use an Unbound Mystery, you will lose that point of Resources. Also, can mark a stain on your Resources to end an Anomaly condition or Arcana Bleed Condition. At the end of a session, you roll for Resources (similar to clarity). On a failure, you choose which dot is most appropriate to lose. If you choose to lose an Anchor attached to a Mystery, it becomes Unbound.";
       else if (subject == "decoherence")
-        parId.innerHTML ="<b>Decoherence:</b> VtM (somewhat) equivalent to Hunger<br />You need at least one Dot of Decoherence in order to cast spells. You usually raise your Decoherence by feeding your Obsession during downtime and by your morning Rouse check. You usually lower it by Maintaining Regular Resources during downtime<br />When casting spells, you can only reroll Decoherence dice. A Critical Failure on a failed spell roll will lead to an Anomaly, so low Decoherence decreases your ability to reroll to mitigate this risk.<br />A Critical Success on a successful spell roll will lead to a Spell Surge (Reach is added), which means the spell might last longer or affect more people than intended.<br />When making an Ability roll, you can reroll Normal dice but NOT Decoherence dice. All crits (1s & 10s) lead to Arcana Bleed, with your dominant Arcana leaking into the real world. This will lead to a Complicated Success or a Complicated Failure, depending on the roll.";
+        parId.innerHTML ="<b>Decoherence:</b> VtM (somewhat) equivalent to Hunger<br />You need at least one Dot of Decoherence in order to cast spells. Your Decoherence rises when you try to Contain a Spell Surge or an Arcana Surge. You usually lower it by interacting with yourAnchors<br />When casting spells, you can only reroll Decoherence dice. A Critical Failure on a failed spell roll will lead to an Anomaly, so low Decoherence decreases your ability to reroll to mitigate this risk.<br />A Critical Success on a successful spell roll will lead to a Spell Surge (Reach is added), which means the spell might last longer or affect more people than intended.<br />When making an Ability roll, you can reroll Normal dice but NOT Decoherence dice.<br /> Critical Fails lead to Arcana Bleed, with your dominant Arcana leaking into the real world, creating an Environmental Tilt. Containing an Anomaly or an Arcana Bleed might give you a condition, roll a die and if it is lower than your Clarity minus your Decoherence, you gain a condition. Containing a Spell Surge or an Arcana Surge might increase your Decoherence.";
       else if (subject == "obsession")
         parId.innerHTML ="<b>obsession:</b> VtM (somewhat) equivalent to Feeding Type.<br />Feeding your Obsession raises your Decoherence, giving you better control over your spell casting. However, you've tried everything easy. The only things left take risk (and are usually illegal).<br />Your particular Obsession, your Path, and your Arcana all go hand in hand, with the way you access the true nature of reality shaped by your theory of how it works.<br />Among Mages, there are many theories about what reality actually is. Some believe humanity is stuck in a maze and open doors day after day, hoping to find the Exit. Some think reality is playing in a loop and track details from world events to where the mayor goes for coffee to find how to break out of it. Some believe reality is a computer simulation, with cyberspace being a window into reality or the lifeblood of it, depending on who you ask. And some think this is all a Laboratory, with humanity either as the central test subjects or living variables to test the creatures of the Void.>br />These theories and more abound in Mage circles.";
       else if (subject == "health")
         parId.innerHTML ="<b>Health:</b> Your Health is equal to Stamina+Size (5). There are two types of damage, Bashing (indicated by a single slash)and Aggravated (three slashes). Place them left to right, with more serious damage farthest left. If your health track is full, roll Stamina each round to stay conscious.<br />Healing: Bashing damage heals one point per hour and Aggravated heals one point per 3 days. Some 2 dot spells can reduce this time, some 3 dot spells can heal Bashing, and 4 dot spells can heal Aggravated.";
       else if (subject == "clarity")
-        parId.innerHTML ="<b>Clarity:</b> VtM equivalent to Humanity<br />Your Clarity is your overall grasp of the Sleeping world, how it feels for those who are still asleep, and your connection to the rest of humanity. As a mage's clarity declines, they often find it harder to interact with sleepers and the mundane world.<br />Severe aggressions against reality and sleeping humans will stain your clarity. Mark the empty remaining boxes on your clarity track. At the end of each session, you will roll dice equal to the unmarked boxes.<br />Any success allows you to maintain your Clarity. Fail the roll and your Clarity declines as the Sleeping world fades from your understanding.";
+        parId.innerHTML ="<b>Clarity:</b> VtM equivalent to Humanity<br />Your Clarity is your overall grasp of the Sleeping world, how it feels for those who are still asleep, and your connection to the rest of humanity. As a mage's clarity declines, they often find it harder to interact with sleepers and the mundane world.<br />Aggressions against reality and sleeping humans will stain your clarity. Mark the empty remaining boxes on your clarity track. If all boxes are marked and you take further damage, the left most box becomes Aggravated damage (Severe transgression against reality may also cause aggravated damage). At the end of each session, you will roll dice equal to the unmarked boxes. If all are marked, roll a Chance die (only a 10 is a success).<br />Any success allows you to maintain your Clarity. Fail the roll and your Clarity declines as the Sleeping world fades from your understanding. Either way, all non-aggravated damage is cleared after the roll.<br />Clearing Aggravated damage requires that you spend time with important people or places from your sleeping life. These will typically be Normal Resources. To clear the Aggravated damage, mark a Resource damage.";
       else if (subject == "attributes")
         parId.innerHTML ="<b>Attributes:</b> These are your 9 Attributes. The Top row are your Power stats, the middle row are your Finesse stats, and the bottom row are your Resistance stats. Your Health is determined by your Stamina + Size (5). Your Willpower is Resolve + Composure.<br />Most ability rolls will be an Attribute + a skill (eg. Wits + Awareness for perception, Hand-to-hand combat is Strength + Brawl, Melee weapons are Dexterity + Melee, and Firearms are usually Composure + Firearms.), but some will be two Attributes (eg. Resolve + Composure).<br />In character creation, each stat starts with one Dot. You then can assign 5 dots, 4 dots, and 3 dots each to a column as you see fit. You then add one additional dot to one Resistance stat (ie the bottom row)";
       else if (subject == "skills")
         parId.innerHTML ="<b>Skills:</b> These will always be paired with an Attribute for dice rolls. For character creation, you have 3 options:<br />-Jack of All Trades: One skill at 3 dots, eight skills at 2, ten skills at 1<br />-Balanced: Three at 3 dots, five at 2, seven at 1<br />-Specialist:One skill at 4, Three at 3, Three at 1.<br />Additionally, if you have at least one dot in Academics, Craft, Performance, and/or Science, you gain a free Specialty. You add one additional dice to a roll when the Specialty is relevant.";
+      else if (subject == "touchstone")
+        parId.innerHTML ="<b>Touchstone:</b> This is a small object or trinket that grounds you. Once per Session, you can use an action to interact with your touchstone and lower your Decoherence by 1." 
       else if (subject == "specialties")
         parId.innerHTML ="PHYSICAL SKILLS <br /> <b>Athletics</b>: Acrobatics, Archery, Climbing, Endurance, Jumping, Parkour, Swimming, Throwing <br /><b>Brawl</b>: Animals, Armed Sleepers, Bar Fights, Grappling, Mages, Sporting Combat, Unarmed Sleepers, Agents <br /><b>Craft</b>: Carpentry, Carving, Design, Painting, Sculpting, Sewing, Weaponsmithing<br /><b>Drive</b>: All-Terrain Vehicles, Evasion, Motorcycles, Street Racing, Stunts, Tailing, Trucks, Vintage Models<br /><b>Firearms</b>: Crossbows, Gun Dealing, Gunsmithing, Handloading Ammunition, Quick-Draw, Sniper, Trick Shooting<br /><b>Larceny</b>: Alarms, Forgery, Grand Theft Auto, Housebreaking, Lockpicking, Pickpocket, Safecracking, Security Analysis<br /><b>Melee</b>: Axes, Chains, Clubs, Fencing, Disarming Blows, Garrotes, Improvised Weapons, Knives, Stakes, Swords<br /><b>Stealth</b>: Ambushes, Crowds, Disguise, Hiding, Shadowing, Silent Movement, Urban, Wilderness<br /><b>Survival</b>: Desert, Hunting, Jungle, Tracking, Traps, Shelters, Urban Exploration, Woodlands<br />SOCIAL SKILLS <br /><b>Animal Ken</b>: Attack Training, Cats, Dogs, Falconry, Horses, Pacification, Pigeons, Rats, Snakes, Stunt Training<br /><b>Etiquette</b>: Agents, Celebrities, Corporate, Elysium, Feudal, One-Percenter, Secret Society<br /><b>Insight</b>: Ambitions, Desires, Detect Lies, Emotions, Empathy, Interrogation, Motives, Phobias, Vices<br /><b>Intimidation</b>: Extortion, Insults, Interrogation, Physical Coercion, Staredowns, Veiled Threats<br /><b>Leadership</b>: Command, Inspiration, Ritual Coordination, Team Dynamics, War Pack<br /><b>Performance</b>: Comedy, Dance, Drama, Drums, Guitar, Keyboards, Poetry, Public Speaking, Rap, Singing, Violin, Wind Instruments<br /><b>Persuasion</b>: Bargaining, Fast Talk, Interrogation, Legal Argument, Negotiation, Rhetoric<br /><b>Streetwise</b>: Arms Dealing, Black Market, Bribery, Drugs, Fence Stolen Goods, Gangs, Graffiti, Personal Rep, Sex Trade, Urban Survival<br /><b>Subterfuge</b>: Bluff, Feign Mortality, Impeccable Lies, Innocence, The Long Con, Seduction<br />MENTAL SKILLS <br /><b>Academics</b>: Architecture, English Literature, History of Art, History (specific Field or Period), Journalism, Philosophy, Research, Teaching, Theology<br /><b>Awareness</b>: Ambushes, Camouflage, Concealed Objects, Hearing, Instincts, Smell, Sight, Traps, Wilderness<br /><b>Finance</b>: Appraisal, Banking, Black Markets, Corporate Finance, Currency Manipulation, Fine Art, Forensic Accounting, Money Laundering, Stock Market<br /><b>Investigation</b>: Criminology, Deduction, Forensics, Missing Persons, Murder, Paranormal Mysteries, Traffic Analysis<br /><b>Medicine</b>: First Aid, Haematology, Pathology, Pharmacy, Phlebotomy, Surgery, Trauma Care, Veterinary<br /><b>Occult</b>: Alchemy, Artifacts, Lefthand Magic, Ghosts, Necromancy, Reality Theories, Parapsychology, Voudun<br /><b>Politics</b>: City Government, Diplomacy, Lobbying,  Mage Alliances, Media, National Politics, State/Provincial Politics<br /><b>Science</b>: Astronomy, Biology, Chemistry, Demolitions, Engineering, Genetics, Geology, Mathematics, Physics<br /><b>Technology</b>: Artillery, Coding, Computer Building, Data Mining, Hacking, Networks, Phones, Surveillance Systems";
       }
