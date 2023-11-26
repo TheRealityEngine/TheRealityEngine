@@ -484,8 +484,22 @@
             <span id="limPar">What?</span>
             
           </p>
-          <b><span onclick="GimmeInfo('touchstone')" class="infoblack">Touchstone</span></b><input type="text" class="writing" id="obse1" placeholder="Describe Your Touchstone">
-          <input type="text" class="writing" id="obse2" placeholder="Used this Session? Yay or Nay?">
+          <b><span onclick="GimmeInfo('touchstone')" class="infoblack">Touchstone</span></b><input type="checkbox"><input type="text" class="writing" id="obse1" placeholder="Describe Your Touchstone"><br />
+          <p class="stat" name="aur">
+            <input
+              type="number"
+              min="1"
+              max="5"
+              value="1"
+              id="aurnum"
+              class="attrib"
+              name="Aura"
+              oninput="AuraLoad()"
+              
+              
+            />
+            <b><span onclick="GimmeInfo('aura')" class="infoblack">Aura</span></b>
+          <span id="aurPar" class="tiny">What?</span>
           <p class="stat" name="wil">
             
             <b><span onclick="GimmeInfo('willpower')" class="infoblack">Willpower</span></b>
@@ -691,6 +705,7 @@
       BoxifyAll("wil");
       ClarifyAll("clar");
       ClarifyAll("reso");
+      AuraLoad();
       let len = stats.length;
       for (let i = 0; i < len; i++) {
         sta = stats[i];
@@ -1004,6 +1019,15 @@
         }
       }
 
+      function AuraLoad() {
+        let auraVal = document.getElementById("aurnum").value;
+        let auraPar = document.getElementById("aurPar");
+        if (auraVal == 1) auraPar.innerHTML = "Only the most perceptive can see it.";
+        else if (auraVal == 2) auraPar.innerHTML = "Can easily be hidden.";
+        else if (auraVal == 3) auraPar.innerHTML = "Requires a check to hide. Can be Flared";
+        else if (auraVal == 4) auraPar.innerHTML = "Always flared. Spend Willpower to Supress ";
+        else if (auraVal == 5) auraPar.innerHTML = "Always Flared. Cannot be supressed.";
+      }
 
 
       function NumberMe(stat) {
@@ -1195,8 +1219,8 @@
           total = succ;
           critSucNum = Number(critSuc);
           critFailNum = Number(critFail);
-          if (critFail > 0) sr1.innerHTML += "<FONT-COLOR=red><b>Arcana Bleed: " + critFail + " </b><input type='button' value='Release' title='Create an Environmental Tilt' onclick=ContainSurge('release',critFailNum) /></b> <input type='button' value='Contain' title='-1 Success + Possible Bleed Condition' onclick=ContainSurge('bleed',critFailNum) /><br /><FONT-COLOR=black>";
-          if (critSuc > 0) sr1.innerHTML += "<FONT-COLOR=red><b>Arcana Surge: " + critSuc + "</b> <input type='button' value='Release' title='Create an Environmental Tilt?' onclick=ContainSurge('release',critSucNum) /><input type='button' value='Contain' title='-1 Success + Possibly Increase Decoherence' onclick=ContainSurge('ability',critSucNum) /><br /><FONT-COLOR=black>";
+          if (critFail > 0) sr1.innerHTML += "<FONT-COLOR=red><b>Arcana Bleed: " + critFail + " </b><input type='button' value='Release' title='Harm Local Reality' onclick=ContainSurge('bleedrelease',critFailNum) /></b> <input type='button' value='Contain' title='-1 Success + Possible Bleed Condition' onclick=ContainSurge('bleed',critFailNum) /><br /><FONT-COLOR=black>";
+          if (critSuc > 0) sr1.innerHTML += "<FONT-COLOR=red><b>Arcana Surge: " + critSuc + "</b> <input type='button' value='Release' title='Increase Aura strength' onclick=ContainSurge('surgerelease',critSucNum) /><input type='button' value='Contain' title='-1 Success + Possibly Increase Decoherence' onclick=ContainSurge('ability',critSucNum) /><br /><FONT-COLOR=black>";
           st.innerHTML  = "<b> Total Successes: " + succ + "</b></ul>";
           document
           .getElementById("rero")
@@ -1248,9 +1272,9 @@
         if (para1 == null || para1 == "") {
           if (amount == 0) para.innerHTML += "<b>Selfish:</b> Nothing supernatural. You are just a bad person";
           else if (amount > 0) {
-              roll = Math.floor(Math.random() * 7) + 1;
+              roll = Math.floor(Math.random() * 8) + 1;
               if (roll == 1) para.innerHTML += "<b>Live Wire:</b> Mages, Agents, and magical objects you touch with bare skin takes " + amount + " bashing damage.";
-              else if (roll == 2) para.innerHTML += "<b>Strange Aura:</b> Concentrating on containing your magic makes it harder to fake it with sleepers. You take a -" + amount + " penalty to all Social rolls with sleepers. ";
+              else if (roll == 2) para.innerHTML += "<b>Strange Vibes:</b> Concentrating on containing your magic makes it harder to fake it with sleepers. You take a -" + amount + " penalty to all Social rolls with sleepers. ";
               else if (roll == 3) para.innerHTML += "<b>Bad Associations:</b> You keep one of your Anchors in mind to help you keep control, but now the Anchor feels contaminated. Mark " + amount + "  Clarity damage whenever you use an Anchor.";
               else if (roll == 4) para.innerHTML += "<b>Control Freak:</b> Keeping your magic in has made it harder to cast spells. Your spell rolls take a -" + amount + " penalty.";
               else if (roll == 5) para.innerHTML += "<b>Everything you have:</b> Keeping it together takes so much focus that you cannot spend Willpower and all rolls involving Composure or Resolve take a -" + amount + " penalty.";
@@ -1276,21 +1300,23 @@
         if (para1 == null || para1 == "") {
           if (amount == 0) para.innerHTML += "<b>Selfish:</b> Nothing supernatural. You are just a bad person";
           else if (amount > 0) {
-              roll = Math.floor(Math.random() * 7) + 1;
+              roll = Math.floor(Math.random() * 8) + 1;
               if (roll == 1) para.innerHTML += "<b>Warping Touch:</b> Everything and everyone you touch with bare skin takes " + amount + " bashing damage";
               else if (roll == 2) para.innerHTML += "<b>Corrupted Aura:</b> Something about you is off and even sleepers can sense it. You take a -" + amount + " penalty to all Social rolls with sleepers. This penalty is doubled with other mages";
               else if (roll == 3) para.innerHTML += "<b>Living Sieve:</b> You have lost the ability to contain your magic. All Arcana Bleeds must Release and strengthen by " + amount;
-              else if (roll == 4) para.innerHTML += "<b>Uncontrolled:</b> You have lost the ability to restrain your magic. Spell Surges must Release and Potency increases by " + amount;
+              else if (roll == 4) para.innerHTML += "<b>Uncontrolled:</b> You have lost the ability to restrain your magic. Spell Surges must Release and potency increases by " + amount;
               else if (roll == 5) para.innerHTML += "<b>Everything you have:</b> Keeping it together takes so much focus that you cannot spend Willpower and all rolls involving Composure or Resolve take a -" + amount + " penalty.";
               else if (roll == 6) para.innerHTML += "<b>Stability Siphon</b>: You take " + amount + " Clarity damage at the start of each round. At the end of each round, all mages present must spend a point of Willpower or take " + amount + " Clarity damage and your Clarity heals by the total damage taken. If you ever have no Clarity damage, the condition ends";
               else if (roll == 7) para.innerHTML +=  "<b>Tapped In</b>: Any Anomaly roll that is Contained in this scene causes you " + amount + " Clarity damage in addition to it's normal effects."
+              else if (roll == 8) para.innerHTML += "<b>Oblivious</b>: Your Aura strength increases by " + amount + " and you cannot make checks to hide it or spend Willpower to supress a Flare."
           }
         }
         else {
-          roll2 = Math.floor(Math.random() * 3) + 1;
+          roll2 = Math.floor(Math.random() * 4) + 1;
           if (roll2 == 1) para.innerHTML += "<br /><i>Persistent</i>: The condition resolves in 1d5 scenes instead.";
           else if (roll2 == 2) para.innerHTML += "<br /><i>Infectious</i>: Until it resolves, anything affected by the condition, other than yourself, is at risk of taking on the condition as well";
           else if (roll2 == 3) para.innerHTML += "<br /><i>Dormant</i>: Any noticeable effects from this condition immediately cease for the rest of the scene. Starting in the next scene, the next Anomaly you Contain instead restarts this condition.";
+          else if (roll2 == 4) para.innerHTML += "<br /><i>Inverted</i>: Your condition suddenly reverses. If it damaged, it now heals, penalties become bonuses, and what must be released now can't be released.";
         } 
       }
 
@@ -1336,7 +1362,8 @@
         decoVal = GetDecoherence(rollType);
         newTotal = clarVal - decoVal;
         roll = Math.floor(Math.random() * 10) + 1;
-        if (rollType == "release") sr1.innerHTML += "Cool stuff happens?";
+        if (rollType == "bleedrelease") sr1.innerHTML += "You harm local reality by " + amount + "<br />";
+        else  if (rollType == "surgerelease") sr1.innerHTML += "Your Aura strength increases by " + amount + ", for the rest of the scene.<br />";
         if (roll <= newTotal) sr1.innerHTML += "You got lucky.<br />";
         else if (roll > newTotal) {
           if (rollType == "spell") {  
@@ -1483,15 +1510,16 @@
       else if (subject == "reach")
         parId.innerHTML ="<b>Reach:</b> This is your ability to push a spell beyond its normal limits. You get 1 free reach plus the difference between the Arcana Level and the Spell Level.<br />You can push beyond this, creating Overreach. Overreach is subtracted from your successes. If you dont have enough successes, an anomaly might occur.";
       else if (subject == "resources")
-        parId.innerHTML ="<b>Anchors & Mysteries:</b><br />Character Creation: You start with 7 dots in Resources, all in Anchors, distributed between 2-4 different Anchors from your Sleeping Life. You can gain Resources as you interact with the magic world.<br /><b>Mysteries</b> are aspects of reality and magic that show you a glimpse of what is true. These can come from interacting with Agents, magical places or objects, or extreme acts of magic. Mysteries grant a dot of a relevant Arcana, however they also make it harder for you to maintain the illusion of sleeping. Using an Anchored Mystery raises the Arcana and your Aura by 1 for the rest of the scene. Each use marks one stain on your Resources. Using an Unbound Mystery permanently raises your Arcana and Aura by 1 and you lose that point of Resources.<br /><b>Anchors</b> are a mage's touchstones to the sleeping world and is the best way to lower Decoherence. You can lower your Decoherence by interacting with your Anchor and marking a stain on your Resources <br /><b>Anchored Mysteries</b> are Mysteries that have some tie to the sleeping world that are able to mitigate the effect of the Mystery on the Mage. The aura effect of the Mystery is temporary and terminates at the end of the scene.<br /><b>Losing Resources</b>: If you use an Unbound Mystery, you will lose that point of Resources. Also, can mark a stain on your Resources to end an Anomaly condition or Arcana Bleed Condition. At the end of a session, you roll for Resources (similar to clarity). On a failure, you choose which dot is most appropriate to lose. If you choose to lose an Anchor attached to a Mystery, it becomes Unbound.";
+        parId.innerHTML ="<b>Anchors & Mysteries:</b><br /><b>New Rule<b/>: Clarity, Decoherence, and Anchors are now 'exchangeable'. When you take damage to Clarity or Resources or would increase Decoherence, you can now choose to move that to one of the other two. <br />Character Creation: You start with 7 dots in Resources, all in Anchors, distributed between 2-4 different Anchors from your Sleeping Life. You can gain Resources as you interact with the magic world.<br /><b>Mysteries</b> are aspects of reality and magic that show you a glimpse of what is true. These can come from interacting with Agents, magical places or objects, or extreme acts of magic. Mysteries grant a dot of a relevant Arcana, however they also make it harder for you to maintain the illusion of sleeping. Using an Anchored Mystery raises the Arcana and your Aura by 1 for the rest of the scene. Each use marks one stain on your Resources. Using an Unbound Mystery permanently raises your Arcana and Aura by 1 and you lose that point of Resources.<br /><b>Anchors</b> are a mage's touchstones to the sleeping world and is the best way to lower Decoherence. You can lower your Decoherence by interacting with your Anchor and marking a stain on your Resources <br /><b>Anchored Mysteries</b> are Mysteries that have some tie to the sleeping world that are able to mitigate the effect of the Mystery on the Mage. The aura effect of the Mystery is temporary and terminates at the end of the scene.<br /><b>Losing Resources</b>: If you use an Unbound Mystery, you will lose that point of Resources. Also, can mark a stain on your Resources to end an Anomaly condition or Arcana Bleed Condition. At the end of a session, you roll for Resources (similar to clarity). On a failure, you choose which dot is most appropriate to lose. If you choose to lose an Anchor attached to a Mystery, it becomes Unbound.";
       else if (subject == "decoherence")
-        parId.innerHTML ="<b>Decoherence:</b> VtM (somewhat) equivalent to Hunger<br />You need at least one Dot of Decoherence in order to cast spells. Your Decoherence rises when you try to Contain a Spell Surge or an Arcana Surge. You usually lower it by interacting with yourAnchors<br />When casting spells, you can only reroll Decoherence dice. A Critical Failure on a failed spell roll will lead to an Anomaly, so low Decoherence decreases your ability to reroll to mitigate this risk.<br />A Critical Success on a successful spell roll will lead to a Spell Surge (Reach is added), which means the spell might last longer or affect more people than intended.<br />When making an Ability roll, you can reroll Normal dice but NOT Decoherence dice.<br /> Critical Fails lead to Arcana Bleed, with your dominant Arcana leaking into the real world, creating an Environmental Tilt. Containing an Anomaly or an Arcana Bleed might give you a condition, roll a die and if it is lower than your Clarity minus your Decoherence, you gain a condition. Containing a Spell Surge or an Arcana Surge might increase your Decoherence.";
+        parId.innerHTML ="<b>Decoherence:</b> VtM (somewhat) equivalent to Hunger<br /><b>New Rule<b/>: Clarity, Decoherence, and Anchors are now 'exchangeable'. When you take damage to Clarity or Resources or would increase Decoherence, you can now choose to move that to one of the other two. <br />You need at least one Dot of Decoherence in order to cast spells. Your Decoherence rises when you try to Contain a Spell Surge or an Arcana Surge. You usually lower it by interacting with yourAnchors<br />When casting spells, you can only reroll Decoherence dice. A Critical Failure on a failed spell roll will lead to an Anomaly, so low Decoherence decreases your ability to reroll to mitigate this risk.<br />A Critical Success on a successful spell roll will lead to a Spell Surge (Reach is added), which means the spell might last longer or affect more people than intended.<br />When making an Ability roll, you can reroll Normal dice but NOT Decoherence dice.<br /> Critical Fails lead to Arcana Bleed, with your dominant Arcana leaking into the real world, creating an Environmental Tilt. Containing an Anomaly or an Arcana Bleed might give you a condition, roll a die and if it is lower than your Clarity minus your Decoherence, you gain a condition. Containing a Spell Surge or an Arcana Surge might increase your Decoherence.";
       else if (subject == "obsession")
         parId.innerHTML ="<b>obsession:</b> VtM (somewhat) equivalent to Feeding Type.<br />Feeding your Obsession raises your Decoherence, giving you better control over your spell casting. However, you've tried everything easy. The only things left take risk (and are usually illegal).<br />Your particular Obsession, your Path, and your Arcana all go hand in hand, with the way you access the true nature of reality shaped by your theory of how it works.<br />Among Mages, there are many theories about what reality actually is. Some believe humanity is stuck in a maze and open doors day after day, hoping to find the Exit. Some think reality is playing in a loop and track details from world events to where the mayor goes for coffee to find how to break out of it. Some believe reality is a computer simulation, with cyberspace being a window into reality or the lifeblood of it, depending on who you ask. And some think this is all a Laboratory, with humanity either as the central test subjects or living variables to test the creatures of the Void.>br />These theories and more abound in Mage circles.";
       else if (subject == "health")
         parId.innerHTML ="<b>Health:</b> Your Health is equal to Stamina+Size (5). There are two types of damage, Bashing (indicated by a single slash)and Aggravated (three slashes). Place them left to right, with more serious damage farthest left. If your health track is full, roll Stamina each round to stay conscious.<br />Healing: Bashing damage heals one point per hour and Aggravated heals one point per 3 days. Some 2 dot spells can reduce this time, some 3 dot spells can heal Bashing, and 4 dot spells can heal Aggravated.";
       else if (subject == "clarity")
-        parId.innerHTML ="<b>Clarity:</b> VtM equivalent to Humanity<br />Your Clarity is your overall grasp of the Sleeping world, how it feels for those who are still asleep, and your connection to the rest of humanity. As a mage's clarity declines, they often find it harder to interact with sleepers and the mundane world.<br />Aggressions against reality and sleeping humans will stain your clarity. Mark the empty remaining boxes on your clarity track. If all boxes are marked and you take further damage, the left most box becomes Aggravated damage (Severe transgression against reality may also cause aggravated damage). At the end of each session, you will roll dice equal to the unmarked boxes. If all are marked, roll a Chance die (only a 10 is a success).<br />Any success allows you to maintain your Clarity. Fail the roll and your Clarity declines as the Sleeping world fades from your understanding. Either way, all non-aggravated damage is cleared after the roll.<br />Clearing Aggravated damage requires that you spend time with important people or places from your sleeping life. These will typically be Normal Resources. To clear the Aggravated damage, mark a Resource damage.";
+        parId.innerHTML ="<b>Clarity:</b> VtM equivalent to Humanity<br /><b>New Rule<b/>: Clarity, Decoherence, and Anchors are now 'exchangeable'. When you take damage to Clarity or Resources or would Increase Decoherence, you can now choose to move that to one of the other two. <br /> Your Clarity is your overall grasp of the Sleeping world, how it feels for those who are still asleep, and your connection to the rest of humanity. As a mage's clarity declines, they often find it harder to interact with sleepers and the mundane world.<br />Aggressions against reality and sleeping humans, interacting with new Agent types and strange ruins, and some conditions will stain your Clarity. Mark the empty remaining boxes on your clarity track. If all boxes are marked and you take further damage, the left most box becomes Aggravated damage (Severe transgression against reality may also cause aggravated damage). At the end of each session, you will roll dice equal to the unmarked boxes. If all are marked, roll a Chance die (only a 10 is a success).<br />Any success allows you to maintain your Clarity. Fail the roll and your Clarity declines as the Sleeping world fades from your understanding. Either way, all non-aggravated damage is cleared after the roll and aggravated damage become non-aggravated and carries over to the next session. If all boxes get marked with aggravated damage, you immediately lose a point Clarity and heal all damage.";
+      else if (subject == "aura") parId.innerHTML ="<b>Aura</b>: <br /> Your Aura is the unconscious effect you have on yourself and your surroundings, such as metal rusting, eyes glowing, coins landing on end, bugs being drawn towards you, etc. These effects get permanently stronger as you use Unbound Mysteries. They get temporarily stronger when you Release Arcana Surges (Nat 10 on an Ability check) and reduce to your minimum at the end of a scene. Your Aura minimum is equal to 1 + used Unbound Mysteries.<br />A Flared aura adds Gnosis to total successes when working towards solving a mystery or feeding your obsession and it minuses Gnosis from successes in all other checks.<br /><i>Level 1</i>: Aura is barely perceptible and takes effort to notice.<br /><i>Level 2</i>: Aura can be easily hidden, such as by wearing sunglasses to hide glowing eyes, requiring no check. Can be Flared for one Round.<br /><i>Level 3</i>: Aura is obvious enough that it must be hidden from sleepers with effort (requires a check). Can be Flared for the rest of the scene. <br /><i>Level 4</i>: Aura is always Flared. You can spend a Willpower to supress the flare for the rest of the Scene. <br /><i>Level 5</i>: Aura is always Flared. You cans pend a Willpower to supress for one Round."
       else if (subject == "attributes")
         parId.innerHTML ="<b>Attributes:</b> These are your 9 Attributes. The Top row are your Power stats, the middle row are your Finesse stats, and the bottom row are your Resistance stats. Your Health is determined by your Stamina + Size (5). Your Willpower is Resolve + Composure.<br />Most ability rolls will be an Attribute + a skill (eg. Wits + Awareness for perception, Hand-to-hand combat is Strength + Brawl, Melee weapons are Dexterity + Melee, and Firearms are usually Composure + Firearms.), but some will be two Attributes (eg. Resolve + Composure).<br />In character creation, each stat starts with one Dot. You then can assign 5 dots, 4 dots, and 3 dots each to a column as you see fit. You then add one additional dot to one Resistance stat (ie the bottom row)";
       else if (subject == "skills")
